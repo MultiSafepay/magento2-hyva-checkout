@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd"
+>
+    <body>
+        <referenceBlock name="hyva.checkout.components">
+            <container name="checkout.payment.section"
+                       htmlTag="section"
+                       htmlId="payment"
+            >
+                <block name="checkout.payment.methods"
+                       template="Hyva_CheckoutDefault::component/payment/method-list.phtml"
+                >
+                    <arguments>
+                        <argument name="magewire" xsi:type="object">
+                            \Hyva\CheckoutDefault\Magewire\Payment\MethodList
+                        </argument>
+                    </arguments>
+
+                    <!-- Payment Renderer: MultiSafepay IDEAL -->
+                    <block name="checkout.payment.method.multisafepay_ideal"
+                           as="multisafepay_ideal"
+                           template="MultiSafepay_MagewireCheckout::component/payment/method/multisafepay_ideal.phtml">
+                        <arguments>
+                            <argument name="magewire" xsi:type="object">
+                                \MultiSafepay\MagewireCheckout\Payment\Method\MultiSafepayIdeal
+                            </argument>
+                        </arguments>
+                    </block>
+                </block>
+            </container>
+        </referenceBlock>
+    </body>
+</page>

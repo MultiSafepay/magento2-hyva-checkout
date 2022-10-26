@@ -1,0 +1,16 @@
+{
+    "name": "multisafepay/magewire-checkout",
+    "description": "Integrate MultiSafepay payment methods into your Magewire Checkout",
+    "type": "magento2-module",
+    "license": "OSL-3.0",
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "MultiSafepay\\MagewireCheckout\\": ""
+        },
+        "files": [
+            "registration.php"
+        ]
+    }
+}
