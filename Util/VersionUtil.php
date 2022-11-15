@@ -13,10 +13,9 @@
  *
  */
 
-use Magento\Framework\Component\ComponentRegistrar;
+namespace MultiSafepay\MagewireCheckout\Util;
 
-ComponentRegistrar::register(
-    ComponentRegistrar::MODULE,
-    'MultiSafepay_MagewireCheckout',
-    __DIR__
-);
+class VersionUtil
+{
+    public const VERSION = '0.0.1';
+}
