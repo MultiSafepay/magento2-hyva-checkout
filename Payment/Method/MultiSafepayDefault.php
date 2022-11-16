@@ -18,83 +18,58 @@ declare(strict_types=1);
 namespace MultiSafepay\MagewireCheckout\Payment\Method;
 
 use Exception;
-use Magento\Checkout\Model\Session as SessionCheckout;
+use Magento\Checkout\Model\Session as checkoutSession;
 use Magento\Framework\Exception\LocalizedException;
-use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Quote\Api\CartManagementInterface;
 use Magento\Quote\Api\CartRepositoryInterface;
 use Magento\Quote\Model\Quote\Address as QuoteAddress;
 use Magento\Quote\Model\QuoteManagement;
 use Magewirephp\Magewire\Component;
 use Magewirephp\Magewire\Exception\AcceptableException;
-use Magewirephp\Magewire\Exception\ValidationException;
-use MultiSafepay\ConnectFrontend\Controller\Connect\Redirect;
-use Psr\Http\Client\ClientExceptionInterface;
 use Rakit\Validation\Validator;
-use MultiSafepay\ConnectCore\Model\Ui\Gateway\IdealConfigProvider;
 
-class MultiSafepayIdeal extends Component\Form
+class MultiSafepayDefault extends Component\Form
 {
-    public string $issuer = '';
-
     protected $loader = ['placeOrder'];
 
-    protected SessionCheckout $sessionCheckout;
+    protected checkoutSession $checkoutSession;
     protected CartManagementInterface $quoteManagement;
     protected CartRepositoryInterface $quoteRepository;
-    protected IdealConfigProvider $idealConfigProvider;
 
     /**
      * @param Validator $validator
-     * @param SessionCheckout $sessionCheckout
+     * @param checkoutSession $checkoutSession
      * @param CartRepositoryInterface $quoteRepository
      * @param QuoteManagement $quoteManagement
-     * @param IdealConfigProvider $idealConfigProvider
      */
     public function __construct(
         Validator $validator,
-        SessionCheckout $sessionCheckout,
+        checkoutSession $checkoutSession,
         CartRepositoryInterface $quoteRepository,
-        QuoteManagement $quoteManagement,
-        IdealConfigProvider $idealConfigProvider
+        QuoteManagement $quoteManagement
     ) {
         parent::__construct($validator);
 
-        $this->sessionCheckout = $sessionCheckout;
+        $this->checkoutSession = $checkoutSession;
         $this->quoteRepository = $quoteRepository;
         $this->quoteManagement = $quoteManagement;
-        $this->idealConfigProvider = $idealConfigProvider;
     }
 
     /**
-     * @throws NoSuchEntityException
-     * @throws LocalizedException
-     */
-    public function mount(): void
-    {
-        $this->issuer = $this->sessionCheckout->getQuote()->getPayment()->getAdditionalInformation()['issuer_id'];
-    }
-
-    /**
-     * @return array
-     */
-    public function getIssuers(): array
-    {
-        try {
-            return $this->idealConfigProvider->getIssuers();
-        } catch (ClientExceptionInterface $e) {
-            return [];
-        }
-    }
-
-    /**
+     * Place the order and redirect
+     *
      * @throws AcceptableException
-     * @throws ValidationException
+     * @throws LocalizedException
      */
     public function placeOrder(): void
     {
         try {
-            $quote = $this->sessionCheckout->getQuote();
+            $quote = $this->checkoutSession->getQuote();
+        } catch (LocalizedException $localizedException) {
+            $this->error('', $localizedException->getMessage());
+        }
+
+        try {
             $shippingAddress = $quote->getShippingAddress();
 
             if ($shippingAddress->getSameAsBilling()) {
@@ -109,9 +84,9 @@ class MultiSafepayIdeal extends Component\Form
             }
 
             $order = $this->quoteManagement->submit($quote);
-            $this->sessionCheckout->setLastRealOrderId($order->getIncrementId());
+            $this->checkoutSession->setLastRealOrderId($order->getIncrementId());
         } catch (Exception $exception) {
-            $this->error('multisafepay_ideal', $exception->getMessage());
+            $this->error($quote->getPayment()->getMethod() ?? '', $exception->getMessage());
             throw new AcceptableException(__('Something went wrong'));
         }
 
@@ -119,23 +94,19 @@ class MultiSafepayIdeal extends Component\Form
     }
 
     /**
-     * @param $value
+     * Retrieve the payment method code from the quote
+     *
      * @return string
      */
-    public function updatedIssuer($value): string
+    public function getPaymentMethodCode(): string
     {
         try {
-            if ($this->issuer) {
-                $quote = $this->sessionCheckout->getQuote();
-                $quote->getPayment()->setAdditionalInformation(
-                    ['issuer_id' => $this->issuer, 'transaction_type' => 'direct']
-                );
-                $this->quoteRepository->save($quote);
-            }
-        } catch (LocalizedException $exception) {
-            $this->dispatchErrorMessage($exception->getMessage());
+            $quote = $this->checkoutSession->getQuote();
+            return $quote->getPayment()->getMethod();
+        } catch (LocalizedException $localizedException) {
+            $this->error('', $localizedException->getMessage());
         }
-
-        return $value;
+        
+        return '';
     }
 }

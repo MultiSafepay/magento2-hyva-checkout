@@ -17,13 +17,685 @@
                         </argument>
                     </arguments>
 
-                    <!-- Payment Renderer: MultiSafepay IDEAL -->
+                    <!-- Payment Renderer: MultiSafepay iDEAL -->
                     <block name="checkout.payment.method.multisafepay_ideal"
                            as="multisafepay_ideal"
                            template="MultiSafepay_MagewireCheckout::component/payment/method/multisafepay_ideal.phtml">
                         <arguments>
                             <argument name="magewire" xsi:type="object">
                                 \MultiSafepay\MagewireCheckout\Payment\Method\MultiSafepayIdeal
+                            </argument>
+                        </arguments>
+                    </block>
+
+                    <!-- Payment Renderer: MultiSafepay Bancontact -->
+                    <block name="checkout.payment.method.multisafepay_bancontact"
+                            as="multisafepay_bancontact"
+                            template="MultiSafepay_MagewireCheckout::component/payment/method/multisafepay_default.phtml">
+
+                        <arguments>
+                            <argument name="magewire" xsi:type="object">
+                                \MultiSafepay\MagewireCheckout\Payment\Method\MultiSafepayDefault
+                            </argument>
+                        </arguments>
+                    </block>
+
+                    <!-- Payment Renderer: MultiSafepay AfterPay -->
+                    <block name="checkout.payment.method.multisafepay_afterpay"
+                            as="multisafepay_afterpay"
+                            template="MultiSafepay_MagewireCheckout::component/payment/method/multisafepay_default.phtml">
+
+                        <arguments>
+                            <argument name="magewire" xsi:type="object">
+                                \MultiSafepay\MagewireCheckout\Payment\Method\MultiSafepayDefault
+                            </argument>
+                        </arguments>
+                    </block>
+
+                    <!-- Payment Renderer: MultiSafepay AliPay -->
+                    <block name="checkout.payment.method.multisafepay_alipay"
+                            as="multisafepay_alipay"
+                            template="MultiSafepay_MagewireCheckout::component/payment/method/multisafepay_default.phtml">
+
+                        <arguments>
+                            <argument name="magewire" xsi:type="object">
+                                \MultiSafepay\MagewireCheckout\Payment\Method\MultiSafepayDefault
+                            </argument>
+                        </arguments>
+                    </block>
+
+                    <!-- Payment Renderer: MultiSafepay AliPay Plus -->
+                    <block name="checkout.payment.method.multisafepay_alipayplus"
+                            as="multisafepay_alipayplus"
+                            template="MultiSafepay_MagewireCheckout::component/payment/method/multisafepay_default.phtml">
+
+                        <arguments>
+                            <argument name="magewire" xsi:type="object">
+                                \MultiSafepay\MagewireCheckout\Payment\Method\MultiSafepayDefault
+                            </argument>
+                        </arguments>
+                    </block>
+
+                    <!-- Payment Renderer: MultiSafepay Amazon Pay -->
+                    <block name="checkout.payment.method.multisafepay_amazonpay"
+                            as="multisafepay_amazonpay"
+                            template="MultiSafepay_MagewireCheckout::component/payment/method/multisafepay_default.phtml">
+
+                        <arguments>
+                            <argument name="magewire" xsi:type="object">
+                                \MultiSafepay\MagewireCheckout\Payment\Method\MultiSafepayDefault
+                            </argument>
+                        </arguments>
+                    </block>
+
+                    <!-- Payment Renderer: MultiSafepay American Express -->
+                    <block name="checkout.payment.method.multisafepay_amex"
+                            as="multisafepay_amex"
+                            template="MultiSafepay_MagewireCheckout::component/payment/method/multisafepay_default.phtml">
+
+                        <arguments>
+                            <argument name="magewire" xsi:type="object">
+                                \MultiSafepay\MagewireCheckout\Payment\Method\MultiSafepayDefault
+                            </argument>
+                        </arguments>
+                    </block>
+
+                    <!-- Payment Renderer: MultiSafepay Apple Pay -->
+                    <block name="checkout.payment.method.multisafepay_applepay"
+                            as="multisafepay_applepay"
+                            template="MultiSafepay_MagewireCheckout::component/payment/method/multisafepay_default.phtml">
+
+                        <arguments>
+                            <argument name="magewire" xsi:type="object">
+                                \MultiSafepay\MagewireCheckout\Payment\Method\MultiSafepayDefault
+                            </argument>
+                        </arguments>
+                    </block>
+
+                    <!-- Payment Renderer: MultiSafepay Bank Transfer -->
+                    <block name="checkout.payment.method.multisafepay_banktransfer"
+                            as="multisafepay_banktransfer"
+                            template="MultiSafepay_MagewireCheckout::component/payment/method/multisafepay_default.phtml">
+
+                        <arguments>
+                            <argument name="magewire" xsi:type="object">
+                                \MultiSafepay\MagewireCheckout\Payment\Method\MultiSafepayDefault
+                            </argument>
+                        </arguments>
+                    </block>
+
+                    <!-- Payment Renderer: MultiSafepay Belfius -->
+                    <block name="checkout.payment.method.multisafepay_belfius"
+                            as="multisafepay_belfius"
+                            template="MultiSafepay_MagewireCheckout::component/payment/method/multisafepay_default.phtml">
+
+                        <arguments>
+                            <argument name="magewire" xsi:type="object">
+                                \MultiSafepay\MagewireCheckout\Payment\Method\MultiSafepayDefault
+                            </argument>
+                        </arguments>
+                    </block>
+
+                    <!-- Payment Renderer: MultiSafepay CBC -->
+                    <block name="checkout.payment.method.multisafepay_cbc"
+                            as="multisafepay_cbc"
+                            template="MultiSafepay_MagewireCheckout::component/payment/method/multisafepay_default.phtml">
+
+                        <arguments>
+                            <argument name="magewire" xsi:type="object">
+                                \MultiSafepay\MagewireCheckout\Payment\Method\MultiSafepayDefault
+                            </argument>
+                        </arguments>
+                    </block>
+
+                    <!-- Payment Renderer: MultiSafepay Creditcard -->
+                    <block name="checkout.payment.method.multisafepay_creditcard"
+                            as="multisafepay_creditcard"
+                            template="MultiSafepay_MagewireCheckout::component/payment/method/multisafepay_default.phtml">
+
+                        <arguments>
+                            <argument name="magewire" xsi:type="object">
+                                \MultiSafepay\MagewireCheckout\Payment\Method\MultiSafepayDefault
+                            </argument>
+                        </arguments>
+                    </block>
+
+                    <!-- Payment Renderer: MultiSafepay Deutsche Bank Request To Pay -->
+                    <block name="checkout.payment.method.multisafepay_directbanktransfer"
+                            as="multisafepay_directbanktransfer"
+                            template="MultiSafepay_MagewireCheckout::component/payment/method/multisafepay_default.phtml">
+
+                        <arguments>
+                            <argument name="magewire" xsi:type="object">
+                                \MultiSafepay\MagewireCheckout\Payment\Method\MultiSafepayDefault
+                            </argument>
+                        </arguments>
+                    </block>
+
+                    <!-- Payment Renderer: MultiSafepay Direct Debit -->
+                    <block name="checkout.payment.method.multisafepay_directdebit"
+                            as="multisafepay_directdebit"
+                            template="MultiSafepay_MagewireCheckout::component/payment/method/multisafepay_default.phtml">
+
+                        <arguments>
+                            <argument name="magewire" xsi:type="object">
+                                \MultiSafepay\MagewireCheckout\Payment\Method\MultiSafepayDefault
+                            </argument>
+                        </arguments>
+                    </block>
+
+                    <!-- Payment Renderer: MultiSafepay DotPay -->
+                    <block name="checkout.payment.method.multisafepay_dotpay"
+                            as="multisafepay_dotpay"
+                            template="MultiSafepay_MagewireCheckout::component/payment/method/multisafepay_default.phtml">
+
+                        <arguments>
+                            <argument name="magewire" xsi:type="object">
+                                \MultiSafepay\MagewireCheckout\Payment\Method\MultiSafepayDefault
+                            </argument>
+                        </arguments>
+                    </block>
+
+                    <!-- Payment Renderer: MultiSafepay E-invoicing -->
+                    <block name="checkout.payment.method.multisafepay_einvoicing"
+                            as="multisafepay_einvoicing"
+                            template="MultiSafepay_MagewireCheckout::component/payment/method/multisafepay_default.phtml">
+
+                        <arguments>
+                            <argument name="magewire" xsi:type="object">
+                                \MultiSafepay\MagewireCheckout\Payment\Method\MultiSafepayDefault
+                            </argument>
+                        </arguments>
+                    </block>
+
+                    <!-- Payment Renderer: MultiSafepay EPS -->
+                    <block name="checkout.payment.method.multisafepay_eps"
+                            as="multisafepay_eps"
+                            template="MultiSafepay_MagewireCheckout::component/payment/method/multisafepay_default.phtml">
+
+                        <arguments>
+                            <argument name="magewire" xsi:type="object">
+                                \MultiSafepay\MagewireCheckout\Payment\Method\MultiSafepayDefault
+                            </argument>
+                        </arguments>
+                    </block>
+
+                    <!-- Payment Renderer: MultiSafepay GiroPay -->
+                    <block name="checkout.payment.method.multisafepay_giropay"
+                            as="multisafepay_giropay"
+                            template="MultiSafepay_MagewireCheckout::component/payment/method/multisafepay_default.phtml">
+
+                        <arguments>
+                            <argument name="magewire" xsi:type="object">
+                                \MultiSafepay\MagewireCheckout\Payment\Method\MultiSafepayDefault
+                            </argument>
+                        </arguments>
+                    </block>
+
+                    <!-- Payment Renderer: MultiSafepay Google Pay -->
+                    <block name="checkout.payment.method.multisafepay_googlepay"
+                            as="multisafepay_googlepay"
+                            template="MultiSafepay_MagewireCheckout::component/payment/method/multisafepay_default.phtml">
+
+                        <arguments>
+                            <argument name="magewire" xsi:type="object">
+                                \MultiSafepay\MagewireCheckout\Payment\Method\MultiSafepayDefault
+                            </argument>
+                        </arguments>
+                    </block>
+
+                    <!-- Payment Renderer: MultiSafepay iDEAL QR -->
+                    <block name="checkout.payment.method.multisafepay_idealqr"
+                            as="multisafepay_idealqr"
+                            template="MultiSafepay_MagewireCheckout::component/payment/method/multisafepay_default.phtml">
+
+                        <arguments>
+                            <argument name="magewire" xsi:type="object">
+                                \MultiSafepay\MagewireCheckout\Payment\Method\MultiSafepayDefault
+                            </argument>
+                        </arguments>
+                    </block>
+
+                    <!-- Payment Renderer: MultiSafepay in3 -->
+                    <block name="checkout.payment.method.multisafepay_in3"
+                            as="multisafepay_in3"
+                            template="MultiSafepay_MagewireCheckout::component/payment/method/multisafepay_default.phtml">
+
+                        <arguments>
+                            <argument name="magewire" xsi:type="object">
+                                \MultiSafepay\MagewireCheckout\Payment\Method\MultiSafepayDefault
+                            </argument>
+                        </arguments>
+                    </block>
+
+                    <!-- Payment Renderer: MultiSafepay KBC -->
+                    <block name="checkout.payment.method.multisafepay_kbc"
+                            as="multisafepay_kbc"
+                            template="MultiSafepay_MagewireCheckout::component/payment/method/multisafepay_default.phtml">
+
+                        <arguments>
+                            <argument name="magewire" xsi:type="object">
+                                \MultiSafepay\MagewireCheckout\Payment\Method\MultiSafepayDefault
+                            </argument>
+                        </arguments>
+                    </block>
+
+                    <!-- Payment Renderer: MultiSafepay Klarna -->
+                    <block name="checkout.payment.method.multisafepay_klarna"
+                            as="multisafepay_klarna"
+                            template="MultiSafepay_MagewireCheckout::component/payment/method/multisafepay_default.phtml">
+
+                        <arguments>
+                            <argument name="magewire" xsi:type="object">
+                                \MultiSafepay\MagewireCheckout\Payment\Method\MultiSafepayDefault
+                            </argument>
+                        </arguments>
+                    </block>
+
+                    <!-- Payment Renderer: MultiSafepay Maestro -->
+                    <block name="checkout.payment.method.multisafepay_maestro"
+                            as="multisafepay_maestro"
+                            template="MultiSafepay_MagewireCheckout::component/payment/method/multisafepay_default.phtml">
+
+                        <arguments>
+                            <argument name="magewire" xsi:type="object">
+                                \MultiSafepay\MagewireCheckout\Payment\Method\MultiSafepayDefault
+                            </argument>
+                        </arguments>
+                    </block>
+
+                    <!-- Payment Renderer: MultiSafepay Mastercard -->
+                    <block name="checkout.payment.method.multisafepay_mastercard"
+                            as="multisafepay_mastercard"
+                            template="MultiSafepay_MagewireCheckout::component/payment/method/multisafepay_default.phtml">
+
+                        <arguments>
+                            <argument name="magewire" xsi:type="object">
+                                \MultiSafepay\MagewireCheckout\Payment\Method\MultiSafepayDefault
+                            </argument>
+                        </arguments>
+                    </block>
+
+                    <!-- Payment Renderer: MultiSafepay MyBank -->
+                    <block name="checkout.payment.method.multisafepay_mybank"
+                            as="multisafepay_mybank"
+                            template="MultiSafepay_MagewireCheckout::component/payment/method/multisafepay_default.phtml">
+
+                        <arguments>
+                            <argument name="magewire" xsi:type="object">
+                                \MultiSafepay\MagewireCheckout\Payment\Method\MultiSafepayDefault
+                            </argument>
+                        </arguments>
+                    </block>
+
+                    <!-- Payment Renderer: MultiSafepay Wallet -->
+                    <block name="checkout.payment.method.multisafepay"
+                            as="multisafepay"
+                            template="MultiSafepay_MagewireCheckout::component/payment/method/multisafepay_default.phtml">
+
+                        <arguments>
+                            <argument name="magewire" xsi:type="object">
+                                \MultiSafepay\MagewireCheckout\Payment\Method\MultiSafepayDefault
+                            </argument>
+                        </arguments>
+                    </block>
+
+                    <!-- Payment Renderer: MultiSafepay Pay After Delivery -->
+                    <block name="checkout.payment.method.multisafepay_payafter"
+                            as="multisafepay_payafter"
+                            template="MultiSafepay_MagewireCheckout::component/payment/method/multisafepay_default.phtml">
+
+                        <arguments>
+                            <argument name="magewire" xsi:type="object">
+                                \MultiSafepay\MagewireCheckout\Payment\Method\MultiSafepayDefault
+                            </argument>
+                        </arguments>
+                    </block>
+
+                    <!-- Payment Renderer: MultiSafepay PayPal -->
+                    <block name="checkout.payment.method.multisafepay_paypal"
+                            as="multisafepay_paypal"
+                            template="MultiSafepay_MagewireCheckout::component/payment/method/multisafepay_default.phtml">
+
+                        <arguments>
+                            <argument name="magewire" xsi:type="object">
+                                \MultiSafepay\MagewireCheckout\Payment\Method\MultiSafepayDefault
+                            </argument>
+                        </arguments>
+                    </block>
+
+                    <!-- Payment Renderer: MultiSafepay Paysafecard -->
+                    <block name="checkout.payment.method.multisafepay_paysafecard"
+                            as="multisafepay_paysafecard"
+                            template="MultiSafepay_MagewireCheckout::component/payment/method/multisafepay_default.phtml">
+
+                        <arguments>
+                            <argument name="magewire" xsi:type="object">
+                                \MultiSafepay\MagewireCheckout\Payment\Method\MultiSafepayDefault
+                            </argument>
+                        </arguments>
+                    </block>
+
+                    <!-- Payment Renderer: MultiSafepay Santander -->
+                    <block name="checkout.payment.method.multisafepay_santander"
+                            as="multisafepay_santander"
+                            template="MultiSafepay_MagewireCheckout::component/payment/method/multisafepay_default.phtml">
+
+                        <arguments>
+                            <argument name="magewire" xsi:type="object">
+                                \MultiSafepay\MagewireCheckout\Payment\Method\MultiSafepayDefault
+                            </argument>
+                        </arguments>
+                    </block>
+
+                    <!-- Payment Renderer: MultiSafepay Sofort -->
+                    <block name="checkout.payment.method.multisafepay_sofort"
+                            as="multisafepay_sofort"
+                            template="MultiSafepay_MagewireCheckout::component/payment/method/multisafepay_default.phtml">
+
+                        <arguments>
+                            <argument name="magewire" xsi:type="object">
+                                \MultiSafepay\MagewireCheckout\Payment\Method\MultiSafepayDefault
+                            </argument>
+                        </arguments>
+                    </block>
+
+                    <!-- Payment Renderer: MultiSafepay Trustly -->
+                    <block name="checkout.payment.method.multisafepay_trustly"
+                            as="multisafepay_trustly"
+                            template="MultiSafepay_MagewireCheckout::component/payment/method/multisafepay_default.phtml">
+
+                        <arguments>
+                            <argument name="magewire" xsi:type="object">
+                                \MultiSafepay\MagewireCheckout\Payment\Method\MultiSafepayDefault
+                            </argument>
+                        </arguments>
+                    </block>
+
+                    <!-- Payment Renderer: MultiSafepay TrustPay -->
+                    <block name="checkout.payment.method.multisafepay_trustpay"
+                            as="multisafepay_trustpay"
+                            template="MultiSafepay_MagewireCheckout::component/payment/method/multisafepay_default.phtml">
+
+                        <arguments>
+                            <argument name="magewire" xsi:type="object">
+                                \MultiSafepay\MagewireCheckout\Payment\Method\MultiSafepayDefault
+                            </argument>
+                        </arguments>
+                    </block>
+
+                    <!-- Payment Renderer: MultiSafepay WeChat Pay -->
+                    <block name="checkout.payment.method.multisafepay_wechatpay"
+                            as="multisafepay_wechatpay"
+                            template="MultiSafepay_MagewireCheckout::component/payment/method/multisafepay_default.phtml">
+
+                        <arguments>
+                            <argument name="magewire" xsi:type="object">
+                                \MultiSafepay\MagewireCheckout\Payment\Method\MultiSafepayDefault
+                            </argument>
+                        </arguments>
+                    </block>
+
+                    <!-- Payment Renderer: MultiSafepay Visa -->
+                    <block name="checkout.payment.method.multisafepay_visa"
+                            as="multisafepay_visa"
+                            template="MultiSafepay_MagewireCheckout::component/payment/method/multisafepay_default.phtml">
+
+                        <arguments>
+                            <argument name="magewire" xsi:type="object">
+                                \MultiSafepay\MagewireCheckout\Payment\Method\MultiSafepayDefault
+                            </argument>
+                        </arguments>
+                    </block>
+
+                    <!-- Payment Renderer: MultiSafepay Baby Giftcard -->
+                    <block name="checkout.payment.method.multisafepay_babygiftcard"
+                            as="multisafepay_babygiftcard"
+                            template="MultiSafepay_MagewireCheckout::component/payment/method/multisafepay_default.phtml">
+
+                        <arguments>
+                            <argument name="magewire" xsi:type="object">
+                                \MultiSafepay\MagewireCheckout\Payment\Method\MultiSafepayDefault
+                            </argument>
+                        </arguments>
+                    </block>
+
+                    <!-- Payment Renderer: MultiSafepay Beauty and Wellness -->
+                    <block name="checkout.payment.method.multisafepay_beautyandwellness"
+                            as="multisafepay_beautyandwellness"
+                            template="MultiSafepay_MagewireCheckout::component/payment/method/multisafepay_default.phtml">
+
+                        <arguments>
+                            <argument name="magewire" xsi:type="object">
+                                \MultiSafepay\MagewireCheckout\Payment\Method\MultiSafepayDefault
+                            </argument>
+                        </arguments>
+                    </block>
+
+                    <!-- Payment Renderer: MultiSafepay Boekenbon -->
+                    <block name="checkout.payment.method.multisafepay_boekenbon"
+                            as="multisafepay_boekenbon"
+                            template="MultiSafepay_MagewireCheckout::component/payment/method/multisafepay_default.phtml">
+
+                        <arguments>
+                            <argument name="magewire" xsi:type="object">
+                                \MultiSafepay\MagewireCheckout\Payment\Method\MultiSafepayDefault
+                            </argument>
+                        </arguments>
+                    </block>
+
+                    <!-- Payment Renderer: MultiSafepay Edenred -->
+                    <block name="checkout.payment.method.multisafepay_edenred"
+                            as="multisafepay_edenred"
+                            template="MultiSafepay_MagewireCheckout::component/payment/method/multisafepay_default.phtml">
+
+                        <arguments>
+                            <argument name="magewire" xsi:type="object">
+                                \MultiSafepay\MagewireCheckout\Payment\Method\MultiSafepayDefault
+                            </argument>
+                        </arguments>
+                    </block>
+
+                    <!-- Payment Renderer: MultiSafepay Fashioncheque -->
+                    <block name="checkout.payment.method.multisafepay_fashioncheque"
+                            as="multisafepay_fashioncheque"
+                            template="MultiSafepay_MagewireCheckout::component/payment/method/multisafepay_default.phtml">
+
+                        <arguments>
+                            <argument name="magewire" xsi:type="object">
+                                \MultiSafepay\MagewireCheckout\Payment\Method\MultiSafepayDefault
+                            </argument>
+                        </arguments>
+                    </block>
+
+                    <!-- Payment Renderer: MultiSafepay Fashion Giftcard -->
+                    <block name="checkout.payment.method.multisafepay_fashiongiftcard"
+                            as="multisafepay_fashiongiftcard"
+                            template="MultiSafepay_MagewireCheckout::component/payment/method/multisafepay_default.phtml">
+
+                        <arguments>
+                            <argument name="magewire" xsi:type="object">
+                                \MultiSafepay\MagewireCheckout\Payment\Method\MultiSafepayDefault
+                            </argument>
+                        </arguments>
+                    </block>
+
+                    <!-- Payment Renderer: MultiSafepay Fietsenbon -->
+                    <block name="checkout.payment.method.multisafepay_fietsenbon"
+                            as="multisafepay_fietsenbon"
+                            template="MultiSafepay_MagewireCheckout::component/payment/method/multisafepay_default.phtml">
+
+                        <arguments>
+                            <argument name="magewire" xsi:type="object">
+                                \MultiSafepay\MagewireCheckout\Payment\Method\MultiSafepayDefault
+                            </argument>
+                        </arguments>
+                    </block>
+
+                    <!-- Payment Renderer: MultiSafepay Gezondheidsbon -->
+                    <block name="checkout.payment.method.multisafepay_gezondheidsbon"
+                            as="multisafepay_gezondheidsbon"
+                            template="MultiSafepay_MagewireCheckout::component/payment/method/multisafepay_default.phtml">
+
+                        <arguments>
+                            <argument name="magewire" xsi:type="object">
+                                \MultiSafepay\MagewireCheckout\Payment\Method\MultiSafepayDefault
+                            </argument>
+                        </arguments>
+                    </block>
+
+                    <!-- Payment Renderer: MultiSafepay Givacard -->
+                    <block name="checkout.payment.method.multisafepay_givacard"
+                            as="multisafepay_givacard"
+                            template="MultiSafepay_MagewireCheckout::component/payment/method/multisafepay_default.phtml">
+
+                        <arguments>
+                            <argument name="magewire" xsi:type="object">
+                                \MultiSafepay\MagewireCheckout\Payment\Method\MultiSafepayDefault
+                            </argument>
+                        </arguments>
+                    </block>
+
+                    <!-- Payment Renderer: MultiSafepay Good4fun -->
+                    <block name="checkout.payment.method.multisafepay_good4fun"
+                            as="multisafepay_good4fun"
+                            template="MultiSafepay_MagewireCheckout::component/payment/method/multisafepay_default.phtml">
+
+                        <arguments>
+                            <argument name="magewire" xsi:type="object">
+                                \MultiSafepay\MagewireCheckout\Payment\Method\MultiSafepayDefault
+                            </argument>
+                        </arguments>
+                    </block>
+
+                    <!-- Payment Renderer: MultiSafepay Goodcard -->
+                    <block name="checkout.payment.method.multisafepay_goodcard"
+                            as="multisafepay_goodcard"
+                            template="MultiSafepay_MagewireCheckout::component/payment/method/multisafepay_default.phtml">
+
+                        <arguments>
+                            <argument name="magewire" xsi:type="object">
+                                \MultiSafepay\MagewireCheckout\Payment\Method\MultiSafepayDefault
+                            </argument>
+                        </arguments>
+                    </block>
+
+                    <!-- Payment Renderer: MultiSafepay Nationale Tuinbon -->
+                    <block name="checkout.payment.method.multisafepay_nationaletuinbon"
+                            as="multisafepay_nationaletuinbon"
+                            template="MultiSafepay_MagewireCheckout::component/payment/method/multisafepay_default.phtml">
+
+                        <arguments>
+                            <argument name="magewire" xsi:type="object">
+                                \MultiSafepay\MagewireCheckout\Payment\Method\MultiSafepayDefault
+                            </argument>
+                        </arguments>
+                    </block>
+
+                    <!-- Payment Renderer: MultiSafepay Parfum Cadeaukaart -->
+                    <block name="checkout.payment.method.multisafepay_parfumcadeaukaart"
+                            as="multisafepay_parfumcadeaukaart"
+                            template="MultiSafepay_MagewireCheckout::component/payment/method/multisafepay_default.phtml">
+
+                        <arguments>
+                            <argument name="magewire" xsi:type="object">
+                                \MultiSafepay\MagewireCheckout\Payment\Method\MultiSafepayDefault
+                            </argument>
+                        </arguments>
+                    </block>
+
+                    <!-- Payment Renderer: MultiSafepay Podium Cadeaukaart -->
+                    <block name="checkout.payment.method.multisafepay_podiumcadeaukaart"
+                            as="multisafepay_podiumcadeaukaart"
+                            template="MultiSafepay_MagewireCheckout::component/payment/method/multisafepay_default.phtml">
+
+                        <arguments>
+                            <argument name="magewire" xsi:type="object">
+                                \MultiSafepay\MagewireCheckout\Payment\Method\MultiSafepayDefault
+                            </argument>
+                        </arguments>
+                    </block>
+
+                    <!-- Payment Renderer: MultiSafepay Sport En Fit -->
+                    <block name="checkout.payment.method.multisafepay_sportenfit"
+                            as="multisafepay_sportenfit"
+                            template="MultiSafepay_MagewireCheckout::component/payment/method/multisafepay_default.phtml">
+
+                        <arguments>
+                            <argument name="magewire" xsi:type="object">
+                                \MultiSafepay\MagewireCheckout\Payment\Method\MultiSafepayDefault
+                            </argument>
+                        </arguments>
+                    </block>
+
+                    <!-- Payment Renderer: MultiSafepay VVV Cadeaukaart -->
+                    <block name="checkout.payment.method.multisafepay_vvvcadeaukaart"
+                            as="multisafepay_vvvcadeaukaart"
+                            template="MultiSafepay_MagewireCheckout::component/payment/method/multisafepay_default.phtml">
+
+                        <arguments>
+                            <argument name="magewire" xsi:type="object">
+                                \MultiSafepay\MagewireCheckout\Payment\Method\MultiSafepayDefault
+                            </argument>
+                        </arguments>
+                    </block>
+
+                    <!-- Payment Renderer: MultiSafepay Webshop Giftcard -->
+                    <block name="checkout.payment.method.multisafepay_webshopgiftcard"
+                            as="multisafepay_webshopgiftcard"
+                            template="MultiSafepay_MagewireCheckout::component/payment/method/multisafepay_default.phtml">
+
+                        <arguments>
+                            <argument name="magewire" xsi:type="object">
+                                \MultiSafepay\MagewireCheckout\Payment\Method\MultiSafepayDefault
+                            </argument>
+                        </arguments>
+                    </block>
+
+                    <!-- Payment Renderer: MultiSafepay Wellness Giftcard -->
+                    <block name="checkout.payment.method.multisafepay_wellnessgiftcard"
+                            as="multisafepay_wellnessgiftcard"
+                            template="MultiSafepay_MagewireCheckout::component/payment/method/multisafepay_default.phtml">
+
+                        <arguments>
+                            <argument name="magewire" xsi:type="object">
+                                \MultiSafepay\MagewireCheckout\Payment\Method\MultiSafepayDefault
+                            </argument>
+                        </arguments>
+                    </block>
+
+                    <!-- Payment Renderer: MultiSafepay Wijncadeau -->
+                    <block name="checkout.payment.method.multisafepay_wijncadeau"
+                            as="multisafepay_wijncadeau"
+                            template="MultiSafepay_MagewireCheckout::component/payment/method/multisafepay_default.phtml">
+
+                        <arguments>
+                            <argument name="magewire" xsi:type="object">
+                                \MultiSafepay\MagewireCheckout\Payment\Method\MultiSafepayDefault
+                            </argument>
+                        </arguments>
+                    </block>
+
+                    <!-- Payment Renderer: MultiSafepay WinkelCheque -->
+                    <block name="checkout.payment.method.multisafepay_winkelcheque"
+                            as="multisafepay_winkelcheque"
+                            template="MultiSafepay_MagewireCheckout::component/payment/method/multisafepay_default.phtml">
+
+                        <arguments>
+                            <argument name="magewire" xsi:type="object">
+                                \MultiSafepay\MagewireCheckout\Payment\Method\MultiSafepayDefault
+                            </argument>
+                        </arguments>
+                    </block>
+
+                    <!-- Payment Renderer: MultiSafepay YourGift -->
+                    <block name="checkout.payment.method.multisafepay_yourgift"
+                            as="multisafepay_yourgift"
+                            template="MultiSafepay_MagewireCheckout::component/payment/method/multisafepay_default.phtml">
+
+                        <arguments>
+                            <argument name="magewire" xsi:type="object">
+                                \MultiSafepay\MagewireCheckout\Payment\Method\MultiSafepayDefault
                             </argument>
                         </arguments>
                     </block>

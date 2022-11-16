@@ -4,7 +4,9 @@
     "type": "magento2-module",
     "license": "OSL-3.0",
     "minimum-stability": "dev",
-    "require": {},
+    "require": {
+        "php": ">=7.4"
+    },
     "autoload": {
         "psr-4": {
             "MultiSafepay\\MagewireCheckout\\": ""
