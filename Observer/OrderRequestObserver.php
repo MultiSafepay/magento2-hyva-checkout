@@ -16,15 +16,23 @@
 namespace MultiSafepay\MagewireCheckout\Observer;
 
 use Exception;
+use Hyva\CheckoutCore\Model\CheckoutInformation\Luma;
+use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Framework\Event\Observer;
 use Magento\Framework\Event\ObserverInterface;
 use Magento\Sales\Api\Data\OrderInterface;
+use Magento\Store\Model\ScopeInterface;
 use MultiSafepay\Api\Transactions\OrderRequest;
 use MultiSafepay\ConnectCore\Logger\Logger;
 use MultiSafepay\MagewireCheckout\Util\VersionUtil;
 
 class OrderRequestObserver implements ObserverInterface
 {
+    /**
+     * @var ScopeConfigInterface
+     */
+    protected ScopeConfigInterface $scopeConfig;
+
     /**
      * @var Logger
      */
@@ -34,11 +42,14 @@ class OrderRequestObserver implements ObserverInterface
      * OrderRequestObserver constructor.
      *
      * @param Logger $logger
+     * @param ScopeConfigInterface $scopeConfig
      */
     public function __construct(
-        Logger $logger
+        Logger $logger,
+        ScopeConfigInterface $scopeConfig
     ) {
         $this->logger = $logger;
+        $this->scopeConfig = $scopeConfig;
     }
 
     /**
@@ -52,6 +63,17 @@ class OrderRequestObserver implements ObserverInterface
         /** @var OrderInterface $order */
         $order = $observer->getData('order');
 
+        $checkoutField = $this->scopeConfig->getValue(
+            'hyva_themes_checkout/general/checkout',
+            ScopeInterface::SCOPE_STORE,
+            $order->getStoreId()
+        );
+
+        // Early return for Luma Checkout
+        if ($checkoutField === Luma::NAMESPACE) {
+            return;
+        }
+
         /** @var OrderRequest $orderRequest */
         $orderRequest = $observer->getData('orderRequest');
 
@@ -60,8 +82,7 @@ class OrderRequestObserver implements ObserverInterface
         if ($pluginDetails === null) {
             $this->logger->logInfoForOrder(
                 $order->getIncrementId(),
-                'plugin details object not found, could not prepend Magewire Checkout',
-                Logger::INFO
+                'plugin details object not found, could not prepend Magewire Checkout'
             );
         }
 
