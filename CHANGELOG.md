@@ -6,5 +6,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [0.0.1] - 2022-11-14
+## [1.0.0-beta] - 2022-11-21
 - First public beta release
