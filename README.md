@@ -5,6 +5,9 @@
 # MultiSafepay module for the MageWire Checkout
 
 This is the module of our MageWire Checkout integration.
+Currently, this module only supports redirect payment methods.
+Checkout field integration will be added in a newer version.
+
 The module is currently in beta. Please use with caution.
 
 Before you get started with MultiSafepay and MageWire Checkout, please read and follow our [installation & configuration manual](https://docs.multisafepay.com/integrations/plugins/magento2/) first.
