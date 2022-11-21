@@ -5,7 +5,12 @@
     "license": "OSL-3.0",
     "minimum-stability": "dev",
     "require": {
-        "php": ">=7.4"
+        "php": ">=7.4",
+        "multisafepay/magento2-core": "^2.19",
+        "multisafepay/magento2-frontend": "^1.18",
+        "multisafepay/magento2-adminhtml": "^1.21",
+        "hyva-themes/checkout-core":"*",
+        "hyva-themes/checkout-default":"*"
     },
     "autoload": {
         "psr-4": {
