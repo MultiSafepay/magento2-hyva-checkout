@@ -9,11 +9,11 @@
                        htmlId="payment"
             >
                 <block name="checkout.payment.methods"
-                       template="Hyva_CheckoutDefault::component/payment/method-list.phtml"
+                       template="Hyva_Checkout::checkout/payment/method-list.phtml"
                 >
                     <arguments>
                         <argument name="magewire" xsi:type="object">
-                            \Hyva\CheckoutDefault\Magewire\Payment\MethodList
+                            \Hyva\Checkout\Magewire\Checkout\Payment\MethodList
                         </argument>
                     </arguments>
 

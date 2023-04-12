@@ -14,7 +14,7 @@
 namespace MultiSafepay\MagewireCheckout\Observer;
 
 use Exception;
-use Hyva\CheckoutCore\Model\CheckoutInformation\Luma;
+use Hyva\Checkout\Model\CheckoutInformation\Luma;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Framework\Event\Observer;
 use Magento\Framework\Event\ObserverInterface;
@@ -93,7 +93,7 @@ class OrderRequestObserver implements ObserverInterface
         $magewireCheckoutVersion = 'unknown';
 
         if (method_exists('\Composer\InstalledVersions', 'getVersion')) {
-            $magewireCheckoutVersion = \Composer\InstalledVersions::getVersion('hyva-themes/checkout-default');
+            $magewireCheckoutVersion = \Composer\InstalledVersions::getVersion('hyva-themes/magento2-hyva-checkout');
         }
 
         $applicationVersion = $pluginDetails->getApplicationVersion();

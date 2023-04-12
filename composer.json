@@ -1,16 +1,16 @@
 {
     "name": "multisafepay/magewire-checkout",
     "description": "Integrate MultiSafepay payment methods into your Magewire Checkout",
+    "version": "1.0.0",
     "type": "magento2-module",
     "license": "OSL-3.0",
     "minimum-stability": "dev",
     "require": {
         "php": ">=7.4",
-        "multisafepay/magento2-core": "^2.19",
-        "multisafepay/magento2-frontend": "^1.18",
+        "multisafepay/magento2-core": "^2.19 | ^3.0",
+        "multisafepay/magento2-frontend": "^1.18 | ^2.0",
         "multisafepay/magento2-adminhtml": "^1.21",
-        "hyva-themes/checkout-core":"*",
-        "hyva-themes/checkout-default":"*"
+        "hyva-themes/magento2-hyva-checkout":"*"
     },
     "autoload": {
         "psr-4": {
