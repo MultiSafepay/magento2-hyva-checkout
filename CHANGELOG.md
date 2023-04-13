@@ -6,5 +6,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.0] - 2022-04-13
+
+### Added
+- Added compatibility with MageWire Checkout version 1.0.0
+
+### Changed
+- Upgraded composer dependencies
+- Removed year from copyright notice
+
+### Removed
+- Removed legacy files
+
 ## [1.0.0-beta] - 2022-11-21
 - First public beta release
