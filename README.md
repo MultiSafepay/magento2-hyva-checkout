@@ -2,15 +2,15 @@
   <img src="https://camo.githubusercontent.com/517483ae0eaba9884f397e9af1c4adc7bbc231575ac66cc54292e00400edcd10/68747470733a2f2f7777772e6d756c7469736166657061792e636f6d2f66696c6561646d696e2f74656d706c6174652f696d672f6d756c7469736166657061792d6c6f676f2d69636f6e2e737667" width="400px" position="center">
 </p>
 
-# MultiSafepay module for the MageWire Checkout
+# MultiSafepay module for the Magewire Checkout
 
-This is the module of our MageWire Checkout integration.
+This is the module of our Magewire Checkout integration.
 Currently, this module only supports redirect payment methods.
 Checkout field integration will be added in a newer version.
 
 The module is currently in beta. Please use with caution.
 
-Before you get started with MultiSafepay and MageWire Checkout, please read and follow our [installation & configuration manual](https://docs.multisafepay.com/integrations/plugins/magento2/) first.
+Before you get started with MultiSafepay and Magewire Checkout, please read and follow our [installation & configuration manual](https://docs.multisafepay.com/integrations/plugins/magento2/) first.
 
 ## About MultiSafepay ##
 MultiSafepay is a collecting payment service provider which means we take care of the agreements, technical details and payment collection required for each payment method. You can start selling online today and manage all your transactions from one place.
@@ -23,7 +23,7 @@ This module does not work in combination with Magento Vault yet. Please disable 
 ## Requirements
 - To use the plugin you need a MultiSafepay account. You can create a test account on https://testmerchant.multisafepay.com/signup
 - Magento Open Source version 2.3.x & 2.4.x
-- MageWire Checkout
+- Magewire Checkout
 - PHP 7.4+
 
 ## Installation
@@ -47,7 +47,7 @@ php bin/magento setup:upgrade
 You can create issues on our repository. If you need any additional help or support, please contact <a href="mailto:integration@multisafepay.com">integration@multisafepay.com</a>
 
 We are also available on our Magento Slack channel [#multisafepay-payments](https://magentocommeng.slack.com/messages/multisafepay-payments/).
-Feel free to start a conversation or provide suggestions as to how we can refine our MageWire Checkout integration.
+Feel free to start a conversation or provide suggestions as to how we can refine our Magewire Checkout integration.
 
 ## A gift for your contribution
 We look forward to receiving your input. Have you seen an opportunity to change things for better? We would like to invite you to create a pull request on GitHub.
