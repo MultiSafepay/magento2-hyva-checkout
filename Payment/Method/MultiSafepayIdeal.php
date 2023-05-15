@@ -33,9 +33,7 @@ use MultiSafepay\ConnectCore\Model\Ui\Gateway\IdealConfigProvider;
 
 class MultiSafepayIdeal extends Component\Form
 {
-    public ?string $issuer = null;
-
-    protected $loader = ['placeOrder'];
+    public string $issuer = '';
 
     protected SessionCheckout $sessionCheckout;
     protected CartManagementInterface $quoteManagement;
@@ -70,7 +68,9 @@ class MultiSafepayIdeal extends Component\Form
      */
     public function mount(): void
     {
-        $this->issuer = $this->sessionCheckout->getQuote()->getPayment()->getAdditionalInformation('issuer_id');
+         if ($issuer = $this->sessionCheckout->getQuote()->getPayment()->getAdditionalInformation('issuer_id')) {
+            $this->issuer = (string)$issuer;
+        }
     }
 
     /**
@@ -92,13 +92,14 @@ class MultiSafepayIdeal extends Component\Form
     public function updatedIssuer($value): string
     {
         try {
-            if ($this->issuer) {
-                $quote = $this->sessionCheckout->getQuote();
-                $quote->getPayment()->setAdditionalInformation(
-                    ['issuer_id' => $this->issuer, 'transaction_type' => 'direct']
-                );
-                $this->quoteRepository->save($quote);
-            }
+            
+            $quote = $this->sessionCheckout->getQuote();
+            $quote->getPayment()->setAdditionalInformation(
+                ['issuer_id' => $this->issuer, 'transaction_type' => 'direct']
+            );
+            
+            $this->quoteRepository->save($quote);
+     
         } catch (LocalizedException $exception) {
             $this->dispatchErrorMessage($exception->getMessage());
         }
