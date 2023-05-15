@@ -69,7 +69,7 @@ class MultiSafepayIdeal extends Component\Form
     public function mount(): void
     {
          if ($issuer = $this->sessionCheckout->getQuote()->getPayment()->getAdditionalInformation('issuer_id')) {
-            $this->issuer = (string)$issuer;
+            $this->issuer = $issuer;
         }
     }
 
@@ -95,7 +95,7 @@ class MultiSafepayIdeal extends Component\Form
             
             $quote = $this->sessionCheckout->getQuote();
             $quote->getPayment()->setAdditionalInformation(
-                ['issuer_id' => $this->issuer, 'transaction_type' => 'direct']
+                ['issuer_id' => $value, 'transaction_type' => 'direct']
             );
             
             $this->quoteRepository->save($quote);
