@@ -33,7 +33,7 @@ use MultiSafepay\ConnectCore\Model\Ui\Gateway\IdealConfigProvider;
 
 class MultiSafepayIdeal extends Component\Form
 {
-    public string $issuer = '';
+    public ?string $issuer = null;
 
     protected $loader = ['placeOrder'];
 
@@ -70,7 +70,7 @@ class MultiSafepayIdeal extends Component\Form
      */
     public function mount(): void
     {
-        $this->issuer = $this->sessionCheckout->getQuote()->getPayment()->getAdditionalInformation()['issuer_id'];
+        $this->issuer = $this->sessionCheckout->getQuote()->getPayment()->getAdditionalInformation('issuer_id');
     }
 
     /**
@@ -83,37 +83,6 @@ class MultiSafepayIdeal extends Component\Form
         } catch (ClientExceptionInterface $e) {
             return [];
         }
-    }
-
-    /**
-     * @throws AcceptableException
-     * @throws ValidationException
-     */
-    public function placeOrder(): void
-    {
-        try {
-            $quote = $this->sessionCheckout->getQuote();
-            $shippingAddress = $quote->getShippingAddress();
-
-            if ($shippingAddress->getSameAsBilling()) {
-                $billingAddress = clone $shippingAddress;
-
-                $billingAddress->setSameAsBilling('0');
-                $billingAddress->unsAddressId();
-                $billingAddress->setAddressType(QuoteAddress::ADDRESS_TYPE_BILLING);
-
-                $quote->setBillingAddress($billingAddress);
-                $this->quoteRepository->save($quote);
-            }
-
-            $order = $this->quoteManagement->submit($quote);
-            $this->sessionCheckout->setLastRealOrderId($order->getIncrementId());
-        } catch (Exception $exception) {
-            $this->error('multisafepay_ideal', $exception->getMessage());
-            throw new AcceptableException(__('Something went wrong'));
-        }
-
-        $this->redirect('/multisafepay/connect/redirect');
     }
 
     /**

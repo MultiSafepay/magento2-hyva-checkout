@@ -18,6 +18,12 @@ use Magento\Quote\Model\Quote;
 
 class PlaceOrderService extends AbstractPlaceOrderService
 {
+
+    public function canPlaceOrder(): bool
+    {
+        return true;
+    }
+
     /**
      * Redirect to the MultiSafepay controller
      *
