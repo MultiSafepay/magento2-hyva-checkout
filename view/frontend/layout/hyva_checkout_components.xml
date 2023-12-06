@@ -4,7 +4,7 @@
 >
     <body>
         <referenceBlock name="hyva.checkout.components">
-            <container name="checkout.payment.section"
+            <referenceContainer name="checkout.payment.section"
                        htmlTag="section"
                        htmlId="payment"
             >
@@ -28,7 +28,7 @@
                         </arguments>
                     </block>
                 </block>
-            </container>
+            </referenceContainer>
         </referenceBlock>
     </body>
 </page>
