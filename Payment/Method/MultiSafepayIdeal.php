@@ -38,8 +38,6 @@ class MultiSafepayIdeal extends Component\Form implements EvaluationInterface
 {
     public string $issuer = '';
 
-    protected $loader = ['placeOrder'];
-
     protected SessionCheckout $sessionCheckout;
     protected CartManagementInterface $quoteManagement;
     protected CartRepositoryInterface $quoteRepository;
@@ -73,7 +71,9 @@ class MultiSafepayIdeal extends Component\Form implements EvaluationInterface
      */
     public function mount(): void
     {
-        $this->issuer = $this->sessionCheckout->getQuote()->getPayment()->getAdditionalInformation()['issuer_id'];
+         if ($issuer = $this->sessionCheckout->getQuote()->getPayment()->getAdditionalInformation('issuer_id')) {
+            $this->issuer = $issuer;
+        }
     }
 
     /**
@@ -89,50 +89,20 @@ class MultiSafepayIdeal extends Component\Form implements EvaluationInterface
     }
 
     /**
-     * @throws AcceptableException
-     * @throws ValidationException
-     */
-    public function placeOrder(): void
-    {
-        try {
-            $quote = $this->sessionCheckout->getQuote();
-            $shippingAddress = $quote->getShippingAddress();
-
-            if ($shippingAddress->getSameAsBilling()) {
-                $billingAddress = clone $shippingAddress;
-
-                $billingAddress->setSameAsBilling('0');
-                $billingAddress->unsAddressId();
-                $billingAddress->setAddressType(QuoteAddress::ADDRESS_TYPE_BILLING);
-
-                $quote->setBillingAddress($billingAddress);
-                $this->quoteRepository->save($quote);
-            }
-
-            $order = $this->quoteManagement->submit($quote);
-            $this->sessionCheckout->setLastRealOrderId($order->getIncrementId());
-        } catch (Exception $exception) {
-            $this->error('multisafepay_ideal', $exception->getMessage());
-            throw new AcceptableException(__('Something went wrong'));
-        }
-
-        $this->redirect('/multisafepay/connect/redirect');
-    }
-
-    /**
      * @param $value
      * @return string
      */
     public function updatedIssuer($value): string
     {
         try {
-            if ($this->issuer) {
-                $quote = $this->sessionCheckout->getQuote();
-                $quote->getPayment()->setAdditionalInformation(
-                    ['issuer_id' => $this->issuer, 'transaction_type' => 'direct']
-                );
-                $this->quoteRepository->save($quote);
-            }
+            
+            $quote = $this->sessionCheckout->getQuote();
+            $quote->getPayment()->setAdditionalInformation(
+                ['issuer_id' => $value, 'transaction_type' => 'direct']
+            );
+            
+            $this->quoteRepository->save($quote);
+     
         } catch (LocalizedException $exception) {
             $this->dispatchErrorMessage($exception->getMessage());
         }
