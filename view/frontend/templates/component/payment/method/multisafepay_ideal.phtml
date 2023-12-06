@@ -29,6 +29,7 @@ use Magento\Framework\View\Element\Template;
         <div class="flex flex-col gap-y-2">
             <label for="multisafepay_ideal_issuer"><?= $escaper->escapeHtml(__('Please select your bank')) ?></label>
             <select name="issuer" id="multisafepay_ideal_issuer" wire:model="issuer" class="form-select">
+                <option selected value><?= $escaper->escapeHtml(__('-- Please Select --')) ?></option>
                 <?php
                 foreach ($issuers as $issuer) {
                     ?>

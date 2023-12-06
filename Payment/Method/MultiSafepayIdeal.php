@@ -16,6 +16,9 @@ declare(strict_types=1);
 namespace MultiSafepay\MagewireCheckout\Payment\Method;
 
 use Exception;
+use Hyva\Checkout\Model\Magewire\Component\EvaluationInterface;
+use Hyva\Checkout\Model\Magewire\Component\EvaluationResultFactory;
+use Hyva\Checkout\Model\Magewire\Component\EvaluationResultInterface;
 use Magento\Checkout\Model\Session as SessionCheckout;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Exception\NoSuchEntityException;
@@ -31,7 +34,7 @@ use Psr\Http\Client\ClientExceptionInterface;
 use Rakit\Validation\Validator;
 use MultiSafepay\ConnectCore\Model\Ui\Gateway\IdealConfigProvider;
 
-class MultiSafepayIdeal extends Component\Form
+class MultiSafepayIdeal extends Component\Form implements EvaluationInterface
 {
     public string $issuer = '';
 
@@ -136,4 +139,18 @@ class MultiSafepayIdeal extends Component\Form
 
         return $value;
     }
+
+    public function evaluateCompletion(EvaluationResultFactory $factory): EvaluationResultInterface
+    {
+        if ($this->issuer === null || $this->issuer === '') {
+            return $factory
+                ->createErrorMessageEvent(
+                    'Please select an issuer',
+                    'payment:method:error'
+                );
+        }
+
+        return $factory->createSuccess();
+    }
+
 }
