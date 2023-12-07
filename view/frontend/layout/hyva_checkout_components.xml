@@ -3,32 +3,17 @@
       xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd"
 >
     <body>
-        <referenceBlock name="hyva.checkout.components">
-            <referenceContainer name="checkout.payment.section"
-                       htmlTag="section"
-                       htmlId="payment"
-            >
-                <block name="checkout.payment.methods"
-                       template="Hyva_Checkout::checkout/payment/method-list.phtml"
-                >
-                    <arguments>
-                        <argument name="magewire" xsi:type="object">
-                            \Hyva\Checkout\Magewire\Checkout\Payment\MethodList
-                        </argument>
-                    </arguments>
-
-                    <!-- Payment Renderer: MultiSafepay iDEAL -->
-                    <block name="checkout.payment.method.multisafepay_ideal"
-                           as="multisafepay_ideal"
-                           template="MultiSafepay_MagewireCheckout::component/payment/method/multisafepay_ideal.phtml">
-                        <arguments>
-                            <argument name="magewire" xsi:type="object">
-                                \MultiSafepay\MagewireCheckout\Payment\Method\MultiSafepayIdeal
-                            </argument>
-                        </arguments>
-                    </block>
-                </block>
-            </referenceContainer>
+        <referenceBlock name="checkout.payment.methods">
+            <!-- Payment Renderer: MultiSafepay iDEAL -->
+            <block name="checkout.payment.method.multisafepay_ideal"
+                   as="multisafepay_ideal"
+                   template="MultiSafepay_MagewireCheckout::component/payment/method/multisafepay_ideal.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        \MultiSafepay\MagewireCheckout\Payment\Method\MultiSafepayIdeal
+                    </argument>
+                </arguments>
+            </block>
         </referenceBlock>
     </body>
 </page>
