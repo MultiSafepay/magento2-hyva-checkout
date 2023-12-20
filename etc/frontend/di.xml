@@ -35,7 +35,6 @@
                 <item name="multisafepay_payafter" xsi:type="object">MultiSafepay\MagewireCheckout\Model\Magewire\Payment\PlaceOrderService</item>
                 <item name="multisafepay_paypal" xsi:type="object">MultiSafepay\MagewireCheckout\Model\Magewire\Payment\PlaceOrderService</item>
                 <item name="multisafepay_paysafecard" xsi:type="object">MultiSafepay\MagewireCheckout\Model\Magewire\Payment\PlaceOrderService</item>
-                <item name="multisafepay_santander" xsi:type="object">MultiSafepay\MagewireCheckout\Model\Magewire\Payment\PlaceOrderService</item>
                 <item name="multisafepay_sofort" xsi:type="object">MultiSafepay\MagewireCheckout\Model\Magewire\Payment\PlaceOrderService</item>
                 <item name="multisafepay_trustly" xsi:type="object">MultiSafepay\MagewireCheckout\Model\Magewire\Payment\PlaceOrderService</item>
                 <item name="multisafepay_trustpay" xsi:type="object">MultiSafepay\MagewireCheckout\Model\Magewire\Payment\PlaceOrderService</item>
