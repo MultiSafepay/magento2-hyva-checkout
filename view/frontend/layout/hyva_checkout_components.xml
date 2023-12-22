@@ -4,6 +4,12 @@
 >
     <body>
         <referenceBlock name="checkout.payment.methods">
+            <arguments>
+                <argument name="magewire" xsi:type="object">
+                    \MultiSafepay\MagewireCheckout\Payment\MethodListExtended
+                </argument>
+            </arguments>
+
             <!-- Payment Renderer: MultiSafepay iDEAL -->
             <block name="checkout.payment.method.multisafepay_ideal"
                    as="multisafepay_ideal"
