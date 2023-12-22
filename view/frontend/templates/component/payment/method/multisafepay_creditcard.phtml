@@ -1,0 +1,125 @@
+<?php
+/**
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is provided with Magento in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ *
+ * Copyright © MultiSafepay, Inc. All rights reserved.
+ * See DISCLAIMER.md for disclaimer details.
+ */
+
+declare(strict_types=1);
+
+/** @var Template $block */
+/** @var MultiSafepayCreditCard $magewire */
+/** @var Escaper $escaper */
+
+use MultiSafepay\MagewireCheckout\Payment\Method\MultiSafepayCreditCard;
+use Magento\Framework\Escaper;
+use Magento\Framework\View\Element\Template;
+
+?>
+<div class="col-span-6" wire:payment-method="multisafepay_creditcard">
+    <?php if ($magewire->isPaymentComponentEnabled()) {?>
+    <div id="MultiSafepayPayment" class="multisafepay-payment-component" wire:ignore></div>
+
+    <script>
+        let paymentComponent;
+
+        const useCSS = (url) => {
+            const link = document.createElement('link');
+
+            link.type = 'text/css';
+            link.rel = 'stylesheet';
+            link.href = url;
+
+            document.head.append(link);
+        };
+
+        const useScript = (url) => {
+            const script = document.createElement('script');
+            script.src = url;
+            script.onload = () => loadMultiSafepayPaymentComponent();
+
+            document.head.append(script);
+        };
+
+        function loadMultiSafepayPaymentComponent() {
+            let recurringData;
+
+            let orderData = {
+                currency: '<?= $escaper->escapeJs($magewire->currency) ?>',
+                amount: '<?= $escaper->escapeJs($magewire->amount) ?>',
+                template: {
+                    settings: {
+                        embed_mode: true,
+                    },
+                },
+                customer: {
+                    locale: '<?= $escaper->escapeJs($magewire->locale) ?>',
+                    country: '<?= $escaper->escapeJs($magewire->country) ?>'
+                }
+            }
+
+            <?php if ($magewire->tokens) { ?>
+            recurringData = {
+                model: 'cardOnFile',
+                tokens: <?= $magewire->tokens ?>
+            }
+            <?php } ?>
+
+            let paymentComponentData = {
+                env: '<?= $escaper->escapeJs($magewire->environment) ?>',
+                apiToken: '<?= $escaper->escapeJs($magewire->apiToken) ?>',
+                order: orderData
+            };
+
+            if (recurringData) {
+                paymentComponentData.recurring = recurringData;
+            }
+
+            paymentComponent = new MultiSafepay(paymentComponentData);
+
+            paymentComponent.init('payment', {
+                container: '#MultiSafepayPayment',
+                gateway: '<?= $escaper->escapeJs($magewire->gatewayCode) ?>',
+                onLoad: state => {
+                    console.log('onLoad', state);
+                },
+                onError: state => {
+                    console.log('onError', state);
+                }
+            })
+        }
+
+        window.addEventListener('checkout:payment:method-activate', event => {
+            hyvaCheckout.validation.register(event.detail.method, async () => {
+                    let paymentData = await paymentComponent.getPaymentData();
+                    const component = '<?= $escaper->escapeJs($block->getNameInLayout()) ?>';
+
+                    if (paymentComponent.hasErrors()) {
+                        return false;
+                    }
+
+                    Magewire.find(component).setPaymentComponentData({
+                        payload: paymentData.payload,
+                        tokenize: paymentData.tokenize ?? false
+                    })
+
+                    return new Promise(resolve => setTimeout(() => resolve(true), 1000));
+                }, document.querySelector('#MultiSafepayPayment'), 'payment'
+            );
+        }, {once: true})
+
+        if (!window.MultiSafepay) {
+            useCSS('https://pay.multisafepay.com/sdk/components/v2/components.css');
+            useScript('https://pay.multisafepay.com/sdk/components/v2/components.js');
+        } else {
+            loadMultiSafepayPaymentComponent();
+        }
+    </script>
+</div>
+<?php } ?>

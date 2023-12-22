@@ -14,6 +14,17 @@
                     </argument>
                 </arguments>
             </block>
+
+            <!-- Payment Renderer: MultiSafepay Card Payment -->
+            <block name="checkout.payment.method.multisafepay_creditcard"
+                   as="multisafepay_creditcard"
+                   template="MultiSafepay_MagewireCheckout::component/payment/method/multisafepay_creditcard.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        \MultiSafepay\MagewireCheckout\Payment\Method\MultiSafepayCreditCard
+                    </argument>
+                </arguments>
+            </block>
         </referenceBlock>
     </body>
 </page>

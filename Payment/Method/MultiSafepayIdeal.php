@@ -15,7 +15,6 @@ declare(strict_types=1);
 
 namespace MultiSafepay\MagewireCheckout\Payment\Method;
 
-use Exception;
 use Hyva\Checkout\Model\Magewire\Component\EvaluationInterface;
 use Hyva\Checkout\Model\Magewire\Component\EvaluationResultFactory;
 use Hyva\Checkout\Model\Magewire\Component\EvaluationResultInterface;
@@ -24,12 +23,8 @@ use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Quote\Api\CartManagementInterface;
 use Magento\Quote\Api\CartRepositoryInterface;
-use Magento\Quote\Model\Quote\Address as QuoteAddress;
 use Magento\Quote\Model\QuoteManagement;
 use Magewirephp\Magewire\Component;
-use Magewirephp\Magewire\Exception\AcceptableException;
-use Magewirephp\Magewire\Exception\ValidationException;
-use MultiSafepay\ConnectFrontend\Controller\Connect\Redirect;
 use Psr\Http\Client\ClientExceptionInterface;
 use Rakit\Validation\Validator;
 use MultiSafepay\ConnectCore\Model\Ui\Gateway\IdealConfigProvider;
@@ -95,14 +90,14 @@ class MultiSafepayIdeal extends Component\Form implements EvaluationInterface
     public function updatedIssuer($value): string
     {
         try {
-            
+
             $quote = $this->sessionCheckout->getQuote();
             $quote->getPayment()->setAdditionalInformation(
                 ['issuer_id' => $value, 'transaction_type' => 'direct']
             );
-            
+
             $this->quoteRepository->save($quote);
-     
+
         } catch (LocalizedException $exception) {
             $this->dispatchErrorMessage($exception->getMessage());
         }
@@ -110,17 +105,13 @@ class MultiSafepayIdeal extends Component\Form implements EvaluationInterface
         return $value;
     }
 
-    public function evaluateCompletion(EvaluationResultFactory $factory): EvaluationResultInterface
+    public function evaluateCompletion(EvaluationResultFactory $resultFactory): EvaluationResultInterface
     {
-        if ($this->issuer === null || $this->issuer === '') {
-            return $factory
-                ->createErrorMessageEvent(
-                    'Please select an issuer',
-                    'payment:method:error'
-                );
+        if ($this->issuer === '') {
+            return $resultFactory->createErrorMessageEvent('Please select an issuer', 'payment:method:error');
         }
 
-        return $factory->createSuccess();
+        return $resultFactory->createSuccess();
     }
 
 }
