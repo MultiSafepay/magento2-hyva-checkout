@@ -159,7 +159,7 @@ class MultiSafepayCreditCard extends Component\Form
      */
     public function mount(): void
     {
-        $this->apiToken = $this->apiTokenUtil->getApiTokenFromCache($this->getQuote());
+        $this->apiToken = $this->apiTokenUtil->getApiTokenFromCache($this->getQuote())['apiToken'] ?? '';
         $this->environment = $this->config->isLiveMode($this->getQuote()->getStoreId()) ? 'live' : 'test';
         $this->amount = (int)$this->getQuote()->getGrandTotal() * 100;
         $this->currency = $this->getQuote()->getCurrency()->getQuoteCurrencyCode() ?? 'EUR';

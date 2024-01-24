@@ -18,6 +18,14 @@
                     <argument name="magewire" xsi:type="object">
                         \MultiSafepay\MagewireCheckout\Payment\Method\MultiSafepayIdeal
                     </argument>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="icon" xsi:type="array">
+                            <item name="svg" xsi:type="string">multisafepay/multisafepay_ideal</item>
+                            <item name="attributes" xsi:type="array">
+                                <item name="title" xsi:type="string">iDEAL</item>
+                            </item>
+                        </item>
+                    </argument>
                 </arguments>
             </block>
 
@@ -28,6 +36,749 @@
                 <arguments>
                     <argument name="magewire" xsi:type="object">
                         \MultiSafepay\MagewireCheckout\Payment\Method\MultiSafepayCreditCard
+                    </argument>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="icon" xsi:type="array">
+                            <item name="svg" xsi:type="string">multisafepay/multisafepay_creditcard</item>
+                            <item name="attributes" xsi:type="array">
+                                <item name="title" xsi:type="string">Card Payment</item>
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <!-- Payment Renderer: MultiSafepay Riverty -->
+            <block name="checkout.payment.method.multisafepay_afterpay"
+                   as="multisafepay_afterpay">
+                <arguments>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="icon" xsi:type="array">
+                            <item name="svg" xsi:type="string">multisafepay/multisafepay_riverty</item>
+                            <item name="attributes" xsi:type="array">
+                                <item name="title" xsi:type="string">Riverty</item>
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <!-- Payment Renderer: MultiSafepay Alipay -->
+            <block name="checkout.payment.method.multisafepay_alipay"
+                   as="multisafepay_alipay">
+                <arguments>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="icon" xsi:type="array">
+                            <item name="svg" xsi:type="string">multisafepay/multisafepay_alipay</item>
+                            <item name="attributes" xsi:type="array">
+                                <item name="title" xsi:type="string">Alipay</item>
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <!-- Payment Renderer: MultiSafepay Alipay Plus -->
+            <block name="checkout.payment.method.multisafepay_alipayplus"
+                   as="multisafepay_alipayplus">
+                <arguments>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="icon" xsi:type="array">
+                            <item name="svg" xsi:type="string">multisafepay/multisafepay_alipayplus</item>
+                            <item name="attributes" xsi:type="array">
+                                <item name="title" xsi:type="string">Alipay Plus</item>
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <!-- Payment Renderer: MultiSafepay Amazon Pay -->
+            <block name="checkout.payment.method.multisafepay_amazonpay"
+                   as="multisafepay_amazonpay">
+                <arguments>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="icon" xsi:type="array">
+                            <item name="svg" xsi:type="string">multisafepay/multisafepay_amazonpay</item>
+                            <item name="attributes" xsi:type="array">
+                                <item name="title" xsi:type="string">Amazon Pay</item>
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <!-- Payment Renderer: MultiSafepay American Express -->
+            <block name="checkout.payment.method.multisafepay_amex"
+                   as="multisafepay_amex">
+                <arguments>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="icon" xsi:type="array">
+                            <item name="svg" xsi:type="string">multisafepay/multisafepay_amex</item>
+                            <item name="attributes" xsi:type="array">
+                                <item name="title" xsi:type="string">American Express</item>
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <!-- Payment Renderer: MultiSafepay Apple Pay -->
+            <block name="checkout.payment.method.multisafepay_applepay"
+                   as="multisafepay_applepay">
+                <arguments>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="icon" xsi:type="array">
+                            <item name="svg" xsi:type="string">multisafepay/multisafepay_applepay</item>
+                            <item name="attributes" xsi:type="array">
+                                <item name="title" xsi:type="string">Apple Pay</item>
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <!-- Payment Renderer: MultiSafepay Bancontact -->
+            <block name="checkout.payment.method.multisafepay_bancontact"
+                   as="multisafepay_bancontact">
+                <arguments>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="icon" xsi:type="array">
+                            <item name="svg" xsi:type="string">multisafepay/multisafepay_bancontact</item>
+                            <item name="attributes" xsi:type="array">
+                                <item name="title" xsi:type="string">Bancontact</item>
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <!-- Payment Renderer: MultiSafepay Belfius -->
+            <block name="checkout.payment.method.multisafepay_belfius"
+                   as="multisafepay_belfius">
+                <arguments>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="icon" xsi:type="array">
+                            <item name="svg" xsi:type="string">multisafepay/multisafepay_belfius</item>
+                            <item name="attributes" xsi:type="array">
+                                <item name="title" xsi:type="string">Belfius</item>
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <!-- Payment Renderer: MultiSafepay BNPL Installments -->
+            <block name="checkout.payment.method.multisafepay_bnplinstm"
+                   as="multisafepay_bnplinstm">
+                <arguments>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="icon" xsi:type="array">
+                            <item name="svg" xsi:type="string">multisafepay/multisafepay_bnplinstm</item>
+                            <item name="attributes" xsi:type="array">
+                                <item name="title" xsi:type="string">Pay After Delivery Installments</item>
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <!-- Payment Renderer: MultiSafepay CBC -->
+            <block name="checkout.payment.method.multisafepay_cbc"
+                   as="multisafepay_cbc">
+                <arguments>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="icon" xsi:type="array">
+                            <item name="svg" xsi:type="string">multisafepay/multisafepay_cbc</item>
+                            <item name="attributes" xsi:type="array">
+                                <item name="title" xsi:type="string">CBC</item>
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <!-- Payment Renderer: MultiSafepay KBC -->
+            <block name="checkout.payment.method.multisafepay_kbc"
+                   as="multisafepay_kbc">
+                <arguments>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="icon" xsi:type="array">
+                            <item name="svg" xsi:type="string">multisafepay/multisafepay_kbc</item>
+                            <item name="attributes" xsi:type="array">
+                                <item name="title" xsi:type="string">KBC</item>
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <!-- Payment Renderer: MultiSafepay Request To Pay -->
+            <block name="checkout.payment.method.multisafepay_directbanktransfer"
+                   as="multisafepay_directbanktransfer">
+                <arguments>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="icon" xsi:type="array">
+                            <item name="svg" xsi:type="string">multisafepay/multisafepay_directbanktransfer</item>
+                            <item name="attributes" xsi:type="array">
+                                <item name="title" xsi:type="string">Request To Pay</item>
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <!-- Payment Renderer: MultiSafepay Direct Debit -->
+            <block name="checkout.payment.method.multisafepay_directdebit"
+                   as="multisafepay_directdebit">
+                <arguments>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="icon" xsi:type="array">
+                            <item name="svg" xsi:type="string">multisafepay/multisafepay_directdebit</item>
+                            <item name="attributes" xsi:type="array">
+                                <item name="title" xsi:type="string">Direct Debit</item>
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <!-- Payment Renderer: MultiSafepay Dotpay -->
+            <block name="checkout.payment.method.multisafepay_dotpay"
+                   as="multisafepay_dotpay">
+                <arguments>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="icon" xsi:type="array">
+                            <item name="svg" xsi:type="string">multisafepay/multisafepay_dotpay</item>
+                            <item name="attributes" xsi:type="array">
+                                <item name="title" xsi:type="string">Dotpay</item>
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <!-- Payment Renderer: MultiSafepay EPS -->
+            <block name="checkout.payment.method.multisafepay_eps"
+                   as="multisafepay_eps">
+                <arguments>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="icon" xsi:type="array">
+                            <item name="svg" xsi:type="string">multisafepay/multisafepay_eps</item>
+                            <item name="attributes" xsi:type="array">
+                                <item name="title" xsi:type="string">EPS</item>
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <!-- Payment Renderer: MultiSafepay Giropay -->
+            <block name="checkout.payment.method.multisafepay_giropay"
+                   as="multisafepay_giropay">
+                <arguments>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="icon" xsi:type="array">
+                            <item name="svg" xsi:type="string">multisafepay/multisafepay_giropay</item>
+                            <item name="attributes" xsi:type="array">
+                                <item name="title" xsi:type="string">Giropay</item>
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <!-- Payment Renderer: MultiSafepay Google Pay -->
+            <block name="checkout.payment.method.multisafepay_googlepay"
+                   as="multisafepay_googlepay">
+                <arguments>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="icon" xsi:type="array">
+                            <item name="svg" xsi:type="string">multisafepay/multisafepay_googlepay</item>
+                            <item name="attributes" xsi:type="array">
+                                <item name="title" xsi:type="string">Google Pay</item>
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <!-- Payment Renderer: MultiSafepay in3 -->
+            <block name="checkout.payment.method.multisafepay_in3"
+                   as="multisafepay_in3">
+                <arguments>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="icon" xsi:type="array">
+                            <item name="svg" xsi:type="string">multisafepay/multisafepay_in3</item>
+                            <item name="attributes" xsi:type="array">
+                                <item name="title" xsi:type="string">in3</item>
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <!-- Payment Renderer: MultiSafepay Klarna -->
+            <block name="checkout.payment.method.multisafepay_klarna"
+                   as="multisafepay_klarna">
+                <arguments>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="icon" xsi:type="array">
+                            <item name="svg" xsi:type="string">multisafepay/multisafepay_klarna</item>
+                            <item name="attributes" xsi:type="array">
+                                <item name="title" xsi:type="string">Klarna</item>
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <!-- Payment Renderer: MultiSafepay Mastercard -->
+            <block name="checkout.payment.method.multisafepay_mastercard"
+                   as="multisafepay_mastercard">
+                <arguments>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="icon" xsi:type="array">
+                            <item name="svg" xsi:type="string">multisafepay/multisafepay_mastercard</item>
+                            <item name="attributes" xsi:type="array">
+                                <item name="title" xsi:type="string">Mastercard</item>
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <!-- Payment Renderer: MultiSafepay MyBank -->
+            <block name="checkout.payment.method.multisafepay_mybank"
+                   as="multisafepay_mybank">
+                <arguments>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="icon" xsi:type="array">
+                            <item name="svg" xsi:type="string">multisafepay/multisafepay_mybank</item>
+                            <item name="attributes" xsi:type="array">
+                                <item name="title" xsi:type="string">MyBank</item>
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <!-- Payment Renderer: MultiSafepay Pay After Delivery -->
+            <block name="checkout.payment.method.multisafepay_payafter"
+                   as="multisafepay_payafter">
+                <arguments>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="icon" xsi:type="array">
+                            <item name="svg" xsi:type="string">multisafepay/multisafepay_payafter</item>
+                            <item name="attributes" xsi:type="array">
+                                <item name="title" xsi:type="string">Pay After Delivery</item>
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <!-- Payment Renderer: MultiSafepay PayPal-->
+            <block name="checkout.payment.method.multisafepay_paypal"
+                   as="multisafepay_paypal">
+                <arguments>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="icon" xsi:type="array">
+                            <item name="svg" xsi:type="string">multisafepay/multisafepay_paypal</item>
+                            <item name="attributes" xsi:type="array">
+                                <item name="title" xsi:type="string">Paypal</item>
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <!-- Payment Renderer: MultiSafepay PaySafeCard-->
+            <block name="checkout.payment.method.multisafepay_paysafecard"
+                   as="multisafepay_paysafecard">
+                <arguments>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="icon" xsi:type="array">
+                            <item name="svg" xsi:type="string">multisafepay/multisafepay_paysafecard</item>
+                            <item name="attributes" xsi:type="array">
+                                <item name="title" xsi:type="string">Paysafecard</item>
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <!-- Payment Renderer: MultiSafepay Sofort-->
+            <block name="checkout.payment.method.multisafepay_sofort"
+                   as="multisafepay_sofort">
+                <arguments>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="icon" xsi:type="array">
+                            <item name="svg" xsi:type="string">multisafepay/multisafepay_sofort</item>
+                            <item name="attributes" xsi:type="array">
+                                <item name="title" xsi:type="string">Sofort</item>
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <!-- Payment Renderer: MultiSafepay Trustly-->
+            <block name="checkout.payment.method.multisafepay_trustly"
+                   as="multisafepay_trustly">
+                <arguments>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="icon" xsi:type="array">
+                            <item name="svg" xsi:type="string">multisafepay/multisafepay_trustly</item>
+                            <item name="attributes" xsi:type="array">
+                                <item name="title" xsi:type="string">Trustly</item>
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <!-- Payment Renderer: MultiSafepay TrustPay-->
+            <block name="checkout.payment.method.multisafepay_trustpay"
+                   as="multisafepay_trustpay">
+                <arguments>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="icon" xsi:type="array">
+                            <item name="svg" xsi:type="string">multisafepay/multisafepay_trustpay</item>
+                            <item name="attributes" xsi:type="array">
+                                <item name="title" xsi:type="string">TrustPay</item>
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <!-- Payment Renderer: MultiSafepay Visa-->
+            <block name="checkout.payment.method.multisafepay_visa"
+                   as="multisafepay_visa">
+                <arguments>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="icon" xsi:type="array">
+                            <item name="svg" xsi:type="string">multisafepay/multisafepay_visa</item>
+                            <item name="attributes" xsi:type="array">
+                                <item name="title" xsi:type="string">Visa</item>
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <!-- Payment Renderer: MultiSafepay WeChatPay-->
+            <block name="checkout.payment.method.multisafepay_wechatpay"
+                   as="multisafepay_wechatpay">
+                <arguments>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="icon" xsi:type="array">
+                            <item name="svg" xsi:type="string">multisafepay/multisafepay_wechatpay</item>
+                            <item name="attributes" xsi:type="array">
+                                <item name="title" xsi:type="string">WeChat Pay</item>
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <!-- Payment Renderer: MultiSafepay Zinia-->
+            <block name="checkout.payment.method.multisafepay_zinia"
+                   as="multisafepay_zinia">
+                <arguments>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="icon" xsi:type="array">
+                            <item name="svg" xsi:type="string">multisafepay/multisafepay_zinia</item>
+                            <item name="attributes" xsi:type="array">
+                                <item name="title" xsi:type="string">Zinia</item>
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <!-- Payment Renderer: MultiSafepay Baby Gift card-->
+            <block name="checkout.payment.method.multisafepay_babygiftcard"
+                   as="multisafepay_babygiftcard">
+                <arguments>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="icon" xsi:type="array">
+                            <item name="svg" xsi:type="string">multisafepay/giftcards/multisafepay_babygiftcard</item>
+                            <item name="attributes" xsi:type="array">
+                                <item name="title" xsi:type="string">Baby gift card</item>
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <!-- Payment Renderer: MultiSafepay Beauty and Wellness-->
+            <block name="checkout.payment.method.multisafepay_beautyandwellness"
+                   as="multisafepay_beautyandwellness">
+                <arguments>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="icon" xsi:type="array">
+                            <item name="svg" xsi:type="string">multisafepay/giftcards/multisafepay_beautyandwellness</item>
+                            <item name="attributes" xsi:type="array">
+                                <item name="title" xsi:type="string">Beauty &amp; Wellness gift card</item>
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <!-- Payment Renderer: MultiSafepay Boekenbon-->
+            <block name="checkout.payment.method.multisafepay_boekenbon"
+                   as="multisafepay_boekenbon">
+                <arguments>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="icon" xsi:type="array">
+                            <item name="svg" xsi:type="string">multisafepay/giftcards/multisafepay_boekenbon</item>
+                            <item name="attributes" xsi:type="array">
+                                <item name="title" xsi:type="string">Boekenbon</item>
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <!-- Payment Renderer: MultiSafepay Edenred-->
+            <block name="checkout.payment.method.multisafepay_edenred"
+                   as="multisafepay_edenred">
+                <arguments>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="icon" xsi:type="array">
+                            <item name="svg" xsi:type="string">multisafepay/giftcards/multisafepay_edenred</item>
+                            <item name="attributes" xsi:type="array">
+                                <item name="title" xsi:type="string">Edenred</item>
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <!-- Payment Renderer: MultiSafepay Fashioncheque-->
+            <block name="checkout.payment.method.multisafepay_fashioncheque"
+                   as="multisafepay_fashioncheque">
+                <arguments>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="icon" xsi:type="array">
+                            <item name="svg" xsi:type="string">multisafepay/giftcards/multisafepay_fashioncheque</item>
+                            <item name="attributes" xsi:type="array">
+                                <item name="title" xsi:type="string">Fashioncheque</item>
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <!-- Payment Renderer: MultiSafepay Fashion gift card-->
+            <block name="checkout.payment.method.multisafepay_fashiongiftcard"
+                   as="multisafepay_fashiongiftcard">
+                <arguments>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="icon" xsi:type="array">
+                            <item name="svg" xsi:type="string">multisafepay/giftcards/multisafepay_fashiongiftcard</item>
+                            <item name="attributes" xsi:type="array">
+                                <item name="title" xsi:type="string">Fashion gift card</item>
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <!-- Payment Renderer: MultiSafepay Fietsenbon-->
+            <block name="checkout.payment.method.multisafepay_fietsenbon"
+                   as="multisafepay_fietsenbon">
+                <arguments>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="icon" xsi:type="array">
+                            <item name="svg" xsi:type="string">multisafepay/giftcards/multisafepay_fietsenbon</item>
+                            <item name="attributes" xsi:type="array">
+                                <item name="title" xsi:type="string">Fietsenbon</item>
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <!-- Payment Renderer: MultiSafepay Gezondheidsbon-->
+            <block name="checkout.payment.method.multisafepay_gezondheidsbon"
+                   as="multisafepay_gezondheidsbon">
+                <arguments>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="icon" xsi:type="array">
+                            <item name="svg" xsi:type="string">multisafepay/giftcards/multisafepay_gezondheidsbon</item>
+                            <item name="attributes" xsi:type="array">
+                                <item name="title" xsi:type="string">Gezondheidsbon</item>
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <!-- Payment Renderer: MultiSafepay Givacard-->
+            <block name="checkout.payment.method.multisafepay_givacard"
+                   as="multisafepay_givacard">
+                <arguments>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="icon" xsi:type="array">
+                            <item name="svg" xsi:type="string">multisafepay/giftcards/multisafepay_givacard</item>
+                            <item name="attributes" xsi:type="array">
+                                <item name="title" xsi:type="string">Givacard</item>
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <!-- Payment Renderer: MultiSafepay Good4fun-->
+            <block name="checkout.payment.method.multisafepay_good4fun"
+                   as="multisafepay_good4fun">
+                <arguments>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="icon" xsi:type="array">
+                            <item name="svg" xsi:type="string">multisafepay/giftcards/multisafepay_good4fun</item>
+                            <item name="attributes" xsi:type="array">
+                                <item name="title" xsi:type="string">Good4fun</item>
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <!-- Payment Renderer: MultiSafepay Nationale tuinbon-->
+            <block name="checkout.payment.method.multisafepay_nationaletuinbon"
+                   as="multisafepay_nationaletuinbon">
+                <arguments>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="icon" xsi:type="array">
+                            <item name="svg" xsi:type="string">multisafepay/giftcards/multisafepay_nationaletuinbon</item>
+                            <item name="attributes" xsi:type="array">
+                                <item name="title" xsi:type="string">Nationale Tuinbon</item>
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <!-- Payment Renderer: MultiSafepay Podium cadeaukaart-->
+            <block name="checkout.payment.method.multisafepay_podiumcadeaukaart"
+                   as="multisafepay_podiumcadeaukaart">
+                <arguments>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="icon" xsi:type="array">
+                            <item name="svg" xsi:type="string">multisafepay/giftcards/multisafepay_podiumcadeaukaart</item>
+                            <item name="attributes" xsi:type="array">
+                                <item name="title" xsi:type="string">Podium cadeaukaart</item>
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <!-- Payment Renderer: MultiSafepay Sport en Fit-->
+            <block name="checkout.payment.method.multisafepay_sportenfit"
+                   as="multisafepay_sportenfit">
+                <arguments>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="icon" xsi:type="array">
+                            <item name="svg" xsi:type="string">multisafepay/giftcards/multisafepay_sportenfit</item>
+                            <item name="attributes" xsi:type="array">
+                                <item name="title" xsi:type="string">Sport en Fit</item>
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <!-- Payment Renderer: MultiSafepay VVV cadeaukaart-->
+            <block name="checkout.payment.method.multisafepay_vvvcadeaukaart"
+                   as="multisafepay_vvvcadeaukaart">
+                <arguments>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="icon" xsi:type="array">
+                            <item name="svg" xsi:type="string">multisafepay/giftcards/multisafepay_vvvcadeaukaart</item>
+                            <item name="attributes" xsi:type="array">
+                                <item name="title" xsi:type="string">VVV Cadeaukaart</item>
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <!-- Payment Renderer: MultiSafepay Webshop gift card-->
+            <block name="checkout.payment.method.multisafepay_webshopgiftcard"
+                   as="multisafepay_webshopgiftcard">
+                <arguments>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="icon" xsi:type="array">
+                            <item name="svg" xsi:type="string">multisafepay/giftcards/multisafepay_webshopgiftcard</item>
+                            <item name="attributes" xsi:type="array">
+                                <item name="title" xsi:type="string">Webshop gift card</item>
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <!-- Payment Renderer: MultiSafepay Wellness gift card-->
+            <block name="checkout.payment.method.multisafepay_wellnessgiftcard"
+                   as="multisafepay_wellnessgiftcard">
+                <arguments>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="icon" xsi:type="array">
+                            <item name="svg" xsi:type="string">multisafepay/giftcards/multisafepay_wellnessgiftcard</item>
+                            <item name="attributes" xsi:type="array">
+                                <item name="title" xsi:type="string">Wellness gift card</item>
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <!-- Payment Renderer: MultiSafepay Wijn cadeau-->
+            <block name="checkout.payment.method.multisafepay_wijncadeau"
+                   as="multisafepay_wijncadeau">
+                <arguments>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="icon" xsi:type="array">
+                            <item name="svg" xsi:type="string">multisafepay/giftcards/multisafepay_wijncadeau</item>
+                            <item name="attributes" xsi:type="array">
+                                <item name="title" xsi:type="string">Wijncadeau</item>
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <!-- Payment Renderer: MultiSafepay Winkel cheque-->
+            <block name="checkout.payment.method.multisafepay_winkelcheque"
+                   as="multisafepay_winkelcheque">
+                <arguments>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="icon" xsi:type="array">
+                            <item name="svg" xsi:type="string">multisafepay/giftcards/multisafepay_winkelcheque</item>
+                            <item name="attributes" xsi:type="array">
+                                <item name="title" xsi:type="string">Winkelcheque</item>
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <!-- Payment Renderer: MultiSafepay Yourgift-->
+            <block name="checkout.payment.method.multisafepay_yourgift"
+                   as="multisafepay_yourgift">
+                <arguments>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="icon" xsi:type="array">
+                            <item name="svg" xsi:type="string">multisafepay/giftcards/multisafepay_yourgift</item>
+                            <item name="attributes" xsi:type="array">
+                                <item name="title" xsi:type="string">Yourgift</item>
+                            </item>
+                        </item>
                     </argument>
                 </arguments>
             </block>

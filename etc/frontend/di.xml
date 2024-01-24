@@ -74,4 +74,12 @@
             </argument>
         </arguments>
     </type>
+
+    <type name="Hyva\Theme\ViewModel\SvgIcons">
+        <arguments>
+            <argument name="pathPrefixMapping" xsi:type="array">
+                <item name="multisafepay" xsi:type="string">MultiSafepay_MagewireCheckout::svg</item>
+            </argument>
+        </arguments>
+    </type>
 </config>
