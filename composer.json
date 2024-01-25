@@ -10,7 +10,7 @@
         "multisafepay/magento2-core": "^3.3.2",
         "multisafepay/magento2-frontend": "^1.18 | ^2.0",
         "multisafepay/magento2-adminhtml": "^1.21",
-        "hyva-themes/magento2-hyva-checkout":"^1.0"
+        "hyva-themes/magento2-hyva-checkout":"^1.1"
     },
     "autoload": {
         "psr-4": {
