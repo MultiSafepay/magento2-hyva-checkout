@@ -1,5 +1,5 @@
 {
-    "name": "multisafepay/magewire-checkout",
+    "name": "multisafepay/magento2-hyva-checkout",
     "description": "Integrate MultiSafepay payment methods into your Magewire Checkout",
     "version": "2.0.0",
     "type": "magento2-module",
