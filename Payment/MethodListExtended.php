@@ -13,7 +13,7 @@
 
 declare(strict_types=1);
 
-namespace MultiSafepay\MagewireCheckout\Payment;
+namespace MultiSafepay\HyvaCheckout\Payment;
 
 use Hyva\Checkout\Model\Magewire\Component\EvaluationResultFactory;
 use Hyva\Checkout\Magewire\Checkout\Payment\MethodList;
