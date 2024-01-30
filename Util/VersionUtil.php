@@ -11,9 +11,9 @@
  * See DISCLAIMER.md for disclaimer details.
  */
 
-namespace MultiSafepay\MagewireCheckout\Util;
+namespace MultiSafepay\HyvaCheckout\Util;
 
 class VersionUtil
 {
-    public const VERSION = '1.0.0';
+    public const VERSION = '2.0.0';
 }

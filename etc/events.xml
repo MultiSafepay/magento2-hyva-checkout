@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
     <event name="before_send_multisafepay_order_request">
-        <observer name="multisafepay_magewire_order_request" instance="MultiSafepay\MagewireCheckout\Observer\OrderRequestObserver" />
+        <observer name="multisafepay_hyva_order_request" instance="MultiSafepay\HyvaCheckout\Observer\OrderRequestObserver" />
     </event>
 </config>

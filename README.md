@@ -1,16 +1,12 @@
 <p align="center">
-  <img src="https://camo.githubusercontent.com/517483ae0eaba9884f397e9af1c4adc7bbc231575ac66cc54292e00400edcd10/68747470733a2f2f7777772e6d756c7469736166657061792e636f6d2f66696c6561646d696e2f74656d706c6174652f696d672f6d756c7469736166657061792d6c6f676f2d69636f6e2e737667" width="400px" position="center">
+  <img src="https://camo.githubusercontent.com/81fc6cfa9dd111f704e7e5eb0d0fd87b9096a942049377ed2295c6480f5cdf82/68747470733a2f2f7777772e6d756c7469736166657061792e636f6d2f66696c6561646d696e2f74656d706c6174652f696d672f6d756c7469736166657061792d6c6f676f2d69636f6e2e737667" width="400px" position="center">
 </p>
 
-# MultiSafepay module for the Magewire Checkout
+# MultiSafepay module for the Hyvä Checkout
 
-This is the module of our Magewire Checkout integration.
-Currently, this module only supports redirect payment methods.
-Checkout field integration will be added in a newer version.
+This is the module of our Hyvä Checkout integration.
 
-The module is currently in beta. Please use with caution.
-
-Before you get started with MultiSafepay and Magewire Checkout, please read and follow our [installation & configuration manual](https://docs.multisafepay.com/integrations/plugins/magento2/) first.
+Before you get started with MultiSafepay and Hyvä Checkout, please read and follow our [installation & configuration manual](https://docs.multisafepay.com/integrations/plugins/magento2/) first.
 
 ## About MultiSafepay ##
 MultiSafepay is a collecting payment service provider which means we take care of the agreements, technical details and payment collection required for each payment method. You can start selling online today and manage all your transactions from one place.
@@ -23,19 +19,19 @@ This module does not work in combination with Magento Vault yet. Please disable 
 ## Requirements
 - To use the plugin you need a MultiSafepay account. You can create a test account on https://testmerchant.multisafepay.com/signup
 - Magento Open Source version 2.3.x & 2.4.x
-- Magewire Checkout
+- Hyvä Checkout
 - PHP 7.4+
 
 ## Installation
 This module can be installed via composer:
 
 ```shell
-composer require multisafepay/magewire-checkout
+composer require multisafepay/magento2-hyva-checkout
 ```
 
 Next, enable the module:
 ```bash
-php bin/magento module:enable MultiSafepay_MagewireCheckout
+php bin/magento module:enable MultiSafepay_HyvaCheckout
 ```
 
 Next, run the following commands:

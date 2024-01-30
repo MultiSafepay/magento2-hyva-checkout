@@ -13,7 +13,7 @@
 
 declare(strict_types=1);
 
-namespace MultiSafepay\MagewireCheckout\Payment\Method;
+namespace MultiSafepay\HyvaCheckout\Payment\Method;
 
 use Magento\Checkout\Model\Session as SessionCheckout;
 use Magento\Framework\Exception\LocalizedException;

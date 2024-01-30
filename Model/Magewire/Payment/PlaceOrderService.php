@@ -11,14 +11,13 @@
  * See DISCLAIMER.md for disclaimer details.
  */
 
-namespace MultiSafepay\MagewireCheckout\Model\Magewire\Payment;
+namespace MultiSafepay\HyvaCheckout\Model\Magewire\Payment;
 
 use Hyva\Checkout\Model\Magewire\Payment\AbstractPlaceOrderService;
 use Magento\Quote\Model\Quote;
 
 class PlaceOrderService extends AbstractPlaceOrderService
 {
-
     public function canPlaceOrder(): bool
     {
         return true;

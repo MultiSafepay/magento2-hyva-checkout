@@ -15,6 +15,6 @@ use Magento\Framework\Component\ComponentRegistrar;
 
 ComponentRegistrar::register(
     ComponentRegistrar::MODULE,
-    'MultiSafepay_MagewireCheckout',
+    'MultiSafepay_HyvaCheckout',
     __DIR__
 );

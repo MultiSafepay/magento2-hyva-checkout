@@ -6,17 +6,17 @@
         <referenceBlock name="checkout.payment.methods">
             <arguments>
                 <argument name="magewire" xsi:type="object">
-                    \MultiSafepay\MagewireCheckout\Payment\MethodListExtended
+                    \MultiSafepay\HyvaCheckout\Payment\MethodListExtended
                 </argument>
             </arguments>
 
             <!-- Payment Renderer: MultiSafepay iDEAL -->
             <block name="checkout.payment.method.multisafepay_ideal"
                    as="multisafepay_ideal"
-                   template="MultiSafepay_MagewireCheckout::component/payment/method/multisafepay_ideal.phtml">
+                   template="MultiSafepay_HyvaCheckout::component/payment/method/multisafepay_ideal.phtml">
                 <arguments>
                     <argument name="magewire" xsi:type="object">
-                        \MultiSafepay\MagewireCheckout\Payment\Method\MultiSafepayIdeal
+                        \MultiSafepay\HyvaCheckout\Payment\Method\MultiSafepayIdeal
                     </argument>
                     <argument name="metadata" xsi:type="array">
                         <item name="icon" xsi:type="array">
@@ -32,10 +32,10 @@
             <!-- Payment Renderer: MultiSafepay Card Payment -->
             <block name="checkout.payment.method.multisafepay_creditcard"
                    as="multisafepay_creditcard"
-                   template="MultiSafepay_MagewireCheckout::component/payment/method/multisafepay_creditcard.phtml">
+                   template="MultiSafepay_HyvaCheckout::component/payment/method/multisafepay_creditcard.phtml">
                 <arguments>
                     <argument name="magewire" xsi:type="object">
-                        \MultiSafepay\MagewireCheckout\Payment\Method\MultiSafepayCreditCard
+                        \MultiSafepay\HyvaCheckout\Payment\Method\MultiSafepayCreditCard
                     </argument>
                     <argument name="metadata" xsi:type="array">
                         <item name="icon" xsi:type="array">

@@ -6,6 +6,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.0] - 2024-01-25
+### Added
+- PLGMAG2V2-709: Added payment component for Card Payment
+- Added escapers and made strings translateable (thanks to @jesse-deboer)
+- Added support for preselected payment method (thanks to @jesse-deboer)
+- PLGMAG2V2-717: Added payment icons to all the gateways and gift cards (thanks to @xgerhard)
+
+### Fixed
+- Fixed issue 'CRITICAL: Magewire: Warning: Undefined array key issuer_id' happening in some cases (thanks to @jesse-deboer)
+
+### Changed
+- Changed from using container to ReferenceContainer for the payment methods in the Hyva xml layout (thanks to @jesse-deboer)
+- Removed the use of PlaceOrder and replaced it with canPlaceOrder (thanks to @jesse-deboer)
+- Changed to use checkout.payment.methods ReferenceBlock (thanks to @xgerhard)
+
+### Removed
+- DAVAMS-708: Removed Santander Betaal per Maand
+
 ## [1.0.0] - 2023-04-13
 
 ### Added

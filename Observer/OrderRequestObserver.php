@@ -11,7 +11,7 @@
  * See DISCLAIMER.md for disclaimer details.
  */
 
-namespace MultiSafepay\MagewireCheckout\Observer;
+namespace MultiSafepay\HyvaCheckout\Observer;
 
 use Exception;
 use Hyva\Checkout\Model\CheckoutInformation\Luma;
@@ -22,7 +22,7 @@ use Magento\Sales\Api\Data\OrderInterface;
 use Magento\Store\Model\ScopeInterface;
 use MultiSafepay\Api\Transactions\OrderRequest;
 use MultiSafepay\ConnectCore\Logger\Logger;
-use MultiSafepay\MagewireCheckout\Util\VersionUtil;
+use MultiSafepay\HyvaCheckout\Util\VersionUtil;
 
 class OrderRequestObserver implements ObserverInterface
 {
@@ -80,23 +80,23 @@ class OrderRequestObserver implements ObserverInterface
         if ($pluginDetails === null) {
             $this->logger->logInfoForOrder(
                 $order->getIncrementId(),
-                'plugin details object not found, could not prepend Magewire Checkout'
+                'plugin details object not found, could not prepend Hyva Checkout'
             );
         }
 
         $applicationName = $pluginDetails->getApplicationName();
-        $pluginDetails->addApplicationName($applicationName . ' - Magewire Checkout');
+        $pluginDetails->addApplicationName($applicationName . ' - Hyva Checkout');
 
         $pluginVersion = $pluginDetails->getPluginVersion()->getPluginVersion();
         $pluginDetails->addPluginVersion($pluginVersion . ' - ' . VersionUtil::VERSION);
 
-        $magewireCheckoutVersion = 'unknown';
+        $hyvaCheckoutVersion = 'unknown';
 
         if (method_exists('\Composer\InstalledVersions', 'getVersion')) {
-            $magewireCheckoutVersion = \Composer\InstalledVersions::getVersion('hyva-themes/magento2-hyva-checkout');
+            $hyvaCheckoutVersion = \Composer\InstalledVersions::getVersion('hyva-themes/magento2-hyva-checkout');
         }
 
         $applicationVersion = $pluginDetails->getApplicationVersion();
-        $pluginDetails->addApplicationVersion($applicationVersion . ' - ' . $magewireCheckoutVersion);
+        $pluginDetails->addApplicationVersion($applicationVersion . ' - ' . $hyvaCheckoutVersion);
     }
 }
