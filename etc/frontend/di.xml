@@ -40,7 +40,7 @@
                 <item name="multisafepay_trustpay" xsi:type="object">MultiSafepay\HyvaCheckout\Model\Magewire\Payment\PlaceOrderService</item>
                 <item name="multisafepay_visa" xsi:type="object">MultiSafepay\HyvaCheckout\Model\Magewire\Payment\PlaceOrderService</item>
                 <item name="multisafepay_wechatpay" xsi:type="object">MultiSafepay\HyvaCheckout\Model\Magewire\Payment\PlaceOrderService</item>
-                <item name="multisafepay_mbway" xsi:type="object">MultiSafepay\HyvaCheckout\Model\Magewire\Payment\PlaceOrderService</item>
+                <item name="multisafepay_multibanco" xsi:type="object">MultiSafepay\HyvaCheckout\Model\Magewire\Payment\PlaceOrderService</item>
 
                 <!-- Gift Cards -->
                 <item name="multisafepay_babygiftcard" xsi:type="object">MultiSafepay\HyvaCheckout\Model\Magewire\Payment\PlaceOrderService</item>
