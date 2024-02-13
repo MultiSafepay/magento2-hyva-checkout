@@ -498,7 +498,7 @@
                 </arguments>
             </block>
 
-            <!-- Payment Renderer: MultiSafepay WeChatPay-->
+            <!-- Payment Renderer: MultiSafepay MB WAY-->
             <block name="checkout.payment.method.multisafepay_mbway"
                    as="multisafepay_mbway">
                 <arguments>
