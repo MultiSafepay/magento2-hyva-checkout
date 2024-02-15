@@ -513,6 +513,20 @@
                 </arguments>
             </block>
 
+            <!-- Payment Renderer: MultiSafepay Multibanco-->
+            <block name="checkout.payment.method.multisafepay_multibanco"
+                as="multisafepay_multibanco">
+                <arguments>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="icon" xsi:type="array">
+                            <item name="svg" xsi:type="string">multisafepay/multisafepay_multibanco</item>
+                            <item name="attributes" xsi:type="array">
+                                <item name="title" xsi:type="string">MB WAY</item>
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
 
             <!-- Payment Renderer: MultiSafepay Baby Gift card-->
             <block name="checkout.payment.method.multisafepay_babygiftcard"
