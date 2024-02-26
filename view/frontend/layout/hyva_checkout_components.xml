@@ -183,6 +183,21 @@
                 </arguments>
             </block>
 
+            <!-- Payment Renderer: MultiSafepay Pay After Delivery -->
+            <block name="checkout.payment.method.multisafepay_bnplmf"
+                   as="multisafepay_bnplmf">
+                <arguments>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="icon" xsi:type="array">
+                            <item name="svg" xsi:type="string">multisafepay/multisafepay_bnplmf</item>
+                            <item name="attributes" xsi:type="array">
+                                <item name="title" xsi:type="string">Pay After Delivery</item>
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
             <!-- Payment Renderer: MultiSafepay CBC -->
             <block name="checkout.payment.method.multisafepay_cbc"
                    as="multisafepay_cbc">
