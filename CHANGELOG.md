@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.1.0] - 2024-02-16
+### Added
+- DAVAMS-716: Add Multibanco payment method
+- DAVAMS-724: Add MB WAY payment method
+
 ## [2.0.0] - 2024-01-25
 ### Added
 - PLGMAG2V2-709: Added payment component for Card Payment

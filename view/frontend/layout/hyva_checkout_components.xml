@@ -183,6 +183,21 @@
                 </arguments>
             </block>
 
+            <!-- Payment Renderer: MultiSafepay Pay After Delivery -->
+            <block name="checkout.payment.method.multisafepay_bnplmf"
+                   as="multisafepay_bnplmf">
+                <arguments>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="icon" xsi:type="array">
+                            <item name="svg" xsi:type="string">multisafepay/multisafepay_bnplmf</item>
+                            <item name="attributes" xsi:type="array">
+                                <item name="title" xsi:type="string">Pay After Delivery</item>
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
             <!-- Payment Renderer: MultiSafepay CBC -->
             <block name="checkout.payment.method.multisafepay_cbc"
                    as="multisafepay_cbc">
@@ -348,6 +363,21 @@
                 </arguments>
             </block>
 
+            <!-- Payment Renderer: MultiSafepay Maestro -->
+            <block name="checkout.payment.method.multisafepay_maestro"
+                   as="multisafepay_maestro">
+                <arguments>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="icon" xsi:type="array">
+                            <item name="svg" xsi:type="string">multisafepay/multisafepay_maestro</item>
+                            <item name="attributes" xsi:type="array">
+                                <item name="title" xsi:type="string">Maestro</item>
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
             <!-- Payment Renderer: MultiSafepay MyBank -->
             <block name="checkout.payment.method.multisafepay_mybank"
                    as="multisafepay_mybank">
@@ -492,6 +522,36 @@
                             <item name="svg" xsi:type="string">multisafepay/multisafepay_zinia</item>
                             <item name="attributes" xsi:type="array">
                                 <item name="title" xsi:type="string">Zinia</item>
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <!-- Payment Renderer: MultiSafepay MB WAY-->
+            <block name="checkout.payment.method.multisafepay_mbway"
+                   as="multisafepay_mbway">
+                <arguments>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="icon" xsi:type="array">
+                            <item name="svg" xsi:type="string">multisafepay/multisafepay_mbway</item>
+                            <item name="attributes" xsi:type="array">
+                                <item name="title" xsi:type="string">MB WAY</item>
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <!-- Payment Renderer: MultiSafepay Multibanco-->
+            <block name="checkout.payment.method.multisafepay_multibanco"
+                as="multisafepay_multibanco">
+                <arguments>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="icon" xsi:type="array">
+                            <item name="svg" xsi:type="string">multisafepay/multisafepay_multibanco</item>
+                            <item name="attributes" xsi:type="array">
+                                <item name="title" xsi:type="string">MB WAY</item>
                             </item>
                         </item>
                     </argument>
@@ -687,6 +747,21 @@
                             <item name="svg" xsi:type="string">multisafepay/giftcards/multisafepay_sportenfit</item>
                             <item name="attributes" xsi:type="array">
                                 <item name="title" xsi:type="string">Sport en Fit</item>
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <!-- Payment Renderer: MultiSafepay VVV cadeaubon-->
+            <block name="checkout.payment.method.multisafepay_vvvcadeaubon"
+                   as="multisafepay_vvvcadeaubon">
+                <arguments>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="icon" xsi:type="array">
+                            <item name="svg" xsi:type="string">multisafepay/giftcards/multisafepay_vvvcadeaukaart</item>
+                            <item name="attributes" xsi:type="array">
+                                <item name="title" xsi:type="string">VVV Cadeaukaart</item>
                             </item>
                         </item>
                     </argument>

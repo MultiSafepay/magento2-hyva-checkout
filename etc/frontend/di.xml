@@ -14,6 +14,7 @@
                 <item name="multisafepay_bancontact" xsi:type="object">MultiSafepay\HyvaCheckout\Model\Magewire\Payment\PlaceOrderService</item>
                 <item name="multisafepay_banktransfer" xsi:type="object">MultiSafepay\HyvaCheckout\Model\Magewire\Payment\PlaceOrderService</item>
                 <item name="multisafepay_belfius" xsi:type="object">MultiSafepay\HyvaCheckout\Model\Magewire\Payment\PlaceOrderService</item>
+                <item name="multisafepay_bnplmf" xsi:type="object">MultiSafepay\HyvaCheckout\Model\Magewire\Payment\PlaceOrderService</item>
                 <item name="multisafepay_bnplinstm" xsi:type="object">MultiSafepay\HyvaCheckout\Model\Magewire\Payment\PlaceOrderService</item>
                 <item name="multisafepay_cbc" xsi:type="object">MultiSafepay\HyvaCheckout\Model\Magewire\Payment\PlaceOrderService</item>
                 <item name="multisafepay_creditcard" xsi:type="object">MultiSafepay\HyvaCheckout\Model\Magewire\Payment\PlaceOrderService</item>
@@ -40,6 +41,8 @@
                 <item name="multisafepay_trustpay" xsi:type="object">MultiSafepay\HyvaCheckout\Model\Magewire\Payment\PlaceOrderService</item>
                 <item name="multisafepay_visa" xsi:type="object">MultiSafepay\HyvaCheckout\Model\Magewire\Payment\PlaceOrderService</item>
                 <item name="multisafepay_wechatpay" xsi:type="object">MultiSafepay\HyvaCheckout\Model\Magewire\Payment\PlaceOrderService</item>
+                <item name="multisafepay_mbway" xsi:type="object">MultiSafepay\HyvaCheckout\Model\Magewire\Payment\PlaceOrderService</item>
+                <item name="multisafepay_multibanco" xsi:type="object">MultiSafepay\HyvaCheckout\Model\Magewire\Payment\PlaceOrderService</item>
 
                 <!-- Gift Cards -->
                 <item name="multisafepay_babygiftcard" xsi:type="object">MultiSafepay\HyvaCheckout\Model\Magewire\Payment\PlaceOrderService</item>
@@ -57,6 +60,7 @@
                 <item name="multisafepay_parfumcadeaukaart" xsi:type="object">MultiSafepay\HyvaCheckout\Model\Magewire\Payment\PlaceOrderService</item>
                 <item name="multisafepay_podiumcadeaukaart" xsi:type="object">MultiSafepay\HyvaCheckout\Model\Magewire\Payment\PlaceOrderService</item>
                 <item name="multisafepay_sportenfit" xsi:type="object">MultiSafepay\HyvaCheckout\Model\Magewire\Payment\PlaceOrderService</item>
+                <item name="multisafepay_vvvcadeaubon" xsi:type="object">MultiSafepay\HyvaCheckout\Model\Magewire\Payment\PlaceOrderService</item>
                 <item name="multisafepay_vvvcadeaukaart" xsi:type="object">MultiSafepay\HyvaCheckout\Model\Magewire\Payment\PlaceOrderService</item>
                 <item name="multisafepay_webshopgiftcard" xsi:type="object">MultiSafepay\HyvaCheckout\Model\Magewire\Payment\PlaceOrderService</item>
                 <item name="multisafepay_wellnessgiftcard" xsi:type="object">MultiSafepay\HyvaCheckout\Model\Magewire\Payment\PlaceOrderService</item>
