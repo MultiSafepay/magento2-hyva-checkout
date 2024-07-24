@@ -14,17 +14,17 @@
 declare(strict_types=1);
 
 /** @var Template $block */
-/** @var MultiSafepayCreditCard $magewire */
+/** @var MultiSafepayPaymentComponent $magewire */
 /** @var Escaper $escaper */
 
-use MultiSafepay\HyvaCheckout\Payment\Method\MultiSafepayCreditCard;
+use MultiSafepay\HyvaCheckout\Payment\Method\MultiSafepayPaymentComponent;
 use Magento\Framework\Escaper;
 use Magento\Framework\View\Element\Template;
 
 ?>
-<div class="col-span-6" wire:payment-method="multisafepay_creditcard">
+<div class="col-span-6" wire:payment-method="<?= $escaper->escapeHtml($magewire->methodCode) ?>">
     <?php if ($magewire->isPaymentComponentEnabled()) {?>
-    <div id="MultiSafepayPayment" class="multisafepay-payment-component" wire:ignore></div>
+    <div id="multisafepay-<?= $escaper->escapeHtmlAttr($magewire->methodCode) ?>-component" class="multisafepay-payment-component" wire:ignore></div>
 
     <script>
         let paymentComponent;
@@ -84,7 +84,7 @@ use Magento\Framework\View\Element\Template;
             paymentComponent = new MultiSafepay(paymentComponentData);
 
             paymentComponent.init('payment', {
-                container: '#MultiSafepayPayment',
+                container: '#multisafepay-<?= $escaper->escapeJs($magewire->methodCode) ?>-component',
                 gateway: '<?= $escaper->escapeJs($magewire->gatewayCode) ?>',
                 onLoad: state => {
                     console.log('onLoad', state);
@@ -110,7 +110,7 @@ use Magento\Framework\View\Element\Template;
                     })
 
                     return new Promise(resolve => setTimeout(() => resolve(true), 1000));
-                }, document.querySelector('#MultiSafepayPayment'), 'payment'
+                }, document.querySelector('#multisafepay-<?= $escaper->escapeJs($magewire->methodCode) ?>-component'), 'payment'
             );
         }, {once: true})
 
