@@ -15,7 +15,6 @@ declare(strict_types=1);
 
 namespace MultiSafepay\HyvaCheckout\Payment\Method;
 
-use Hyva\Checkout\Model\Magewire\Component\EvaluationInterface;
 use Hyva\Checkout\Model\Magewire\Component\EvaluationResultFactory;
 use Hyva\Checkout\Model\Magewire\Component\EvaluationResultInterface;
 use Magento\Checkout\Model\Session as SessionCheckout;
@@ -29,7 +28,7 @@ use Psr\Http\Client\ClientExceptionInterface;
 use Rakit\Validation\Validator;
 use MultiSafepay\ConnectCore\Model\Ui\Gateway\IdealConfigProvider;
 
-class MultiSafepayIdeal extends Component\Form implements EvaluationInterface
+class MultiSafepayIdeal extends Component\Form
 {
     public string $issuer = '';
 
@@ -66,8 +65,20 @@ class MultiSafepayIdeal extends Component\Form implements EvaluationInterface
      */
     public function mount(): void
     {
-         if ($issuer = $this->sessionCheckout->getQuote()->getPayment()->getAdditionalInformation('issuer_id')) {
+        if ($issuer = $this->sessionCheckout->getQuote()->getPayment()->getAdditionalInformation('issuer_id')) {
             $this->issuer = $issuer;
+        } else {
+            try {
+                $quote = $this->sessionCheckout->getQuote();
+                $quote->getPayment()->setAdditionalInformation(
+                    'transaction_type',
+                    TransactionTypeBuilder::TRANSACTION_TYPE_REDIRECT_VALUE
+                );
+    
+                $this->quoteRepository->save($quote);
+            } catch (LocalizedException $exception) {
+                $this->dispatchErrorMessage($exception->getMessage());
+            }
         }
     }
 
@@ -103,15 +114,6 @@ class MultiSafepayIdeal extends Component\Form implements EvaluationInterface
         }
 
         return $value;
-    }
-
-    public function evaluateCompletion(EvaluationResultFactory $resultFactory): EvaluationResultInterface
-    {
-        if ($this->issuer === '') {
-            return $resultFactory->createErrorMessageEvent('Please select an issuer', 'payment:method:error');
-        }
-
-        return $resultFactory->createSuccess();
     }
 
 }
