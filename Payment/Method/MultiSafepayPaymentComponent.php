@@ -169,13 +169,13 @@ class MultiSafepayPaymentComponent extends Component\Form
     }
 
     /**
-     * @return Quote
+     * @return Quote|null
      */
     private function getQuote(): ?Quote
     {
         if (!$this->quote) {
             try {
-                return $this->sessionCheckout->getQuote();
+                $this->quote = $this->sessionCheckout->getQuote();
             } catch (NoSuchEntityException | LocalizedException $exception) {
                 $this->logger->logPaymentComponentException($exception);
             }
