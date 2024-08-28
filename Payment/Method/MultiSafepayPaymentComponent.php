@@ -21,6 +21,11 @@ use Rakit\Validation\Validator;
 class MultiSafepayPaymentComponent extends Component\Form
 {
     /**
+     * @var ?Quote
+     */
+    private ?Quote $quote = null;
+
+    /**
      * @var ApiTokenUtil
      */
     private ApiTokenUtil $apiTokenUtil;
@@ -182,7 +187,11 @@ class MultiSafepayPaymentComponent extends Component\Form
      */
     public function getQuote(): Quote
     {
-        return $this->sessionCheckout->getQuote();
+        if (!$this->quote) {
+            $this->quote = $this->sessionCheckout->getQuote();
+        }
+
+        return $this->quote ;
     }
 
     /**

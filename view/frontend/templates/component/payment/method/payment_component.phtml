@@ -86,9 +86,6 @@ use Magento\Framework\View\Element\Template;
             paymentComponent.init('payment', {
                 container: '#multisafepay-<?= $escaper->escapeJs($magewire->getMethodCode()) ?>-component',
                 gateway: '<?= $escaper->escapeJs($magewire->getGatewayCode()) ?>',
-                onLoad: state => {
-                    console.log('onLoad', state);
-                },
                 onError: state => {
                     console.log('onError', state);
                 }
