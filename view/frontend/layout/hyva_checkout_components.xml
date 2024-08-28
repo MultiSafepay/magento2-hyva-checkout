@@ -106,8 +106,12 @@
 
             <!-- Payment Renderer: MultiSafepay American Express -->
             <block name="checkout.payment.method.multisafepay_amex"
-                   as="multisafepay_amex">
+                   as="multisafepay_amex"
+                   template="MultiSafepay_HyvaCheckout::component/payment/method/payment_component.phtml">
                 <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        \MultiSafepay\HyvaCheckout\Payment\Method\MultiSafepayPaymentComponent
+                    </argument>
                     <argument name="metadata" xsi:type="array">
                         <item name="icon" xsi:type="array">
                             <item name="svg" xsi:type="string">multisafepay/multisafepay_amex</item>
@@ -346,8 +350,12 @@
 
             <!-- Payment Renderer: MultiSafepay Mastercard -->
             <block name="checkout.payment.method.multisafepay_mastercard"
-                   as="multisafepay_mastercard">
+                   as="multisafepay_mastercard"
+                   template="MultiSafepay_HyvaCheckout::component/payment/method/payment_component.phtml">
                 <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        \MultiSafepay\HyvaCheckout\Payment\Method\MultiSafepayPaymentComponent
+                    </argument>
                     <argument name="metadata" xsi:type="array">
                         <item name="icon" xsi:type="array">
                             <item name="svg" xsi:type="string">multisafepay/multisafepay_mastercard</item>
@@ -361,8 +369,12 @@
 
             <!-- Payment Renderer: MultiSafepay Maestro -->
             <block name="checkout.payment.method.multisafepay_maestro"
-                   as="multisafepay_maestro">
+                   as="multisafepay_maestro"
+                   template="MultiSafepay_HyvaCheckout::component/payment/method/payment_component.phtml">
                 <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        \MultiSafepay\HyvaCheckout\Payment\Method\MultiSafepayPaymentComponent
+                    </argument>
                     <argument name="metadata" xsi:type="array">
                         <item name="icon" xsi:type="array">
                             <item name="svg" xsi:type="string">multisafepay/multisafepay_maestro</item>
@@ -481,8 +493,12 @@
 
             <!-- Payment Renderer: MultiSafepay Visa-->
             <block name="checkout.payment.method.multisafepay_visa"
-                   as="multisafepay_visa">
+                   as="multisafepay_visa"
+                   template="MultiSafepay_HyvaCheckout::component/payment/method/payment_component.phtml">
                 <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        \MultiSafepay\HyvaCheckout\Payment\Method\MultiSafepayPaymentComponent
+                    </argument>
                     <argument name="metadata" xsi:type="array">
                         <item name="icon" xsi:type="array">
                             <item name="svg" xsi:type="string">multisafepay/multisafepay_visa</item>
