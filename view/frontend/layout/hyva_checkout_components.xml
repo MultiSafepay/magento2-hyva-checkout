@@ -12,12 +12,8 @@
 
             <!-- Payment Renderer: MultiSafepay iDEAL -->
             <block name="checkout.payment.method.multisafepay_ideal"
-                   as="multisafepay_ideal"
-                   template="MultiSafepay_HyvaCheckout::component/payment/method/multisafepay_ideal.phtml">
+                   as="multisafepay_ideal">
                 <arguments>
-                    <argument name="magewire" xsi:type="object">
-                        \MultiSafepay\HyvaCheckout\Payment\Method\MultiSafepayIdeal
-                    </argument>
                     <argument name="metadata" xsi:type="array">
                         <item name="icon" xsi:type="array">
                             <item name="svg" xsi:type="string">multisafepay/multisafepay_ideal</item>
