@@ -14,17 +14,17 @@
 declare(strict_types=1);
 
 /** @var Template $block */
-/** @var MultiSafepayCreditCard $magewire */
+/** @var MultiSafepayPaymentComponent $magewire */
 /** @var Escaper $escaper */
 
-use MultiSafepay\HyvaCheckout\Payment\Method\MultiSafepayCreditCard;
+use MultiSafepay\HyvaCheckout\Payment\Method\MultiSafepayPaymentComponent;
 use Magento\Framework\Escaper;
 use Magento\Framework\View\Element\Template;
 
 ?>
-<div class="col-span-6" wire:payment-method="multisafepay_creditcard">
+<div class="col-span-6" wire:payment-method="<?= $escaper->escapeHtml($magewire->getMethodCode()) ?>">
     <?php if ($magewire->isPaymentComponentEnabled()) {?>
-    <div id="MultiSafepayPayment" class="multisafepay-payment-component" wire:ignore></div>
+    <div id="multisafepay-<?= $escaper->escapeHtmlAttr($magewire->getMethodCode()) ?>-component" class="multisafepay-payment-component" wire:ignore></div>
 
     <script>
         let paymentComponent;
@@ -51,29 +51,29 @@ use Magento\Framework\View\Element\Template;
             let recurringData;
 
             let orderData = {
-                currency: '<?= $escaper->escapeJs($magewire->currency) ?>',
-                amount: '<?= $escaper->escapeJs($magewire->amount) ?>',
+                currency: '<?= $escaper->escapeJs($magewire->getCurrency()) ?>',
+                amount: '<?= $escaper->escapeJs($magewire->getAmount()) ?>',
                 template: {
                     settings: {
                         embed_mode: true,
                     },
                 },
                 customer: {
-                    locale: '<?= $escaper->escapeJs($magewire->locale) ?>',
-                    country: '<?= $escaper->escapeJs($magewire->country) ?>'
+                    locale: '<?= $escaper->escapeJs($magewire->getLocale()) ?>',
+                    country: '<?= $escaper->escapeJs($magewire->getCountry()) ?>'
                 }
             }
 
-            <?php if ($magewire->tokens) { ?>
+            <?php if ($magewire->getTokens()) { ?>
             recurringData = {
                 model: 'cardOnFile',
-                tokens: <?= $magewire->tokens ?>
+                tokens: <?= $magewire->getTokens() ?>
             }
             <?php } ?>
 
             let paymentComponentData = {
-                env: '<?= $escaper->escapeJs($magewire->environment) ?>',
-                apiToken: '<?= $escaper->escapeJs($magewire->apiToken) ?>',
+                env: '<?= $escaper->escapeJs($magewire->getEnvironment()) ?>',
+                apiToken: '<?= $escaper->escapeJs($magewire->getApiToken()) ?>',
                 order: orderData
             };
 
@@ -84,11 +84,8 @@ use Magento\Framework\View\Element\Template;
             paymentComponent = new MultiSafepay(paymentComponentData);
 
             paymentComponent.init('payment', {
-                container: '#MultiSafepayPayment',
-                gateway: '<?= $escaper->escapeJs($magewire->gatewayCode) ?>',
-                onLoad: state => {
-                    console.log('onLoad', state);
-                },
+                container: '#multisafepay-<?= $escaper->escapeJs($magewire->getMethodCode()) ?>-component',
+                gateway: '<?= $escaper->escapeJs($magewire->getGatewayCode()) ?>',
                 onError: state => {
                     console.log('onError', state);
                 }
@@ -110,7 +107,7 @@ use Magento\Framework\View\Element\Template;
                     })
 
                     return new Promise(resolve => setTimeout(() => resolve(true), 1000));
-                }, document.querySelector('#MultiSafepayPayment'), 'payment'
+                }, document.querySelector('#multisafepay-<?= $escaper->escapeJs($magewire->getMethodCode()) ?>-component'), 'payment'
             );
         }, {once: true})
 
