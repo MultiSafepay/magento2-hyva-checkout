@@ -23,14 +23,19 @@ use Magento\Quote\Api\CartRepositoryInterface;
 use Magento\Quote\Model\Quote;
 use Magewirephp\Magewire\Component;
 use MultiSafepay\ConnectCore\Config\Config;
-use MultiSafepay\ConnectCore\Logger\Logger;
 use MultiSafepay\ConnectCore\Util\ApiTokenUtil;
 use MultiSafepay\ConnectCore\Util\JsonHandler;
 use MultiSafepay\ConnectCore\Util\RecurringTokensUtil;
+use MultiSafepay\Exception\InvalidDataInitializationException;
 use Rakit\Validation\Validator;
 
-class MultiSafepayCreditCard extends Component\Form
+class MultiSafepayPaymentComponent extends Component\Form
 {
+    /**
+     * @var ?Quote
+     */
+    private ?Quote $quote = null;
+
     /**
      * @var ApiTokenUtil
      */
@@ -45,11 +50,6 @@ class MultiSafepayCreditCard extends Component\Form
      * @var Config
      */
     private Config $config;
-
-    /**
-     * @var Logger
-     */
-    private Logger $logger;
 
     /**
      * @var CartRepositoryInterface
@@ -67,56 +67,6 @@ class MultiSafepayCreditCard extends Component\Form
     private RecurringTokensUtil $recurringTokensUtil;
 
     /**
-     * @var string
-     */
-    public string $payload = '';
-
-    /**
-     * @var string
-     */
-    public string $apiToken = '';
-
-    /**
-     * @var int
-     */
-    public int $amount = 0;
-
-    /**
-     * @var Quote|null
-     */
-    public ?Quote $quote = null;
-
-    /**
-     * @var string
-     */
-    public string $environment = '';
-
-    /**
-     * @var string
-     */
-    public string $currency = '';
-
-    /**
-     * @var string
-     */
-    public string $gatewayCode = '';
-
-    /**
-     * @var string
-     */
-    public string $locale = '';
-
-    /**
-     * @var string
-     */
-    public string $country = '';
-
-    /**
-     * @var string|null
-     */
-    public ?string $tokens = null;
-
-    /**
      * @var JsonHandler
      */
     private JsonHandler $jsonHandler;
@@ -126,7 +76,6 @@ class MultiSafepayCreditCard extends Component\Form
      * @param ApiTokenUtil $apiTokenUtil
      * @param SessionCheckout $sessionCheckout
      * @param Config $config
-     * @param Logger $logger
      * @param CartRepositoryInterface $quoteRepository
      * @param ResolverInterface $localeResolver
      * @param RecurringTokensUtil $recurringTokensUtil
@@ -137,7 +86,6 @@ class MultiSafepayCreditCard extends Component\Form
         ApiTokenUtil $apiTokenUtil,
         SessionCheckout $sessionCheckout,
         Config $config,
-        Logger $logger,
         CartRepositoryInterface $quoteRepository,
         ResolverInterface $localeResolver,
         RecurringTokensUtil $recurringTokensUtil,
@@ -147,7 +95,6 @@ class MultiSafepayCreditCard extends Component\Form
         $this->apiTokenUtil = $apiTokenUtil;
         $this->sessionCheckout = $sessionCheckout;
         $this->config = $config;
-        $this->logger = $logger;
         $this->quoteRepository = $quoteRepository;
         $this->localeResolver = $localeResolver;
         $this->recurringTokensUtil = $recurringTokensUtil;
@@ -155,42 +102,117 @@ class MultiSafepayCreditCard extends Component\Form
     }
 
     /**
-     * @return void
+     * Get the API token
+     *
+     * @return string
+     * @throws LocalizedException
+     * @throws NoSuchEntityException
      */
-    public function mount(): void
+    public function getApiToken(): string
     {
-        $this->apiToken = $this->apiTokenUtil->getApiTokenFromCache($this->getQuote())['apiToken'] ?? '';
-        $this->environment = $this->config->isLiveMode($this->getQuote()->getStoreId()) ? 'live' : 'test';
-        $this->amount = (int)$this->getQuote()->getGrandTotal() * 100;
-        $this->currency = $this->getQuote()->getCurrency()->getQuoteCurrencyCode() ?? 'EUR';
-        $this->gatewayCode = $this->getGatewayCode();
-        $this->locale = $this->localeResolver->getLocale();
-        $this->country = $this->getQuote()->getBillingAddress()->getCountryId() ?? '';
-        $this->tokens = $this->getTokens();
+        try {
+            return $this->apiTokenUtil->getApiTokenFromCache($this->getQuote())['apiToken'] ?? '';
+        } catch (InvalidDataInitializationException $exception) {
+            $this->dispatchErrorMessage($exception->getMessage());
+        }
+
+        return '';
     }
 
     /**
-     * @return Quote|null
+     * Get the environment
+     *
+     * @return string
+     * @throws LocalizedException
+     * @throws NoSuchEntityException
      */
-    private function getQuote(): ?Quote
+    public function getEnvironment(): string
+    {
+        return $this->config->isLiveMode($this->getQuote()->getStoreId()) ? 'live' : 'test';
+    }
+
+    /**
+     * Get the amount
+     *
+     * @return int
+     * @throws LocalizedException
+     * @throws NoSuchEntityException
+     */
+    public function getAmount(): int
+    {
+        return (int)($this->getQuote()->getGrandTotal() * 100);
+    }
+
+    /**
+     * Get the currency
+     *
+     * @return string
+     * @throws LocalizedException
+     * @throws NoSuchEntityException
+     */
+    public function getCurrency(): string
+    {
+        return $this->getQuote()->getCurrency()->getQuoteCurrencyCode() ?? 'EUR';
+    }
+
+    /**
+     * Get the locale
+     *
+     * @return string
+     */
+    public function getLocale(): string
+    {
+        return $this->localeResolver->getLocale();
+    }
+
+    /**
+     * Get the country
+     *
+     * @return string
+     * @throws LocalizedException
+     * @throws NoSuchEntityException
+     */
+    public function getCountry(): string
+    {
+        return (string)$this->getQuote()->getBillingAddress()->getCountryId() ?? '';
+    }
+
+    /**
+     * Get the method code
+     *
+     * @return string
+     * @throws LocalizedException
+     * @throws NoSuchEntityException
+     */
+    public function getMethodCode(): string
+    {
+        return $this->getQuote()->getPayment()->getMethod() ?? '';
+    }
+
+    /**
+     * Get the quote
+     *
+     * @return Quote
+     * @throws LocalizedException
+     * @throws NoSuchEntityException
+     */
+    public function getQuote(): Quote
     {
         if (!$this->quote) {
-            try {
-                $this->quote = $this->sessionCheckout->getQuote();
-            } catch (NoSuchEntityException | LocalizedException $exception) {
-                $this->logger->logPaymentComponentException($exception);
-            }
+            $this->quote = $this->sessionCheckout->getQuote();
         }
 
-        return $this->quote;
+        return $this->quote ;
     }
 
     /**
      * Get the gateway code
      *
      * @return string
+     * @throws LocalizedException
+     * @throws NoSuchEntityException
      */
-    private function getGatewayCode(): string
+    public function getGatewayCode(): string
     {
         $quote = $this->getQuote();
 
@@ -205,8 +227,10 @@ class MultiSafepayCreditCard extends Component\Form
      * Get the recurring tokens if they exist
      *
      * @return string|null
+     * @throws LocalizedException
+     * @throws NoSuchEntityException
      */
-    private function getTokens(): ?string
+    public function getTokens(): ?string
     {
         $quote = $this->getQuote();
 
@@ -239,6 +263,8 @@ class MultiSafepayCreditCard extends Component\Form
      * Check if payment component is enabled
      *
      * @return bool
+     * @throws LocalizedException
+     * @throws NoSuchEntityException
      */
     public function isPaymentComponentEnabled(): bool
     {
@@ -256,10 +282,13 @@ class MultiSafepayCreditCard extends Component\Form
     }
 
     /**
+     * Set the payment component data
+     *
      * @param array $paymentComponentData
      * @return void
      */
-    public function setPaymentComponentData(array $paymentComponentData) {
+    public function setPaymentComponentData(array $paymentComponentData)
+    {
         $additionalInformation = [];
 
         if (isset($paymentComponentData['tokenize']) && $paymentComponentData['tokenize']) {
