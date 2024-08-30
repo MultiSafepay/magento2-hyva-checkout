@@ -6,6 +6,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.2.0] - 2024-08-30
+### Added
+- DAVAMS-733: Added the BNPL_MF payment method
+- MAGWIRE-18: Added the VVVBON payment method
+- Added Maestro method and icon (thanks to @alphaLeporis)
+- PLGMAG2V2-776: Add payment component to (BNPL) supported methods
+- PLGMAG2V2-789: Add payment component for separate card gateways (Visa, Mastercard, American Express and Maestro)
+
+### Changed
+- The Quote is now stored in a class variable on retrieval to improve performance (thanks to @pykettk)
+
+### Removed
+- PLGMAG2V2-783: Removed issuers according to the iDEAL 2.0 standard
+- Removed the dependency on the MultiSafepay_ConnectFrontend module
+
 ## [2.1.0] - 2024-02-16
 ### Added
 - DAVAMS-716: Add Multibanco payment method
