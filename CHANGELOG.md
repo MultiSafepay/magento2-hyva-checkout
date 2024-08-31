@@ -19,7 +19,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 - PLGMAG2V2-783: Removed issuers according to the iDEAL 2.0 standard
-- Removed the dependency on the MultiSafepay_ConnectFrontend module
 
 ## [2.1.0] - 2024-02-16
 ### Added

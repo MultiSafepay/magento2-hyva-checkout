@@ -9,6 +9,7 @@
         "php": ">=7.4",
         "multisafepay/magento2-core": "^3.8",
         "multisafepay/magento2-adminhtml": "^1.30",
+        "multisafepay/magento2-frontend": "^1.18 | ^2.7",
         "hyva-themes/magento2-hyva-checkout":"^1.1"
     },
     "autoload": {
