@@ -1,0 +1,14 @@
+<script>
+    function hideApplePayIfNotAllowed()
+    {
+        if (window.ApplePaySession && window.ApplePaySession.canMakePayments()) {
+            return;
+        }
+
+        if (document.getElementById('payment-method-option-multisafepay_applepay')) {
+            document.getElementById('payment-method-option-multisafepay_applepay').style.display = 'none';
+        }
+    }
+
+    hideApplePayIfNotAllowed();
+</script>
