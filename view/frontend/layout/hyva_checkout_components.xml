@@ -129,8 +129,7 @@
 
             <!-- Payment Renderer: MultiSafepay Apple Pay -->
             <block name="checkout.payment.method.multisafepay_applepay"
-                   as="multisafepay_applepay"
-                   template="MultiSafepay_HyvaCheckout::component/payment/method/multisafepay_applepay.phtml">
+                   as="multisafepay_applepay">
                 <arguments>
                     <argument name="metadata" xsi:type="array">
                         <item name="icon" xsi:type="array">
@@ -929,5 +928,12 @@
                 </arguments>
             </block>
         </referenceBlock>
+
+        <referenceContainer name="checkout.payment.methods.after">
+            <block name="checkout.payment.methods.after.multisafepay_applepay"
+                   as="multisafepay_applepay"
+                   template="MultiSafepay_HyvaCheckout::component/payment/method/multisafepay_applepay.phtml">
+            </block>
+        </referenceContainer>
     </body>
 </page>

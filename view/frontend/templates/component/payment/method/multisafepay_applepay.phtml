@@ -11,4 +11,8 @@
     }
 
     hideApplePayIfNotAllowed();
+
+    window.addEventListener('checkout:step:loaded', event => {
+        hideApplePayIfNotAllowed();
+    });
 </script>
