@@ -928,5 +928,12 @@
                 </arguments>
             </block>
         </referenceBlock>
+
+        <referenceContainer name="checkout.payment.methods.after">
+            <block name="checkout.payment.methods.after.multisafepay_applepay"
+                   as="multisafepay_applepay"
+                   template="MultiSafepay_HyvaCheckout::component/payment/method/multisafepay_applepay.phtml">
+            </block>
+        </referenceContainer>
     </body>
 </page>
