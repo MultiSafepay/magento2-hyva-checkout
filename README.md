@@ -6,7 +6,7 @@
 
 This is the module of our Hyvä Checkout integration.
 
-Before you get started with MultiSafepay and Hyvä Checkout, please read and follow our [installation & configuration manual](https://docs.multisafepay.com/integrations/plugins/magento2/) first.
+Before you get started with MultiSafepay and Hyvä Checkout, please read and follow our [installation & configuration manual](https://docs.multisafepay.com/docs/magento-2) first.
 
 ## About MultiSafepay ##
 MultiSafepay is a collecting payment service provider which means we take care of the agreements, technical details and payment collection required for each payment method. You can start selling online today and manage all your transactions from one place.
