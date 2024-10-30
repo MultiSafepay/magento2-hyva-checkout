@@ -15,5 +15,5 @@ namespace MultiSafepay\HyvaCheckout\Util;
 
 class VersionUtil
 {
-    public const VERSION = '2.1.0';
+    public const VERSION = '2.2.1';
 }
