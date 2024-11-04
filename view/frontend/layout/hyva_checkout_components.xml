@@ -35,7 +35,7 @@
                     </argument>
                     <argument name="metadata" xsi:type="array">
                         <item name="icon" xsi:type="array">
-                            <item name="svg" xsi:type="string">multisafepay/multisafepay_creditcard</item>
+                            <item name="svg" xsi:type="string">multisafepay/multisafepay_creditcard_default</item>
                             <item name="attributes" xsi:type="array">
                                 <item name="title" xsi:type="string">Card Payment</item>
                             </item>
