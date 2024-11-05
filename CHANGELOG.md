@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Fixed
+- MAGWIRE-26: Fixed an issue where the Card payment icon was not changing based on selected configuration setting
 
 ## [2.2.1] - 2024-10-30
 ### Fixed
