@@ -210,6 +210,21 @@
                 </arguments>
             </block>
 
+            <!-- Payment Renderer: MultiSafepay Bizum -->
+            <block name="checkout.payment.method.multisafepay_bizum"
+                   as="multisafepay_bizum">
+                <arguments>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="icon" xsi:type="array">
+                            <item name="svg" xsi:type="string">multisafepay/multisafepay_bizum</item>
+                            <item name="attributes" xsi:type="array">
+                                <item name="title" xsi:type="string">Bizum</item>
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
             <!-- Payment Renderer: MultiSafepay CBC -->
             <block name="checkout.payment.method.multisafepay_cbc"
                    as="multisafepay_cbc">
