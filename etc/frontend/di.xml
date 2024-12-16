@@ -14,6 +14,7 @@
                 <item name="multisafepay_bancontact" xsi:type="object">MultiSafepay\HyvaCheckout\Model\Magewire\Payment\PlaceOrderService</item>
                 <item name="multisafepay_banktransfer" xsi:type="object">MultiSafepay\HyvaCheckout\Model\Magewire\Payment\PlaceOrderService</item>
                 <item name="multisafepay_belfius" xsi:type="object">MultiSafepay\HyvaCheckout\Model\Magewire\Payment\PlaceOrderService</item>
+                <item name="multisafepay_bizum" xsi:type="object">MultiSafepay\HyvaCheckout\Model\Magewire\Payment\PlaceOrderService</item>
                 <item name="multisafepay_bnplmf" xsi:type="object">MultiSafepay\HyvaCheckout\Model\Magewire\Payment\PlaceOrderService</item>
                 <item name="multisafepay_bnplinstm" xsi:type="object">MultiSafepay\HyvaCheckout\Model\Magewire\Payment\PlaceOrderService</item>
                 <item name="multisafepay_cbc" xsi:type="object">MultiSafepay\HyvaCheckout\Model\Magewire\Payment\PlaceOrderService</item>
