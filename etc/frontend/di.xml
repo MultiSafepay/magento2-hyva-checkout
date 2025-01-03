@@ -29,6 +29,8 @@
                 <item name="multisafepay_ideal" xsi:type="object">MultiSafepay\HyvaCheckout\Model\Magewire\Payment\PlaceOrderService</item>
                 <item name="multisafepay_idealqr" xsi:type="object">MultiSafepay\HyvaCheckout\Model\Magewire\Payment\PlaceOrderService</item>
                 <item name="multisafepay_in3" xsi:type="object">MultiSafepay\HyvaCheckout\Model\Magewire\Payment\PlaceOrderService</item>
+                <item name="multisafepay_in3b2b" xsi:type="object">MultiSafepay\HyvaCheckout\Model\Magewire\Payment\PlaceOrderService</item>
+                <item name="multisafepay_billink" xsi:type="object">MultiSafepay\HyvaCheckout\Model\Magewire\Payment\PlaceOrderService</item>
                 <item name="multisafepay_kbc" xsi:type="object">MultiSafepay\HyvaCheckout\Model\Magewire\Payment\PlaceOrderService</item>
                 <item name="multisafepay_klarna" xsi:type="object">MultiSafepay\HyvaCheckout\Model\Magewire\Payment\PlaceOrderService</item>
                 <item name="multisafepay_maestro" xsi:type="object">MultiSafepay\HyvaCheckout\Model\Magewire\Payment\PlaceOrderService</item>
