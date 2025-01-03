@@ -255,21 +255,6 @@
                 </arguments>
             </block>
 
-            <!-- Payment Renderer: MultiSafepay Request To Pay -->
-            <block name="checkout.payment.method.multisafepay_directbanktransfer"
-                   as="multisafepay_directbanktransfer">
-                <arguments>
-                    <argument name="metadata" xsi:type="array">
-                        <item name="icon" xsi:type="array">
-                            <item name="svg" xsi:type="string">multisafepay/multisafepay_directbanktransfer</item>
-                            <item name="attributes" xsi:type="array">
-                                <item name="title" xsi:type="string">Request To Pay</item>
-                            </item>
-                        </item>
-                    </argument>
-                </arguments>
-            </block>
-
             <!-- Payment Renderer: MultiSafepay Direct Debit -->
             <block name="checkout.payment.method.multisafepay_directdebit"
                    as="multisafepay_directdebit">
@@ -279,21 +264,6 @@
                             <item name="svg" xsi:type="string">multisafepay/multisafepay_directdebit</item>
                             <item name="attributes" xsi:type="array">
                                 <item name="title" xsi:type="string">Direct Debit</item>
-                            </item>
-                        </item>
-                    </argument>
-                </arguments>
-            </block>
-
-            <!-- Payment Renderer: MultiSafepay Dotpay -->
-            <block name="checkout.payment.method.multisafepay_dotpay"
-                   as="multisafepay_dotpay">
-                <arguments>
-                    <argument name="metadata" xsi:type="array">
-                        <item name="icon" xsi:type="array">
-                            <item name="svg" xsi:type="string">multisafepay/multisafepay_dotpay</item>
-                            <item name="attributes" xsi:type="array">
-                                <item name="title" xsi:type="string">Dotpay</item>
                             </item>
                         </item>
                     </argument>
@@ -328,21 +298,6 @@
                             <item name="svg" xsi:type="string">multisafepay/multisafepay_einvoicing</item>
                             <item name="attributes" xsi:type="array">
                                 <item name="title" xsi:type="string">E-invoicing</item>
-                            </item>
-                        </item>
-                    </argument>
-                </arguments>
-            </block>
-
-            <!-- Payment Renderer: MultiSafepay Giropay -->
-            <block name="checkout.payment.method.multisafepay_giropay"
-                   as="multisafepay_giropay">
-                <arguments>
-                    <argument name="metadata" xsi:type="array">
-                        <item name="icon" xsi:type="array">
-                            <item name="svg" xsi:type="string">multisafepay/multisafepay_giropay</item>
-                            <item name="attributes" xsi:type="array">
-                                <item name="title" xsi:type="string">Giropay</item>
                             </item>
                         </item>
                     </argument>
@@ -509,21 +464,6 @@
                             <item name="svg" xsi:type="string">multisafepay/multisafepay_paysafecard</item>
                             <item name="attributes" xsi:type="array">
                                 <item name="title" xsi:type="string">Paysafecard</item>
-                            </item>
-                        </item>
-                    </argument>
-                </arguments>
-            </block>
-
-            <!-- Payment Renderer: MultiSafepay Sofort-->
-            <block name="checkout.payment.method.multisafepay_sofort"
-                   as="multisafepay_sofort">
-                <arguments>
-                    <argument name="metadata" xsi:type="array">
-                        <item name="icon" xsi:type="array">
-                            <item name="svg" xsi:type="string">multisafepay/multisafepay_sofort</item>
-                            <item name="attributes" xsi:type="array">
-                                <item name="title" xsi:type="string">Sofort</item>
                             </item>
                         </item>
                     </argument>
