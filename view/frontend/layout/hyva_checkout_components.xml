@@ -270,6 +270,21 @@
                 </arguments>
             </block>
 
+            <!-- Payment Renderer: MultiSafepay Dotpay -->
+            <block name="checkout.payment.method.multisafepay_dotpay"
+                   as="multisafepay_dotpay">
+                <arguments>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="icon" xsi:type="array">
+                            <item name="svg" xsi:type="string">multisafepay/multisafepay_dotpay</item>
+                            <item name="attributes" xsi:type="array">
+                                <item name="title" xsi:type="string">Dotpay</item>
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
             <!-- Payment Renderer: MultiSafepay EPS -->
             <block name="checkout.payment.method.multisafepay_eps"
                    as="multisafepay_eps">
@@ -483,6 +498,21 @@
                             <item name="svg" xsi:type="string">multisafepay/multisafepay_paysafecard</item>
                             <item name="attributes" xsi:type="array">
                                 <item name="title" xsi:type="string">Paysafecard</item>
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <!-- Payment Renderer: MultiSafepay Sofort-->
+            <block name="checkout.payment.method.multisafepay_sofort"
+                   as="multisafepay_sofort">
+                <arguments>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="icon" xsi:type="array">
+                            <item name="svg" xsi:type="string">multisafepay/multisafepay_sofort</item>
+                            <item name="attributes" xsi:type="array">
+                                <item name="title" xsi:type="string">Sofort</item>
                             </item>
                         </item>
                     </argument>
