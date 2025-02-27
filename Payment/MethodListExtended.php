@@ -15,11 +15,14 @@ declare(strict_types=1);
 
 namespace MultiSafepay\HyvaCheckout\Payment;
 
+use Hyva\Checkout\Model\ConfigData\HyvaThemes\SystemConfigExperimental;
 use Hyva\Checkout\Model\Magewire\Component\EvaluationResultFactory;
 use Hyva\Checkout\Magewire\Checkout\Payment\MethodList;
 use Magento\Checkout\Model\Session as SessionCheckout;
+use Magento\Framework\App\ObjectManager;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Quote\Api\CartRepositoryInterface;
+use Magento\Quote\Api\PaymentMethodManagementInterface;
 use Magento\Quote\Model\QuoteRepository;
 use MultiSafepay\ConnectCore\Config\Config;
 
@@ -46,20 +49,28 @@ class MethodListExtended extends MethodList
      * @param EvaluationResultFactory $evaluationResultFactory
      * @param Config $config
      * @param QuoteRepository $quoteRepository
+     * @param SystemConfigExperimental|null $experimentalHyvaCheckoutConfig
+     * @param PaymentMethodManagementInterface|null $paymentMethodManagement
      */
     public function __construct(
         SessionCheckout $sessionCheckout,
         CartRepositoryInterface $cartRepository,
         EvaluationResultFactory $evaluationResultFactory,
         Config $config,
-        QuoteRepository $quoteRepository
+        QuoteRepository $quoteRepository,
+        ?SystemConfigExperimental $experimentalHyvaCheckoutConfig,
+        ?PaymentMethodManagementInterface $paymentMethodManagement
     ) {
         $this->quoteRepository = $quoteRepository;
         $this->config = $config;
         parent::__construct(
             $sessionCheckout,
             $cartRepository,
-            $evaluationResultFactory
+            $evaluationResultFactory,
+            $this->experimentalHyvaCheckoutConfig = $experimentalHyvaCheckoutConfig
+                ?: ObjectManager::getInstance()->get(SystemConfigExperimental::class),
+            $this->paymentMethodManagement = $paymentMethodManagement
+            ?: ObjectManager::getInstance()->get(PaymentMethodManagementInterface::class)
         );
     }
 
