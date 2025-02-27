@@ -23,7 +23,7 @@ class IconRendererPlugin
     /**
      * @var GatewayConfig
      */
-    private $gatewayConfig;
+    private GatewayConfig $gatewayConfig;
 
     /**
      * @param GatewayConfig $gatewayConfig
@@ -43,7 +43,7 @@ class IconRendererPlugin
      * @return array
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
-    public function beforeRenderAsSvg(IconRenderer $subject, string $path, array $attributes): array
+    public function beforeRenderAsSvg(IconRenderer $subject, string $path, array $attributes = []): array
     {
         if ($path !== 'multisafepay/multisafepay_creditcard_default') {
             return [$path, $attributes];
