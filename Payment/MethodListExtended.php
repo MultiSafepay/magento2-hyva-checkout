@@ -58,19 +58,18 @@ class MethodListExtended extends MethodList
         EvaluationResultFactory $evaluationResultFactory,
         Config $config,
         QuoteRepository $quoteRepository,
-        ?SystemConfigExperimental $experimentalHyvaCheckoutConfig,
-        ?PaymentMethodManagementInterface $paymentMethodManagement
+        ?SystemConfigExperimental $experimentalHyvaCheckoutConfig = null,
+        ?PaymentMethodManagementInterface $paymentMethodManagement = null
     ) {
         $this->quoteRepository = $quoteRepository;
         $this->config = $config;
+
         parent::__construct(
             $sessionCheckout,
             $cartRepository,
             $evaluationResultFactory,
-            $this->experimentalHyvaCheckoutConfig = $experimentalHyvaCheckoutConfig
-                ?: ObjectManager::getInstance()->get(SystemConfigExperimental::class),
-            $this->paymentMethodManagement = $paymentMethodManagement
-            ?: ObjectManager::getInstance()->get(PaymentMethodManagementInterface::class)
+            $experimentalHyvaCheckoutConfig,
+            $paymentMethodManagement
         );
     }
 
