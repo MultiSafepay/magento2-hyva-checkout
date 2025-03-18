@@ -21,6 +21,7 @@
                                 <item name="title" xsi:type="string">iDEAL</item>
                             </item>
                         </item>
+                        <item name="subtitle" xsi:type="string">payment/multisafepay_ideal/instructions</item>
                     </argument>
                 </arguments>
             </block>
@@ -40,6 +41,7 @@
                                 <item name="title" xsi:type="string">Card Payment</item>
                             </item>
                         </item>
+                        <item name="subtitle" xsi:type="string">payment/multisafepay_creditcard/instructions</item>
                     </argument>
                 </arguments>
             </block>
@@ -59,6 +61,7 @@
                                 <item name="title" xsi:type="string">Riverty</item>
                             </item>
                         </item>
+                        <item name="subtitle" xsi:type="string">payment/multisafepay_afterpay/instructions</item>
                     </argument>
                 </arguments>
             </block>
@@ -74,6 +77,7 @@
                                 <item name="title" xsi:type="string">Alipay</item>
                             </item>
                         </item>
+                        <item name="subtitle" xsi:type="string">payment/multisafepay_alipay/instructions</item>
                     </argument>
                 </arguments>
             </block>
@@ -89,6 +93,7 @@
                                 <item name="title" xsi:type="string">Alipay Plus</item>
                             </item>
                         </item>
+                        <item name="subtitle" xsi:type="string">payment/multisafepay_alipayplus/instructions</item>
                     </argument>
                 </arguments>
             </block>
@@ -104,6 +109,7 @@
                                 <item name="title" xsi:type="string">Amazon Pay</item>
                             </item>
                         </item>
+                        <item name="subtitle" xsi:type="string">payment/multisafepay_amazonpay/instructions</item>
                     </argument>
                 </arguments>
             </block>
@@ -123,6 +129,7 @@
                                 <item name="title" xsi:type="string">American Express</item>
                             </item>
                         </item>
+                        <item name="subtitle" xsi:type="string">payment/multisafepay_amex/instructions</item>
                     </argument>
                 </arguments>
             </block>
@@ -138,6 +145,7 @@
                                 <item name="title" xsi:type="string">Apple Pay</item>
                             </item>
                         </item>
+                        <item name="subtitle" xsi:type="string">payment/multisafepay_applepay/instructions</item>
                     </argument>
                 </arguments>
             </block>
@@ -153,6 +161,7 @@
                                 <item name="title" xsi:type="string">Bancontact</item>
                             </item>
                         </item>
+                        <item name="subtitle" xsi:type="string">payment/multisafepay_bancontact/instructions</item>
                     </argument>
                 </arguments>
             </block>
@@ -168,6 +177,7 @@
                                 <item name="title" xsi:type="string">Belfius</item>
                             </item>
                         </item>
+                        <item name="subtitle" xsi:type="string">payment/multisafepay_belfius/instructions</item>
                     </argument>
                 </arguments>
             </block>
@@ -187,6 +197,7 @@
                                 <item name="title" xsi:type="string">Pay After Delivery Installments</item>
                             </item>
                         </item>
+                        <item name="subtitle" xsi:type="string">payment/multisafepay_bnplinstm/instructions</item>
                     </argument>
                 </arguments>
             </block>
@@ -206,6 +217,7 @@
                                 <item name="title" xsi:type="string">Pay After Delivery</item>
                             </item>
                         </item>
+                        <item name="subtitle" xsi:type="string">payment/multisafepay_bnplmf/instructions</item>
                     </argument>
                 </arguments>
             </block>
@@ -221,6 +233,7 @@
                                 <item name="title" xsi:type="string">Bizum</item>
                             </item>
                         </item>
+                        <item name="subtitle" xsi:type="string">payment/multisafepay_bizum/instructions</item>
                     </argument>
                 </arguments>
             </block>
@@ -236,6 +249,7 @@
                                 <item name="title" xsi:type="string">CBC</item>
                             </item>
                         </item>
+                        <item name="subtitle" xsi:type="string">payment/multisafepay_cbc/instructions</item>
                     </argument>
                 </arguments>
             </block>
@@ -251,6 +265,7 @@
                                 <item name="title" xsi:type="string">KBC</item>
                             </item>
                         </item>
+                        <item name="subtitle" xsi:type="string">payment/multisafepay_kbc/instructions</item>
                     </argument>
                 </arguments>
             </block>
@@ -266,6 +281,7 @@
                                 <item name="title" xsi:type="string">Direct Debit</item>
                             </item>
                         </item>
+                        <item name="subtitle" xsi:type="string">payment/multisafepay_directdebit/instructions</item>
                     </argument>
                 </arguments>
             </block>
@@ -281,6 +297,7 @@
                                 <item name="title" xsi:type="string">Dotpay</item>
                             </item>
                         </item>
+                        <item name="subtitle" xsi:type="string">payment/multisafepay_dotpay/instructions</item>
                     </argument>
                 </arguments>
             </block>
@@ -296,6 +313,7 @@
                                 <item name="title" xsi:type="string">EPS</item>
                             </item>
                         </item>
+                        <item name="subtitle" xsi:type="string">payment/multisafepay_eps/instructions</item>
                     </argument>
                 </arguments>
             </block>
@@ -315,6 +333,7 @@
                                 <item name="title" xsi:type="string">E-invoicing</item>
                             </item>
                         </item>
+                        <item name="subtitle" xsi:type="string">payment/multisafepay_einvoicing/instructions</item>
                     </argument>
                 </arguments>
             </block>
@@ -330,6 +349,7 @@
                                 <item name="title" xsi:type="string">Google Pay</item>
                             </item>
                         </item>
+                        <item name="subtitle" xsi:type="string">payment/multisafepay_googlepay/instructions</item>
                     </argument>
                 </arguments>
             </block>
@@ -349,6 +369,7 @@
                                 <item name="title" xsi:type="string">in3</item>
                             </item>
                         </item>
+                        <item name="subtitle" xsi:type="string">payment/multisafepay_in3/instructions</item>
                     </argument>
                 </arguments>
             </block>
@@ -368,6 +389,7 @@
                                 <item name="title" xsi:type="string">in3: Betaal in 3 delen (0% rente)</item>
                             </item>
                         </item>
+                        <item name="subtitle" xsi:type="string">payment/multisafepay_in3b2b/instructions</item>
                     </argument>
                 </arguments>
             </block>
@@ -387,6 +409,7 @@
                                 <item name="title" xsi:type="string">Billink</item>
                             </item>
                         </item>
+                        <item name="subtitle" xsi:type="string">payment/multisafepay_billink/instructions</item>
                     </argument>
                 </arguments>
             </block>
@@ -402,6 +425,7 @@
                                 <item name="title" xsi:type="string">Klarna</item>
                             </item>
                         </item>
+                        <item name="subtitle" xsi:type="string">payment/multisafepay_klarna/instructions</item>
                     </argument>
                 </arguments>
             </block>
@@ -421,6 +445,7 @@
                                 <item name="title" xsi:type="string">Mastercard</item>
                             </item>
                         </item>
+                        <item name="subtitle" xsi:type="string">payment/multisafepay_mastercard/instructions</item>
                     </argument>
                 </arguments>
             </block>
@@ -440,6 +465,7 @@
                                 <item name="title" xsi:type="string">Maestro</item>
                             </item>
                         </item>
+                        <item name="subtitle" xsi:type="string">payment/multisafepay_maestro/instructions</item>
                     </argument>
                 </arguments>
             </block>
@@ -455,6 +481,7 @@
                                 <item name="title" xsi:type="string">MyBank</item>
                             </item>
                         </item>
+                        <item name="subtitle" xsi:type="string">payment/multisafepay_mybank/instructions</item>
                     </argument>
                 </arguments>
             </block>
@@ -470,6 +497,7 @@
                                 <item name="title" xsi:type="string">Pay After Delivery</item>
                             </item>
                         </item>
+                        <item name="subtitle" xsi:type="string">payment/multisafepay_payafter/instructions</item>
                     </argument>
                 </arguments>
             </block>
@@ -485,6 +513,7 @@
                                 <item name="title" xsi:type="string">Paypal</item>
                             </item>
                         </item>
+                        <item name="subtitle" xsi:type="string">payment/multisafepay_paypal/instructions</item>
                     </argument>
                 </arguments>
             </block>
@@ -500,6 +529,7 @@
                                 <item name="title" xsi:type="string">Paysafecard</item>
                             </item>
                         </item>
+                        <item name="subtitle" xsi:type="string">payment/multisafepay_paysafecard/instructions</item>
                     </argument>
                 </arguments>
             </block>
@@ -515,6 +545,7 @@
                                 <item name="title" xsi:type="string">Sofort</item>
                             </item>
                         </item>
+                        <item name="subtitle" xsi:type="string">payment/multisafepay_sofort/instructions</item>
                     </argument>
                 </arguments>
             </block>
@@ -530,6 +561,7 @@
                                 <item name="title" xsi:type="string">Trustly</item>
                             </item>
                         </item>
+                        <item name="subtitle" xsi:type="string">payment/multisafepay_trustly/instructions</item>
                     </argument>
                 </arguments>
             </block>
@@ -545,6 +577,7 @@
                                 <item name="title" xsi:type="string">TrustPay</item>
                             </item>
                         </item>
+                        <item name="subtitle" xsi:type="string">payment/multisafepay_trustpay/instructions</item>
                     </argument>
                 </arguments>
             </block>
@@ -564,6 +597,7 @@
                                 <item name="title" xsi:type="string">Visa</item>
                             </item>
                         </item>
+                        <item name="subtitle" xsi:type="string">payment/multisafepay_visa/instructions</item>
                     </argument>
                 </arguments>
             </block>
@@ -579,6 +613,7 @@
                                 <item name="title" xsi:type="string">WeChat Pay</item>
                             </item>
                         </item>
+                        <item name="subtitle" xsi:type="string">payment/multisafepay_wechatpay/instructions</item>
                     </argument>
                 </arguments>
             </block>
@@ -598,6 +633,7 @@
                                 <item name="title" xsi:type="string">Zinia</item>
                             </item>
                         </item>
+                        <item name="subtitle" xsi:type="string">payment/multisafepay_zinia/instructions</item>
                     </argument>
                 </arguments>
             </block>
@@ -613,6 +649,7 @@
                                 <item name="title" xsi:type="string">MB WAY</item>
                             </item>
                         </item>
+                        <item name="subtitle" xsi:type="string">payment/multisafepay_mbway/instructions</item>
                     </argument>
                 </arguments>
             </block>
@@ -628,6 +665,7 @@
                                 <item name="title" xsi:type="string">MB WAY</item>
                             </item>
                         </item>
+                        <item name="subtitle" xsi:type="string">payment/multisafepay_multibanco/instructions</item>
                     </argument>
                 </arguments>
             </block>
@@ -643,6 +681,7 @@
                                 <item name="title" xsi:type="string">Baby gift card</item>
                             </item>
                         </item>
+                        <item name="subtitle" xsi:type="string">payment/multisafepay_babygiftcard/instructions</item>
                     </argument>
                 </arguments>
             </block>
@@ -658,6 +697,7 @@
                                 <item name="title" xsi:type="string">Beauty &amp; Wellness gift card</item>
                             </item>
                         </item>
+                        <item name="subtitle" xsi:type="string">payment/multisafepay_beautyandwellness/instructions</item>
                     </argument>
                 </arguments>
             </block>
@@ -673,6 +713,7 @@
                                 <item name="title" xsi:type="string">Boekenbon</item>
                             </item>
                         </item>
+                        <item name="subtitle" xsi:type="string">payment/multisafepay_boekenbon/instructions</item>
                     </argument>
                 </arguments>
             </block>
@@ -688,6 +729,7 @@
                                 <item name="title" xsi:type="string">Edenred</item>
                             </item>
                         </item>
+                        <item name="subtitle" xsi:type="string">payment/multisafepay_edenred/instructions</item>
                     </argument>
                 </arguments>
             </block>
@@ -703,6 +745,7 @@
                                 <item name="title" xsi:type="string">Fashioncheque</item>
                             </item>
                         </item>
+                        <item name="subtitle" xsi:type="string">payment/multisafepay_fashioncheque/instructions</item>
                     </argument>
                 </arguments>
             </block>
@@ -718,6 +761,7 @@
                                 <item name="title" xsi:type="string">Fashion gift card</item>
                             </item>
                         </item>
+                        <item name="subtitle" xsi:type="string">payment/multisafepay_fashiongiftcard/instructions</item>
                     </argument>
                 </arguments>
             </block>
@@ -733,6 +777,7 @@
                                 <item name="title" xsi:type="string">Fietsenbon</item>
                             </item>
                         </item>
+                        <item name="subtitle" xsi:type="string">payment/multisafepay_fietsenbon/instructions</item>
                     </argument>
                 </arguments>
             </block>
@@ -748,6 +793,7 @@
                                 <item name="title" xsi:type="string">Gezondheidsbon</item>
                             </item>
                         </item>
+                        <item name="subtitle" xsi:type="string">payment/multisafepay_gezondheidsbon/instructions</item>
                     </argument>
                 </arguments>
             </block>
@@ -763,6 +809,7 @@
                                 <item name="title" xsi:type="string">Givacard</item>
                             </item>
                         </item>
+                        <item name="subtitle" xsi:type="string">payment/multisafepay_givacard/instructions</item>
                     </argument>
                 </arguments>
             </block>
@@ -778,6 +825,7 @@
                                 <item name="title" xsi:type="string">Good4fun</item>
                             </item>
                         </item>
+                        <item name="subtitle" xsi:type="string">payment/multisafepay_good4fun/instructions</item>
                     </argument>
                 </arguments>
             </block>
@@ -793,6 +841,7 @@
                                 <item name="title" xsi:type="string">Nationale Tuinbon</item>
                             </item>
                         </item>
+                        <item name="subtitle" xsi:type="string">payment/multisafepay_nationaletuinbon/instructions</item>
                     </argument>
                 </arguments>
             </block>
@@ -808,6 +857,7 @@
                                 <item name="title" xsi:type="string">Podium cadeaukaart</item>
                             </item>
                         </item>
+                        <item name="subtitle" xsi:type="string">payment/multisafepay_podiumcadeaukaart/instructions</item>
                     </argument>
                 </arguments>
             </block>
@@ -823,6 +873,7 @@
                                 <item name="title" xsi:type="string">Sport en Fit</item>
                             </item>
                         </item>
+                        <item name="subtitle" xsi:type="string">payment/multisafepay_sportenfit/instructions</item>
                     </argument>
                 </arguments>
             </block>
@@ -838,6 +889,7 @@
                                 <item name="title" xsi:type="string">VVV Cadeaukaart</item>
                             </item>
                         </item>
+                        <item name="subtitle" xsi:type="string">payment/multisafepay_vvvcadeaubon/instructions</item>
                     </argument>
                 </arguments>
             </block>
@@ -853,6 +905,7 @@
                                 <item name="title" xsi:type="string">VVV Cadeaukaart</item>
                             </item>
                         </item>
+                        <item name="subtitle" xsi:type="string">payment/multisafepay_vvvcadeaukaart/instructions</item>
                     </argument>
                 </arguments>
             </block>
@@ -868,6 +921,7 @@
                                 <item name="title" xsi:type="string">Webshop gift card</item>
                             </item>
                         </item>
+                        <item name="subtitle" xsi:type="string">payment/multisafepay_webshopgiftcard/instructions</item>
                     </argument>
                 </arguments>
             </block>
@@ -883,6 +937,7 @@
                                 <item name="title" xsi:type="string">Wellness gift card</item>
                             </item>
                         </item>
+                        <item name="subtitle" xsi:type="string">payment/multisafepay_wellnessgiftcard/instructions</item>
                     </argument>
                 </arguments>
             </block>
@@ -898,6 +953,7 @@
                                 <item name="title" xsi:type="string">Wijncadeau</item>
                             </item>
                         </item>
+                        <item name="subtitle" xsi:type="string">payment/multisafepay_wijncadeau/instructions</item>
                     </argument>
                 </arguments>
             </block>
@@ -913,6 +969,7 @@
                                 <item name="title" xsi:type="string">Winkelcheque</item>
                             </item>
                         </item>
+                        <item name="subtitle" xsi:type="string">payment/multisafepay_winkelcheque/instructions</item>
                     </argument>
                 </arguments>
             </block>
@@ -928,6 +985,7 @@
                                 <item name="title" xsi:type="string">Yourgift</item>
                             </item>
                         </item>
+                        <item name="subtitle" xsi:type="string">payment/multisafepay_yourgift/instructions</item>
                     </argument>
                 </arguments>
             </block>
