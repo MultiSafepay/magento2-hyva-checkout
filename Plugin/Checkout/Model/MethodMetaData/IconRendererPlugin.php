@@ -55,6 +55,8 @@ class IconRendererPlugin
     }
 
     /**
+     * Changes the svg icon path depending on the payment method and icon type configuration
+     *
      * @param IconRenderer $subject
      * @param string $path
      * @param array $attributes
@@ -69,16 +71,12 @@ class IconRendererPlugin
             return [$cardPaymentIcon, $attributes];
         }
 
-        $genericGatewayIcon = $this->renderGenericGatewayIcon($path);
-
-        if ($genericGatewayIcon) {
-            return [$genericGatewayIcon, $attributes];
-        }
-
         return [$path, $attributes];
     }
 
     /**
+     * Change the image icon path depending on the payment method
+     *
      * @param IconRenderer $subject
      * @param $result
      * @return string
@@ -88,13 +86,7 @@ class IconRendererPlugin
      */
     public function afterRenderAsImage(IconRenderer $subject, $result): string
     {
-        $genericGatewayIcon = $this->renderGenericGatewayIcon($result);
-
-        if ($genericGatewayIcon) {
-            return $genericGatewayIcon;
-        }
-
-        return $result;
+        return $this->renderGenericGatewayIcon($result);
     }
 
     /**
@@ -121,6 +113,8 @@ class IconRendererPlugin
     }
 
     /**
+     * Generic gateway icons that need to be rendered have a different path, because they are uploaded by the user
+     *
      * @param string $url
      * @return string
      * @throws NoSuchEntityException
@@ -128,11 +122,21 @@ class IconRendererPlugin
      */
     private function renderGenericGatewayIcon(string $url): string
     {
-        if (str_contains($url, 'multisafepay_genericgateway_1')) {
-            $genericGatewayImage = $this->genericGatewayUtil->getGenericFullImagePath('multisafepay_genericgateway_1');
+        if (!str_contains($url, 'multisafepay_genericgateway_')) {
+            return $url;
+        }
 
-            if ($genericGatewayImage) {
-                return '<img src="' . $this->escaper->escapeUrl($genericGatewayImage) . '" />';
+        for ($count = 1; $count <= 6; $count++) {
+            if (str_contains($url, 'multisafepay_genericgateway_' . $count)) {
+                $genericGatewayImage = $this->genericGatewayUtil->getGenericFullImagePath(
+                    'multisafepay_genericgateway_' . $count
+                );
+
+                if ($genericGatewayImage) {
+                    return '<img src="' . $this->escaper->escapeUrl($genericGatewayImage) . '" />';
+                }
+
+                return '';
             }
         }
 
