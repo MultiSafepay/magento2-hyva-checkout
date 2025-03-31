@@ -40,7 +40,7 @@ class SubtitleRendererPlugin
      */
     public function afterRender(SubtitleRenderer $subject, string $result): string
     {
-        if (!str_contains($result, 'multisafepay')) {
+        if (strpos($result, 'multisafepay') === false) {
             return $result;
         }
 

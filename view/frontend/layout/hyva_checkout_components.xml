@@ -989,6 +989,84 @@
                     </argument>
                 </arguments>
             </block>
+
+            <!-- Payment Renderer: MultiSafepay Generic Gateway 1-->
+            <block name="checkout.payment.method.multisafepay_genericgateway_1"
+                   as="multisafepay_genericgateway_1">
+                <arguments>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="icon" xsi:type="array">
+                            <item name="src" xsi:type="string">multisafepay/multisafepay_genericgateway_1</item>
+                        </item>
+                        <item name="subtitle" xsi:type="string">payment/multisafepay_genericgateway_1/instructions</item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <!-- Payment Renderer: MultiSafepay Generic Gateway 2-->
+            <block name="checkout.payment.method.multisafepay_genericgateway_2"
+                   as="multisafepay_genericgateway_2">
+                <arguments>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="icon" xsi:type="array">
+                            <item name="src" xsi:type="string">multisafepay/multisafepay_genericgateway_2</item>
+                        </item>
+                        <item name="subtitle" xsi:type="string">payment/multisafepay_genericgateway_2/instructions</item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <!-- Payment Renderer: MultiSafepay Generic Gateway 3-->
+            <block name="checkout.payment.method.multisafepay_genericgateway_3"
+                   as="multisafepay_genericgateway_3">
+                <arguments>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="icon" xsi:type="array">
+                            <item name="src" xsi:type="string">multisafepay/multisafepay_genericgateway_3</item>
+                        </item>
+                        <item name="subtitle" xsi:type="string">payment/multisafepay_genericgateway_3/instructions</item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <!-- Payment Renderer: MultiSafepay Generic Gateway 4-->
+            <block name="checkout.payment.method.multisafepay_genericgateway_4"
+                   as="multisafepay_genericgateway_4">
+                <arguments>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="icon" xsi:type="array">
+                            <item name="src" xsi:type="string">multisafepay/multisafepay_genericgateway_4</item>
+                        </item>
+                        <item name="subtitle" xsi:type="string">payment/multisafepay_genericgateway_4/instructions</item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <!-- Payment Renderer: MultiSafepay Generic Gateway 5-->
+            <block name="checkout.payment.method.multisafepay_genericgateway_5"
+                   as="multisafepay_genericgateway_5">
+                <arguments>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="icon" xsi:type="array">
+                            <item name="src" xsi:type="string">multisafepay/multisafepay_genericgateway_5</item>
+                        </item>
+                        <item name="subtitle" xsi:type="string">payment/multisafepay_genericgateway_5/instructions</item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <!-- Payment Renderer: MultiSafepay Generic Gateway 6-->
+            <block name="checkout.payment.method.multisafepay_genericgateway_6"
+                   as="multisafepay_genericgateway_6">
+                <arguments>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="icon" xsi:type="array">
+                            <item name="src" xsi:type="string">multisafepay/multisafepay_genericgateway_6</item>
+                        </item>
+                        <item name="subtitle" xsi:type="string">payment/multisafepay_genericgateway_6/instructions</item>
+                    </argument>
+                </arguments>
+            </block>
         </referenceBlock>
 
         <referenceContainer name="checkout.payment.methods.after">
