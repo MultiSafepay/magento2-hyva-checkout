@@ -1,6 +1,9 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
     <type name="Hyva\Checkout\Model\MethodMetaData\IconRenderer">
-        <plugin name="multisafepay_hyva_checkout_method_meta_data" type="MultiSafepay\HyvaCheckout\Plugin\Checkout\Model\MethodMetaData\IconRendererPlugin" sortOrder="1" disabled="false"/>
+        <plugin name="multisafepay_hyva_checkout_method_meta_data_icon" type="MultiSafepay\HyvaCheckout\Plugin\Checkout\Model\MethodMetaData\IconRendererPlugin" sortOrder="1" disabled="false"/>
+    </type>
+    <type name="Hyva\Checkout\Model\MethodMetaData\SubtitleRenderer">
+        <plugin name="multisafepay_hyva_checkout_method_meta_data_subtitle" type="MultiSafepay\HyvaCheckout\Plugin\Checkout\Model\MethodMetaData\SubtitleRendererPlugin" sortOrder="1" disabled="false"/>
     </type>
 </config>
