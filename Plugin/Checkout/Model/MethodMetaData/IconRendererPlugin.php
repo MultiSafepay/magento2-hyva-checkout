@@ -122,12 +122,12 @@ class IconRendererPlugin
      */
     private function renderGenericGatewayIcon(string $url): string
     {
-        if (!str_contains($url, 'multisafepay_genericgateway_')) {
+        if (strpos($url, 'multisafepay_genericgateway_') === false) {
             return $url;
         }
 
         for ($count = 1; $count <= 6; $count++) {
-            if (str_contains($url, 'multisafepay_genericgateway_' . $count)) {
+            if (strpos($url, 'multisafepay_genericgateway_' . $count) !== false) {
                 $genericGatewayImage = $this->genericGatewayUtil->getGenericFullImagePath(
                     'multisafepay_genericgateway_' . $count
                 );
