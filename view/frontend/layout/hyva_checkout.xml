@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <script src="https://pay.multisafepay.com/sdk/components/v2/components.js" src_type="url" />
+        <css src="https://pay.multisafepay.com/sdk/components/v2/components.css" src_type="url"/>
+    </head>
+    <body>
+        <referenceContainer name="magewire.plugin.scripts">
+            <block name="checkout.payment.methods.after.multisafepay_applepay"
+                   as="multisafepay_applepay_after"
+                   template="MultiSafepay_HyvaCheckout::component/payment/method/multisafepay_applepay.phtml">
+            </block>
+
+            <block name="checkout.payment.methods.after.multisafepay_creditcard"
+                   as="multisafepay_creditcard_after"
+                   template="MultiSafepay_HyvaCheckout::component/payment/method/payment_component_after.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        MultiSafepay\HyvaCheckout\Payment\Method\MultiSafepayPaymentComponent
+                    </argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

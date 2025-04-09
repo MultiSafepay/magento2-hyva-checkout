@@ -217,6 +217,10 @@ class MultiSafepayPaymentComponent extends Component\Form
         $quote = $this->getQuote();
 
         if ($payment = $quote->getPayment()) {
+            if ($payment->getMethod() === null) {
+                return '';
+            }
+
             return $payment->getMethodInstance()->getConfigData('gateway_code');
         }
 
@@ -271,6 +275,10 @@ class MultiSafepayPaymentComponent extends Component\Form
         $quote = $this->getQuote();
 
         if ($payment = $quote->getPayment()) {
+            if ($payment->getMethod() === null) {
+                return false;
+            }
+
             $paymentType = $payment->getMethodInstance()->getConfigData('payment_type');
 
             if ($paymentType === 'payment_component') {
