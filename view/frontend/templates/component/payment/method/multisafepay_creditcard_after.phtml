@@ -14,10 +14,10 @@
 declare(strict_types=1);
 
 /** @var Template $block */
-/** @var MultiSafepayPaymentComponent $magewire */
+/** @var MultiSafepayCreditCardComponent $magewire */
 /** @var Escaper $escaper */
 
-use MultiSafepay\HyvaCheckout\Payment\Method\MultiSafepayPaymentComponent;
+use MultiSafepay\HyvaCheckout\Payment\Method\MultiSafepayCreditCardComponent;
 use Magento\Framework\Escaper;
 use Magento\Framework\View\Element\Template;
 
@@ -27,14 +27,14 @@ use Magento\Framework\View\Element\Template;
     window.addEventListener('checkout:payment:method-activate', event => {
         console.log('checkout:payment:method-activate', event.detail.method, '<?= $escaper->escapeJs($magewire->getMethodCode())?>');
 
-        if (event.detail.method !== '<?= $escaper->escapeJs($magewire->getMethodCode())?>') {
+        if (event.detail.method !== 'multisafepay_creditcard') {
             console.log('early return');
             return;
         }
 
         let paymentComponent;
 
-        hyvaCheckout.payment.activate('<?= $escaper->escapeJs($magewire->getMethodCode())?>', {
+        hyvaCheckout.payment.activate('multisafepay_creditcard', {
             async initialize() {
                 let recurringData;
 
@@ -73,8 +73,8 @@ use Magento\Framework\View\Element\Template;
                 paymentComponent = new MultiSafepay(paymentComponentData);
 
                 paymentComponent.init('payment', {
-                    container: '#multisafepay-<?= $escaper->escapeJs($magewire->getMethodCode()) ?>-component',
-                    gateway: '<?= $escaper->escapeJs($magewire->getGatewayCode()) ?>',
+                    container: '#multisafepay-multisafepay_creditcard-component',
+                    gateway: 'CREDITCARD',
                     onError: state => {
                         console.log('onError', state);
                     }
@@ -96,7 +96,7 @@ use Magento\Framework\View\Element\Template;
 
                 return true;
             }
-        }, document.querySelector('#multisafepay-<?= $escaper->escapeJs($magewire->getMethodCode()) ?>-component')
+        }, document.querySelector('#multisafepay-multisafepay_creditcard-component')
         );
     })
 </script>

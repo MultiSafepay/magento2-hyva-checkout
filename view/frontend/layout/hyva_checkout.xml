@@ -10,13 +10,21 @@
                    as="multisafepay_applepay_after"
                    template="MultiSafepay_HyvaCheckout::component/payment/method/multisafepay_applepay.phtml">
             </block>
-
             <block name="checkout.payment.methods.after.multisafepay_creditcard"
                    as="multisafepay_creditcard_after"
-                   template="MultiSafepay_HyvaCheckout::component/payment/method/payment_component_after.phtml">
+                   template="MultiSafepay_HyvaCheckout::component/payment/method/multisafepay_creditcard_after.phtml">
                 <arguments>
                     <argument name="magewire" xsi:type="object">
-                        MultiSafepay\HyvaCheckout\Payment\Method\MultiSafepayPaymentComponent
+                        MultiSafepay\HyvaCheckout\Payment\Method\MultiSafepayCreditCardComponent
+                    </argument>
+                </arguments>
+            </block>
+            <block name="checkout.payment.methods.after.multisafepay_afterpay"
+                   as="multisafepay_afterpay_after"
+                   template="MultiSafepay_HyvaCheckout::component/payment/method/multisafepay_afterpay_after.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        MultiSafepay\HyvaCheckout\Payment\Method\MultiSafepayRivertyComponent
                     </argument>
                 </arguments>
             </block>

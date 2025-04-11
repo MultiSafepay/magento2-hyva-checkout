@@ -23,6 +23,7 @@ use Magento\Quote\Api\CartRepositoryInterface;
 use Magento\Quote\Model\Quote;
 use Magewirephp\Magewire\Component;
 use MultiSafepay\ConnectCore\Config\Config;
+use MultiSafepay\ConnectCore\Model\Ui\Gateway\AfterpayConfigProvider;
 use MultiSafepay\ConnectCore\Util\ApiTokenUtil;
 use MultiSafepay\ConnectCore\Util\JsonHandler;
 use MultiSafepay\ConnectCore\Util\RecurringTokensUtil;
@@ -30,7 +31,7 @@ use MultiSafepay\Exception\InvalidDataInitializationException;
 use Rakit\Validation\Validator;
 use Magento\Payment\Gateway\Config\Config as PaymentConfig;
 
-class MultiSafepayPaymentComponent extends Component\Form
+class MultiSafepayRivertyComponent extends Component\Form
 {
     /**
      * @var ?Quote
@@ -195,7 +196,7 @@ class MultiSafepayPaymentComponent extends Component\Form
      */
     public function getMethodCode(): string
     {
-        return $this->getQuote()->getPayment()->getMethod() ?? '';
+        return AfterpayConfigProvider::CODE;
     }
 
     /**
