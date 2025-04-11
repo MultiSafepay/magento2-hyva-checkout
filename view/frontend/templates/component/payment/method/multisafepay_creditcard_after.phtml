@@ -22,13 +22,9 @@ use Magento\Framework\Escaper;
 use Magento\Framework\View\Element\Template;
 
 ?>
-<?php if ($magewire->isPaymentComponentEnabled()) {?>
 <script>
     window.addEventListener('checkout:payment:method-activate', event => {
-        console.log('checkout:payment:method-activate', event.detail.method, '<?= $escaper->escapeJs($magewire->getMethodCode())?>');
-
-        if (event.detail.method !== 'multisafepay_creditcard') {
-            console.log('early return');
+        if (event.detail.method !== 'multisafepay_creditcard' || !document.getElementById('multisafepay-multisafepay_creditcard-component')) {
             return;
         }
 
@@ -101,4 +97,3 @@ use Magento\Framework\View\Element\Template;
     })
 </script>
 <?php isset($hyvaCsp) && $hyvaCsp->registerInlineScript() ?>
-<?php } ?>

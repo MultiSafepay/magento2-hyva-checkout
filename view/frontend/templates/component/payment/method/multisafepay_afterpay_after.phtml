@@ -22,13 +22,9 @@ use Magento\Framework\Escaper;
 use Magento\Framework\View\Element\Template;
 
 ?>
-<?php if ($magewire->isPaymentComponentEnabled()) {?>
 <script>
     window.addEventListener('checkout:payment:method-activate', event => {
-        console.log('checkout:payment:method-activate', event.detail.method, '<?= $escaper->escapeJs($magewire->getMethodCode())?>');
-
-        if (event.detail.method !== 'multisafepay_afterpay') {
-            console.log('early return');
+        if (event.detail.method !== 'multisafepay_afterpay' || !document.getElementById('multisafepay-multisafepay_afterpay-component')) {
             return;
         }
 
@@ -82,12 +78,12 @@ use Magento\Framework\View\Element\Template;
             },
 
             async validate() {
-                let paymentData = await paymentComponent.getPaymentData();
-                const component = '<?= $escaper->escapeJs($block->getNameInLayout()) ?>';
-
                 if (paymentComponent.hasErrors()) {
                     return false;
                 }
+
+                let paymentData = await paymentComponent.getPaymentData();
+                const component = '<?= $escaper->escapeJs($block->getNameInLayout()) ?>';
 
                 await Magewire.find(component).setPaymentComponentData({
                     payload: paymentData.payload,
@@ -101,4 +97,3 @@ use Magento\Framework\View\Element\Template;
     })
 </script>
 <?php isset($hyvaCsp) && $hyvaCsp->registerInlineScript() ?>
-<?php } ?>
