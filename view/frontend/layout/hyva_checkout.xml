@@ -12,19 +12,118 @@
             </block>
             <block name="checkout.payment.methods.after.multisafepay_creditcard"
                    as="multisafepay_creditcard_after"
-                   template="MultiSafepay_HyvaCheckout::component/payment/method/multisafepay_creditcard_after.phtml">
+                   template="MultiSafepay_HyvaCheckout::component/payment/method/payment_component.phtml">
                 <arguments>
                     <argument name="magewire" xsi:type="object">
-                        MultiSafepay\HyvaCheckout\Payment\Method\MultiSafepayCreditCardComponent
+                        MultiSafepay\HyvaCheckout\Payment\Method\CreditCardComponent
                     </argument>
                 </arguments>
             </block>
             <block name="checkout.payment.methods.after.multisafepay_afterpay"
                    as="multisafepay_afterpay_after"
-                   template="MultiSafepay_HyvaCheckout::component/payment/method/multisafepay_afterpay_after.phtml">
+                   template="MultiSafepay_HyvaCheckout::component/payment/method/payment_component.phtml">
                 <arguments>
                     <argument name="magewire" xsi:type="object">
-                        MultiSafepay\HyvaCheckout\Payment\Method\MultiSafepayRivertyComponent
+                        MultiSafepay\HyvaCheckout\Payment\Method\RivertyComponent
+                    </argument>
+                </arguments>
+            </block>
+            <block name="checkout.payment.methods.after.multisafepay_amex"
+                   as="multisafepay_amex_after"
+                   template="MultiSafepay_HyvaCheckout::component/payment/method/payment_component.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        MultiSafepay\HyvaCheckout\Payment\Method\AmexComponent
+                    </argument>
+                </arguments>
+            </block>
+            <block name="checkout.payment.methods.after.multisafepay_maestro"
+                   as="multisafepay_maestro_after"
+                   template="MultiSafepay_HyvaCheckout::component/payment/method/payment_component.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        MultiSafepay\HyvaCheckout\Payment\Method\MaestroComponent
+                    </argument>
+                </arguments>
+            </block>
+            <block name="checkout.payment.methods.after.multisafepay_mastercard"
+                   as="multisafepay_mastercard_after"
+                   template="MultiSafepay_HyvaCheckout::component/payment/method/payment_component.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        MultiSafepay\HyvaCheckout\Payment\Method\MastercardComponent
+                    </argument>
+                </arguments>
+            </block>
+            <block name="checkout.payment.methods.after.multisafepay_visa"
+                   as="multisafepay_visa_after"
+                   template="MultiSafepay_HyvaCheckout::component/payment/method/payment_component.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        MultiSafepay\HyvaCheckout\Payment\Method\VisaComponent
+                    </argument>
+                </arguments>
+            </block>
+            <block name="checkout.payment.methods.after.multisafepay_bnplinstm"
+                   as="multisafepay_bnplinstm_after"
+                   template="MultiSafepay_HyvaCheckout::component/payment/method/payment_component.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        MultiSafepay\HyvaCheckout\Payment\Method\BnplinstmComponent
+                    </argument>
+                </arguments>
+            </block>
+            <block name="checkout.payment.methods.after.multisafepay_zinia"
+                   as="multisafepay_zinia_after"
+                   template="MultiSafepay_HyvaCheckout::component/payment/method/payment_component.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        MultiSafepay\HyvaCheckout\Payment\Method\ZiniaComponent
+                    </argument>
+                </arguments>
+            </block>
+            <block name="checkout.payment.methods.after.multisafepay_bnplmf"
+                   as="multisafepay_bnplmf_after"
+                   template="MultiSafepay_HyvaCheckout::component/payment/method/payment_component.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        MultiSafepay\HyvaCheckout\Payment\Method\BnplmfComponent
+                    </argument>
+                </arguments>
+            </block>
+            <block name="checkout.payment.methods.after.multisafepay_in3b2b"
+                   as="multisafepay_in3b2b_after"
+                   template="MultiSafepay_HyvaCheckout::component/payment/method/payment_component.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        MultiSafepay\HyvaCheckout\Payment\Method\In3B2bComponent
+                    </argument>
+                </arguments>
+            </block>
+            <block name="checkout.payment.methods.after.multisafepay_einvoicing"
+                   as="multisafepay_einvoicing_after"
+                   template="MultiSafepay_HyvaCheckout::component/payment/method/payment_component.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        MultiSafepay\HyvaCheckout\Payment\Method\EinvoicingComponent
+                    </argument>
+                </arguments>
+            </block>
+            <block name="checkout.payment.methods.after.multisafepay_in3"
+                   as="multisafepay_in3_after"
+                   template="MultiSafepay_HyvaCheckout::component/payment/method/payment_component.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        MultiSafepay\HyvaCheckout\Payment\Method\In3Component
+                    </argument>
+                </arguments>
+            </block>
+            <block name="checkout.payment.methods.after.multisafepay_billink"
+                   as="multisafepay_billink_after"
+                   template="MultiSafepay_HyvaCheckout::component/payment/method/payment_component.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        MultiSafepay\HyvaCheckout\Payment\Method\BillinkComponent
                     </argument>
                 </arguments>
             </block>

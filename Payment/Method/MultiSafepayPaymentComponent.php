@@ -15,67 +15,62 @@ declare(strict_types=1);
 
 namespace MultiSafepay\HyvaCheckout\Payment\Method;
 
+use Exception;
 use Magento\Checkout\Model\Session as SessionCheckout;
+use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\Locale\ResolverInterface;
 use Magento\Quote\Api\CartRepositoryInterface;
-use Magento\Quote\Model\Quote;
+use Magento\Store\Model\ScopeInterface;
 use Magewirephp\Magewire\Component;
 use MultiSafepay\ConnectCore\Config\Config;
 use MultiSafepay\ConnectCore\Util\ApiTokenUtil;
 use MultiSafepay\ConnectCore\Util\JsonHandler;
 use MultiSafepay\ConnectCore\Util\RecurringTokensUtil;
-use MultiSafepay\Exception\InvalidDataInitializationException;
 use Rakit\Validation\Validator;
-use Magento\Payment\Gateway\Config\Config as PaymentConfig;
 
 class MultiSafepayPaymentComponent extends Component\Form
 {
     /**
-     * @var ?Quote
-     */
-    private ?Quote $quote = null;
-
-    /**
      * @var ApiTokenUtil
      */
-    private ApiTokenUtil $apiTokenUtil;
+    protected ApiTokenUtil $apiTokenUtil;
 
     /**
      * @var SessionCheckout
      */
-    private SessionCheckout $sessionCheckout;
+    protected SessionCheckout $sessionCheckout;
 
     /**
      * @var Config
      */
-    private Config $config;
+    protected Config $config;
 
     /**
      * @var CartRepositoryInterface
      */
-    private CartRepositoryInterface $quoteRepository;
+    protected CartRepositoryInterface $quoteRepository;
 
     /**
      * @var ResolverInterface
      */
-    private ResolverInterface $localeResolver;
+    protected ResolverInterface $localeResolver;
 
     /**
      * @var RecurringTokensUtil
      */
-    private RecurringTokensUtil $recurringTokensUtil;
+    protected RecurringTokensUtil $recurringTokensUtil;
 
     /**
      * @var JsonHandler
      */
-    private JsonHandler $jsonHandler;
+    protected JsonHandler $jsonHandler;
 
     /**
-     * @var PaymentConfig
+     * @var ScopeConfigInterface
      */
-    private PaymentConfig $paymentConfig;
+    protected ScopeConfigInterface $scopeConfig;
 
     /**
      * @param Validator $validator
@@ -86,7 +81,7 @@ class MultiSafepayPaymentComponent extends Component\Form
      * @param ResolverInterface $localeResolver
      * @param RecurringTokensUtil $recurringTokensUtil
      * @param JsonHandler $jsonHandler
-     * @param PaymentConfig $paymentConfig
+     * @param ScopeConfigInterface $scopeConfig
      */
     public function __construct(
         Validator $validator,
@@ -97,7 +92,7 @@ class MultiSafepayPaymentComponent extends Component\Form
         ResolverInterface  $localeResolver,
         RecurringTokensUtil $recurringTokensUtil,
         JsonHandler $jsonHandler,
-        PaymentConfig $paymentConfig
+        ScopeConfigInterface $scopeConfig
     ) {
         parent::__construct($validator);
         $this->apiTokenUtil = $apiTokenUtil;
@@ -107,21 +102,20 @@ class MultiSafepayPaymentComponent extends Component\Form
         $this->localeResolver = $localeResolver;
         $this->recurringTokensUtil = $recurringTokensUtil;
         $this->jsonHandler = $jsonHandler;
-        $this->paymentConfig = $paymentConfig;
+        $this->scopeConfig = $scopeConfig;
     }
 
     /**
      * Get the API token
      *
      * @return string
-     * @throws LocalizedException
-     * @throws NoSuchEntityException
+     * @throws Exception
      */
     public function getApiToken(): string
     {
         try {
-            return $this->apiTokenUtil->getApiTokenFromCache($this->getQuote())['apiToken'] ?? '';
-        } catch (InvalidDataInitializationException $exception) {
+            return $this->apiTokenUtil->getApiTokenFromCache($this->sessionCheckout->getQuote())['apiToken'] ?? '';
+        } catch (Exception $exception) {
             $this->dispatchErrorMessage($exception->getMessage());
         }
 
@@ -137,7 +131,7 @@ class MultiSafepayPaymentComponent extends Component\Form
      */
     public function getEnvironment(): string
     {
-        return $this->config->isLiveMode($this->getQuote()->getStoreId()) ? 'live' : 'test';
+        return $this->config->isLiveMode($this->sessionCheckout->getQuote()->getStoreId()) ? 'live' : 'test';
     }
 
     /**
@@ -149,7 +143,7 @@ class MultiSafepayPaymentComponent extends Component\Form
      */
     public function getAmount(): int
     {
-        return (int)($this->getQuote()->getGrandTotal() * 100);
+        return (int)($this->sessionCheckout->getQuote()->getGrandTotal() * 100);
     }
 
     /**
@@ -161,7 +155,7 @@ class MultiSafepayPaymentComponent extends Component\Form
      */
     public function getCurrency(): string
     {
-        return $this->getQuote()->getCurrency()->getQuoteCurrencyCode() ?? 'EUR';
+        return $this->sessionCheckout->getQuote()->getCurrency()->getQuoteCurrencyCode() ?? 'EUR';
     }
 
     /**
@@ -183,53 +177,41 @@ class MultiSafepayPaymentComponent extends Component\Form
      */
     public function getCountry(): string
     {
-        return (string)$this->getQuote()->getBillingAddress()->getCountryId() ?? '';
+        return (string)$this->sessionCheckout->getQuote()->getBillingAddress()->getCountryId() ?? '';
     }
 
     /**
      * Get the method code
      *
      * @return string
-     * @throws LocalizedException
-     * @throws NoSuchEntityException
      */
     public function getMethodCode(): string
     {
-        return $this->getQuote()->getPayment()->getMethod() ?? '';
-    }
-
-    /**
-     * Get the quote
-     *
-     * @return Quote
-     * @throws LocalizedException
-     * @throws NoSuchEntityException
-     */
-    public function getQuote(): Quote
-    {
-        if (!$this->quote) {
-            $this->quote = $this->sessionCheckout->getQuote();
+        try {
+            return $this->sessionCheckout->getQuote()->getPayment()->getMethod() ?? '';
+        } catch (LocalizedException $exception) {
+            $this->dispatchErrorMessage($exception->getMessage());
+            return '';
         }
-
-        return $this->quote ;
     }
 
     /**
      * Get the gateway code
      *
      * @return string
-     * @throws LocalizedException
-     * @throws NoSuchEntityException
      */
     public function getGatewayCode(): string
     {
-        $quote = $this->getQuote();
-
-        if ($payment = $quote->getPayment()) {
-            return $payment->getMethodInstance()->getConfigData('gateway_code');
+        try {
+            return $this->scopeConfig->getValue(
+                'payment/' . $this->getMethodCode() . '/gateway_code',
+                ScopeInterface::SCOPE_STORE,
+                $this->sessionCheckout->getQuote()->getStoreId() ?? null
+            ) ?? '';
+        } catch (LocalizedException $exception) {
+            $this->dispatchErrorMessage($exception->getMessage());
+            return '';
         }
-
-        return '';
     }
 
     /**
@@ -241,28 +223,29 @@ class MultiSafepayPaymentComponent extends Component\Form
      */
     public function getTokens(): ?string
     {
-        $quote = $this->getQuote();
+        $quote = $this->sessionCheckout->getQuote();
 
         // Don't need to add tokens if the customer is a guest
         if ($quote->getCustomerIsGuest()) {
             return null;
         }
 
-        if ($payment = $quote->getPayment()) {
-            $methodInstance = $payment->getMethodInstance();
-            $storeId = (int)$quote->getStoreId();
+        $storeId = (int)$quote->getStoreId();
 
-            $isTokenizationEnabled = (bool)$methodInstance->getConfigData('tokenization', $storeId);
+        $isTokenizationEnabled = (bool)$this->scopeConfig->getValue(
+            'payment/' . $this->getMethodCode() . '/tokenization',
+            ScopeInterface::SCOPE_STORE,
+            $storeId
+        );
 
-            if ($isTokenizationEnabled) {
-                $tokenArray = $this->recurringTokensUtil->getListByGatewayCode(
-                    (string)$quote->getCustomer()->getId(),
-                    ['gateway_code' => $methodInstance->getConfigData('gateway_code')],
-                    $storeId
-                );
+        if ($isTokenizationEnabled) {
+            $tokenArray = $this->recurringTokensUtil->getListByGatewayCode(
+                (string)$quote->getCustomer()->getId(),
+                ['gateway_code' => $this->getGatewayCode()],
+                $storeId
+            );
 
-                return $this->jsonHandler->convertToJSON($tokenArray);
-            }
+            return $this->jsonHandler->convertToJSON($tokenArray);
         }
 
         return null;
@@ -272,19 +255,21 @@ class MultiSafepayPaymentComponent extends Component\Form
      * Check if payment component is enabled
      *
      * @return bool
-     * @throws LocalizedException
-     * @throws NoSuchEntityException
      */
     public function isPaymentComponentEnabled(): bool
     {
-        $quote = $this->getQuote();
-
-        if ($payment = $quote->getPayment()) {
-            $paymentType = $payment->getMethodInstance()->getConfigData('payment_type');
+        try {
+            $paymentType = $this->scopeConfig->getValue(
+                'payment/' . $this->getMethodCode() . '/payment_type',
+                ScopeInterface::SCOPE_STORE,
+                $this->sessionCheckout->getQuote()->getStoreId() ?? null
+            );
 
             if ($paymentType === 'payment_component') {
                 return true;
             }
+        } catch (LocalizedException $exception) {
+            $this->dispatchErrorMessage($exception->getMessage());
         }
 
         return false;
@@ -308,7 +293,7 @@ class MultiSafepayPaymentComponent extends Component\Form
         $additionalInformation['transaction_type'] = 'direct';
 
         try {
-            $quote = $this->getQuote();
+            $quote = $this->sessionCheckout->getQuote();
 
             $quote->getPayment()->setAdditionalInformation($additionalInformation);
             $this->quoteRepository->save($quote);
