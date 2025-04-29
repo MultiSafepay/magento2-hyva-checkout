@@ -22,78 +22,78 @@ use Magento\Framework\Escaper;
 use Magento\Framework\View\Element\Template;
 
 ?>
+<script>
 <?php if ($magewire->isPaymentComponentEnabled()) {?>
-    <script>
-        window.addEventListener('checkout:payment:method-activate', event => {
-            let paymentComponent;
+    window.addEventListener('checkout:payment:method-activate', event => {
+        let paymentComponent;
 
-            if (event.detail.method !== '<?= $escaper->escapeJs($magewire->getMethodCode()) ?>' ||
-                !document.getElementById('multisafepay-<?= $escaper->escapeJs($magewire->getMethodCode()) ?>-component')
-            ) {
-                return;
-            }
+        if (event.detail.method !== '<?= $escaper->escapeJs($magewire->getMethodCode()) ?>' ||
+            !document.getElementById('multisafepay-<?= $escaper->escapeJs($magewire->getMethodCode()) ?>-component')
+        ) {
+            return;
+        }
 
-            let orderData = {
-                currency: '<?= $escaper->escapeJs($magewire->getCurrency()) ?>',
-                amount: '<?= $escaper->escapeJs($magewire->getAmount()) ?>',
-                template: {
-                    settings: {
-                        embed_mode: true,
-                    },
-                    merge: true
+        let orderData = {
+            currency: '<?= $escaper->escapeJs($magewire->getCurrency()) ?>',
+            amount: '<?= $escaper->escapeJs($magewire->getAmount()) ?>',
+            template: {
+                settings: {
+                    embed_mode: true,
                 },
-                customer: {
-                    locale: '<?= $escaper->escapeJs($magewire->getLocale()) ?>',
-                    country: '<?= $escaper->escapeJs($magewire->getCountry()) ?>'
-                }
+                merge: true
+            },
+            customer: {
+                locale: '<?= $escaper->escapeJs($magewire->getLocale()) ?>',
+                country: '<?= $escaper->escapeJs($magewire->getCountry()) ?>'
             }
+        }
 
-            let recurringData;
+        let recurringData;
 
-            <?php if ($magewire->getTokens()) { ?>
-            recurringData = {
-                model: 'cardOnFile',
-                tokens: <?= $magewire->getTokens() ?>
+        <?php if ($magewire->getTokens()) { ?>
+        recurringData = {
+            model: 'cardOnFile',
+            tokens: <?= $magewire->getTokens() ?>
+        }
+        <?php } ?>
+
+        let paymentComponentData = {
+            env: '<?= $escaper->escapeJs($magewire->getEnvironment()) ?>',
+            apiToken: '<?= $escaper->escapeJs($magewire->getApiToken()) ?>',
+            order: orderData
+        };
+
+        if (recurringData) {
+            paymentComponentData.recurring = recurringData;
+        }
+
+        paymentComponent = new MultiSafepay(paymentComponentData);
+
+        paymentComponent.init('payment', {
+            container: '#multisafepay-<?= $escaper->escapeJs($magewire->getMethodCode()) ?>-component',
+            gateway: '<?= $escaper->escapeJs($magewire->getGatewayCode()) ?>',
+            onError: state => {
+                console.log('onError', state);
             }
-            <?php } ?>
-
-            let paymentComponentData = {
-                env: '<?= $escaper->escapeJs($magewire->getEnvironment()) ?>',
-                apiToken: '<?= $escaper->escapeJs($magewire->getApiToken()) ?>',
-                order: orderData
-            };
-
-            if (recurringData) {
-                paymentComponentData.recurring = recurringData;
-            }
-
-            paymentComponent = new MultiSafepay(paymentComponentData);
-
-            paymentComponent.init('payment', {
-                container: '#multisafepay-<?= $escaper->escapeJs($magewire->getMethodCode()) ?>-component',
-                gateway: '<?= $escaper->escapeJs($magewire->getGatewayCode()) ?>',
-                onError: state => {
-                    console.log('onError', state);
-                }
-            })
-
-            hyvaCheckout.validation.register(event.detail.method, async () => {
-                    let paymentData = await paymentComponent.getPaymentData();
-                    const component = '<?= $escaper->escapeJs($block->getNameInLayout()) ?>';
-
-                    if (paymentComponent.hasErrors()) {
-                        return false;
-                    }
-
-                    Magewire.find(component).setPaymentComponentData({
-                        payload: paymentData.payload,
-                        tokenize: paymentData.tokenize ?? false
-                    })
-
-                    return new Promise(resolve => setTimeout(() => resolve(true), 1000));
-                }, document.querySelector('#multisafepay-<?= $escaper->escapeJs($magewire->getMethodCode()) ?>-component'), 'payment'
-            );
         })
-    </script>
-<?php } else {?> <script></script> <?php } ?>
+
+        hyvaCheckout.validation.register(event.detail.method, async () => {
+                let paymentData = await paymentComponent.getPaymentData();
+                const component = '<?= $escaper->escapeJs($block->getNameInLayout()) ?>';
+
+                if (paymentComponent.hasErrors()) {
+                    return false;
+                }
+
+                Magewire.find(component).setPaymentComponentData({
+                    payload: paymentData.payload,
+                    tokenize: paymentData.tokenize ?? false
+                })
+
+                return new Promise(resolve => setTimeout(() => resolve(true), 1000));
+            }, document.querySelector('#multisafepay-<?= $escaper->escapeJs($magewire->getMethodCode()) ?>-component'), 'payment'
+        );
+    })
+<?php } ?>
+</script>
 <?php isset($hyvaCsp) && $hyvaCsp->registerInlineScript() ?>
