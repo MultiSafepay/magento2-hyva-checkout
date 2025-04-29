@@ -95,5 +95,5 @@ use Magento\Framework\View\Element\Template;
             );
         })
     </script>
-<?php }?>
+<?php } else {?> <script></script> <?php } ?>
 <?php isset($hyvaCsp) && $hyvaCsp->registerInlineScript() ?>
