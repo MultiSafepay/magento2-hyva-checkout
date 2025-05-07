@@ -4,12 +4,6 @@
 >
     <body>
         <referenceBlock name="checkout.payment.methods">
-            <arguments>
-                <argument name="magewire" xsi:type="object">
-                    \MultiSafepay\HyvaCheckout\Payment\MethodListExtended
-                </argument>
-            </arguments>
-
             <!-- Payment Renderer: MultiSafepay iDEAL -->
             <block name="checkout.payment.method.multisafepay_ideal"
                    as="multisafepay_ideal">
@@ -29,11 +23,8 @@
             <!-- Payment Renderer: MultiSafepay Card Payment -->
             <block name="checkout.payment.method.multisafepay_creditcard"
                    as="multisafepay_creditcard"
-                   template="MultiSafepay_HyvaCheckout::component/payment/method/payment_component.phtml">
+                   template="MultiSafepay_HyvaCheckout::component/payment/method/multisafepay_creditcard.phtml">
                 <arguments>
-                    <argument name="magewire" xsi:type="object">
-                        \MultiSafepay\HyvaCheckout\Payment\Method\MultiSafepayPaymentComponent
-                    </argument>
                     <argument name="metadata" xsi:type="array">
                         <item name="icon" xsi:type="array">
                             <item name="svg" xsi:type="string">multisafepay/multisafepay_creditcard_default</item>
@@ -49,11 +40,8 @@
             <!-- Payment Renderer: MultiSafepay Riverty -->
             <block name="checkout.payment.method.multisafepay_afterpay"
                    as="multisafepay_afterpay"
-                    template="MultiSafepay_HyvaCheckout::component/payment/method/payment_component.phtml">
+                    template="MultiSafepay_HyvaCheckout::component/payment/method/multisafepay_afterpay.phtml">
                 <arguments>
-                    <argument name="magewire" xsi:type="object">
-                        \MultiSafepay\HyvaCheckout\Payment\Method\MultiSafepayPaymentComponent
-                    </argument>
                     <argument name="metadata" xsi:type="array">
                         <item name="icon" xsi:type="array">
                             <item name="svg" xsi:type="string">multisafepay/multisafepay_riverty</item>
@@ -119,9 +107,6 @@
                    as="multisafepay_amex"
                    template="MultiSafepay_HyvaCheckout::component/payment/method/payment_component.phtml">
                 <arguments>
-                    <argument name="magewire" xsi:type="object">
-                        \MultiSafepay\HyvaCheckout\Payment\Method\MultiSafepayPaymentComponent
-                    </argument>
                     <argument name="metadata" xsi:type="array">
                         <item name="icon" xsi:type="array">
                             <item name="svg" xsi:type="string">multisafepay/multisafepay_amex</item>
@@ -185,11 +170,8 @@
             <!-- Payment Renderer: MultiSafepay BNPL Installments -->
             <block name="checkout.payment.method.multisafepay_bnplinstm"
                    as="multisafepay_bnplinstm"
-                   template="MultiSafepay_HyvaCheckout::component/payment/method/payment_component.phtml">
+                   template="MultiSafepay_HyvaCheckout::component/payment/method/multisafepay_bnplinstm.phtml">
                 <arguments>
-                    <argument name="magewire" xsi:type="object">
-                        \MultiSafepay\HyvaCheckout\Payment\Method\MultiSafepayPaymentComponent
-                    </argument>
                     <argument name="metadata" xsi:type="array">
                         <item name="icon" xsi:type="array">
                             <item name="svg" xsi:type="string">multisafepay/multisafepay_bnplinstm</item>
@@ -205,11 +187,8 @@
             <!-- Payment Renderer: MultiSafepay Pay After Delivery -->
             <block name="checkout.payment.method.multisafepay_bnplmf"
                    as="multisafepay_bnplmf"
-                   template="MultiSafepay_HyvaCheckout::component/payment/method/payment_component.phtml">
+                   template="MultiSafepay_HyvaCheckout::component/payment/method/multisafepay_bnplmf.phtml">
                 <arguments>
-                    <argument name="magewire" xsi:type="object">
-                        \MultiSafepay\HyvaCheckout\Payment\Method\MultiSafepayPaymentComponent
-                    </argument>
                     <argument name="metadata" xsi:type="array">
                         <item name="icon" xsi:type="array">
                             <item name="svg" xsi:type="string">multisafepay/multisafepay_bnplmf</item>
@@ -321,11 +300,8 @@
             <!-- Payment Renderer: MultiSafepay Einvoicing -->
             <block name="checkout.payment.method.multisafepay_einvoicing"
                    as="multisafepay_einvoicing"
-                   template="MultiSafepay_HyvaCheckout::component/payment/method/payment_component.phtml">
+                   template="MultiSafepay_HyvaCheckout::component/payment/method/multisafepay_einvoicing.phtml">
                 <arguments>
-                <argument name="magewire" xsi:type="object">
-                    \MultiSafepay\HyvaCheckout\Payment\Method\MultiSafepayPaymentComponent
-                </argument>
                     <argument name="metadata" xsi:type="array">
                         <item name="icon" xsi:type="array">
                             <item name="svg" xsi:type="string">multisafepay/multisafepay_einvoicing</item>
@@ -357,11 +333,8 @@
             <!-- Payment Renderer: MultiSafepay in3 -->
             <block name="checkout.payment.method.multisafepay_in3"
                    as="multisafepay_in3"
-                   template="MultiSafepay_HyvaCheckout::component/payment/method/payment_component.phtml">
+                   template="MultiSafepay_HyvaCheckout::component/payment/method/multisafepay_in3.phtml">
                 <arguments>
-                    <argument name="magewire" xsi:type="object">
-                        \MultiSafepay\HyvaCheckout\Payment\Method\MultiSafepayPaymentComponent
-                    </argument>
                     <argument name="metadata" xsi:type="array">
                         <item name="icon" xsi:type="array">
                             <item name="svg" xsi:type="string">multisafepay/multisafepay_in3</item>
@@ -377,11 +350,8 @@
             <!-- Payment Renderer: MultiSafepay in3 B2B -->
             <block name="checkout.payment.method.multisafepay_in3b2b"
                    as="multisafepay_in3b2b"
-                   template="MultiSafepay_HyvaCheckout::component/payment/method/payment_component.phtml">
+                   template="MultiSafepay_HyvaCheckout::component/payment/method/multisafepay_in3b2b.phtml">
                 <arguments>
-                    <argument name="magewire" xsi:type="object">
-                        \MultiSafepay\HyvaCheckout\Payment\Method\MultiSafepayPaymentComponent
-                    </argument>
                     <argument name="metadata" xsi:type="array">
                         <item name="icon" xsi:type="array">
                             <item name="svg" xsi:type="string">multisafepay/multisafepay_in3b2b</item>
@@ -397,11 +367,8 @@
             <!-- Payment Renderer: MultiSafepay Billink -->
             <block name="checkout.payment.method.multisafepay_billink"
                    as="multisafepay_billink"
-                   template="MultiSafepay_HyvaCheckout::component/payment/method/payment_component.phtml">
+                   template="MultiSafepay_HyvaCheckout::component/payment/method/multisafepay_billink.phtml">
                 <arguments>
-                    <argument name="magewire" xsi:type="object">
-                        \MultiSafepay\HyvaCheckout\Payment\Method\MultiSafepayPaymentComponent
-                    </argument>
                     <argument name="metadata" xsi:type="array">
                         <item name="icon" xsi:type="array">
                             <item name="svg" xsi:type="string">multisafepay/multisafepay_billink</item>
@@ -435,9 +402,6 @@
                    as="multisafepay_mastercard"
                    template="MultiSafepay_HyvaCheckout::component/payment/method/payment_component.phtml">
                 <arguments>
-                    <argument name="magewire" xsi:type="object">
-                        \MultiSafepay\HyvaCheckout\Payment\Method\MultiSafepayPaymentComponent
-                    </argument>
                     <argument name="metadata" xsi:type="array">
                         <item name="icon" xsi:type="array">
                             <item name="svg" xsi:type="string">multisafepay/multisafepay_mastercard</item>
@@ -455,9 +419,6 @@
                    as="multisafepay_maestro"
                    template="MultiSafepay_HyvaCheckout::component/payment/method/payment_component.phtml">
                 <arguments>
-                    <argument name="magewire" xsi:type="object">
-                        \MultiSafepay\HyvaCheckout\Payment\Method\MultiSafepayPaymentComponent
-                    </argument>
                     <argument name="metadata" xsi:type="array">
                         <item name="icon" xsi:type="array">
                             <item name="svg" xsi:type="string">multisafepay/multisafepay_maestro</item>
@@ -585,11 +546,8 @@
             <!-- Payment Renderer: MultiSafepay Visa-->
             <block name="checkout.payment.method.multisafepay_visa"
                    as="multisafepay_visa"
-                   template="MultiSafepay_HyvaCheckout::component/payment/method/payment_component.phtml">
+                   template="MultiSafepay_HyvaCheckout::component/payment/method/multisafepay_visa.phtml">
                 <arguments>
-                    <argument name="magewire" xsi:type="object">
-                        \MultiSafepay\HyvaCheckout\Payment\Method\MultiSafepayPaymentComponent
-                    </argument>
                     <argument name="metadata" xsi:type="array">
                         <item name="icon" xsi:type="array">
                             <item name="svg" xsi:type="string">multisafepay/multisafepay_visa</item>
@@ -621,11 +579,8 @@
             <!-- Payment Renderer: MultiSafepay Zinia-->
             <block name="checkout.payment.method.multisafepay_zinia"
                    as="multisafepay_zinia"
-                   template="MultiSafepay_HyvaCheckout::component/payment/method/payment_component.phtml">
+                   template="MultiSafepay_HyvaCheckout::component/payment/method/multisafepay_zinia.phtml">
                 <arguments>
-                    <argument name="magewire" xsi:type="object">
-                        \MultiSafepay\HyvaCheckout\Payment\Method\MultiSafepayPaymentComponent
-                    </argument>
                     <argument name="metadata" xsi:type="array">
                         <item name="icon" xsi:type="array">
                             <item name="svg" xsi:type="string">multisafepay/multisafepay_zinia</item>
@@ -1070,7 +1025,7 @@
 
         </referenceBlock>
 
-        <referenceContainer name="checkout.payment.methods.after">
+        <referenceContainer name="hyva.checkout.main">
             <block name="checkout.payment.methods.after.multisafepay_applepay"
                    as="multisafepay_applepay"
                    template="MultiSafepay_HyvaCheckout::component/payment/method/multisafepay_applepay.phtml">
