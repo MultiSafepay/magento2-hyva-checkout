@@ -6,6 +6,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.4.0] - 2025-05-07
+### Added
+- PLGMAG2V2-834: Add instructions feature
+- MAGWIRE-32: Add support for generic gateway images
+- HYVA-35: Add compatibility with strict SCP guidelines
+
+### Changed
+- HYVA-35: Changed the way we are setting the preselected method by hooking into the sales_quote_collect_totals_before event
+
 ## [2.3.2] - 2025-03-24
 ### Fixed
 - MAGWIRE-28: Fix MethodListExtended issue with version 1.1.29 thanks to @LeonidasJP
