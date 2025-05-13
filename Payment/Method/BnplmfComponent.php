@@ -11,9 +11,21 @@
  * See DISCLAIMER.md for disclaimer details.
  */
 
-namespace MultiSafepay\HyvaCheckout\Util;
+declare(strict_types=1);
 
-class VersionUtil
+namespace MultiSafepay\HyvaCheckout\Payment\Method;
+
+use MultiSafepay\ConnectCore\Model\Ui\Gateway\BnplmfConfigProvider;
+
+class BnplmfComponent extends MultiSafepayPaymentComponent
 {
-    public const VERSION = '2.4.0';
+    /**
+     * Get the method code
+     *
+     * @return string
+     */
+    public function getMethodCode(): string
+    {
+        return BnplmfConfigProvider::CODE;
+    }
 }
