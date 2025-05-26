@@ -54,22 +54,6 @@
                 </arguments>
             </block>
 
-            <!-- Payment Renderer: MultiSafepay Alipay -->
-            <block name="checkout.payment.method.multisafepay_alipay"
-                   as="multisafepay_alipay">
-                <arguments>
-                    <argument name="metadata" xsi:type="array">
-                        <item name="icon" xsi:type="array">
-                            <item name="svg" xsi:type="string">multisafepay/multisafepay_alipay</item>
-                            <item name="attributes" xsi:type="array">
-                                <item name="title" xsi:type="string">Alipay</item>
-                            </item>
-                        </item>
-                        <item name="subtitle" xsi:type="string">payment/multisafepay_alipay/instructions</item>
-                    </argument>
-                </arguments>
-            </block>
-
             <!-- Payment Renderer: MultiSafepay Alipay Plus -->
             <block name="checkout.payment.method.multisafepay_alipayplus"
                    as="multisafepay_alipayplus">
