@@ -401,7 +401,7 @@
             <!-- Payment Renderer: MultiSafepay Maestro -->
             <block name="checkout.payment.method.multisafepay_maestro"
                    as="multisafepay_maestro"
-                   template="MultiSafepay_HyvaCheckout::component/payment/method/payment_component.phtml">
+                   template="MultiSafepay_HyvaCheckout::component/payment/method/multisafepay_maestro.phtml">
                 <arguments>
                     <argument name="metadata" xsi:type="array">
                         <item name="icon" xsi:type="array">
