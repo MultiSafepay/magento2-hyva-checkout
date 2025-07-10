@@ -73,7 +73,15 @@ use Magento\Framework\View\Element\Template;
             container: '#multisafepay-<?= $escaper->escapeJs($magewire->getMethodCode()) ?>-component',
             gateway: '<?= $escaper->escapeJs($magewire->getGatewayCode()) ?>',
             onError: state => {
-                console.log('onError', state);
+                let paymentComponentDataJson = JSON.stringify(paymentComponentData, null, 2);
+                let error = 'Payment Component error: ' + JSON.stringify( state, null, 2);
+
+                <?php if ($magewire->isDebugModeEnabled()) { ?>
+                console.log(error);
+                <?php } ?>
+
+                const component = '<?= $escaper->escapeJs($block->getNameInLayout()) ?>';
+                Magewire.find(component).logPaymentComponentError(error, paymentComponentDataJson);
             }
         })
 
