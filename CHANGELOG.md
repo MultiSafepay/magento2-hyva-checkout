@@ -6,6 +6,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.5.0] - 2025-07-16
+### Added
+- HYVA-38: Add payment component logging
+
+### Fixed
+- HYVA-37: Fix Amex, Mastercard not refactored for CSP
+
+### Removed
+- DAVAMS-901: Deprecate Alipay
+
 ## [2.4.0] - 2025-05-07
 ### Added
 - PLGMAG2V2-834: Add instructions feature
