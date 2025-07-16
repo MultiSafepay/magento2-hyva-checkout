@@ -25,6 +25,7 @@ use Magento\Quote\Api\CartRepositoryInterface;
 use Magento\Store\Model\ScopeInterface;
 use Magewirephp\Magewire\Component;
 use MultiSafepay\ConnectCore\Config\Config;
+use MultiSafepay\ConnectCore\Logger\Logger;
 use MultiSafepay\ConnectCore\Util\ApiTokenUtil;
 use MultiSafepay\ConnectCore\Util\JsonHandler;
 use MultiSafepay\ConnectCore\Util\RecurringTokensUtil;
@@ -73,6 +74,11 @@ class MultiSafepayPaymentComponent extends Component\Form
     protected ScopeConfigInterface $scopeConfig;
 
     /**
+     * @var Logger
+     */
+    protected Logger $logger;
+
+    /**
      * @param Validator $validator
      * @param ApiTokenUtil $apiTokenUtil
      * @param SessionCheckout $sessionCheckout
@@ -82,6 +88,7 @@ class MultiSafepayPaymentComponent extends Component\Form
      * @param RecurringTokensUtil $recurringTokensUtil
      * @param JsonHandler $jsonHandler
      * @param ScopeConfigInterface $scopeConfig
+     * @param Logger $logger
      */
     public function __construct(
         Validator $validator,
@@ -92,7 +99,8 @@ class MultiSafepayPaymentComponent extends Component\Form
         ResolverInterface  $localeResolver,
         RecurringTokensUtil $recurringTokensUtil,
         JsonHandler $jsonHandler,
-        ScopeConfigInterface $scopeConfig
+        ScopeConfigInterface $scopeConfig,
+        Logger $logger
     ) {
         parent::__construct($validator);
         $this->apiTokenUtil = $apiTokenUtil;
@@ -103,6 +111,7 @@ class MultiSafepayPaymentComponent extends Component\Form
         $this->recurringTokensUtil = $recurringTokensUtil;
         $this->jsonHandler = $jsonHandler;
         $this->scopeConfig = $scopeConfig;
+        $this->logger = $logger;
     }
 
     /**
@@ -300,5 +309,42 @@ class MultiSafepayPaymentComponent extends Component\Form
         } catch (LocalizedException $exception) {
             $this->dispatchErrorMessage($exception->getMessage());
         }
+    }
+
+    /**
+     * Log an error message for the payment component
+     *
+     * @param string $errorMessage
+     * @param $paymentComponentData
+     * @return void
+     */
+    public function logPaymentComponentError(string $errorMessage, $paymentComponentData)
+    {
+        if (!$this->isDebugModeEnabled()) {
+            return;
+        }
+
+        $this->logger->logPaymentComponentError(
+            $this->getMethodCode(),
+            $this->getGatewayCode(),
+            $errorMessage,
+            $paymentComponentData
+        );
+    }
+
+    /**
+     * Check if the debug mode is enabled
+     *
+     * @return bool
+     */
+    public function isDebugModeEnabled(): bool
+    {
+        try {
+            $storeId = $this->sessionCheckout->getQuote()->getStoreId();
+        } catch (LocalizedException $exception) {
+            $this->dispatchErrorMessage($exception->getMessage());
+        }
+
+        return $this->config->isDebug($storeId ?? null);
     }
 }
