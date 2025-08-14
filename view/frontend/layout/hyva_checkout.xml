@@ -73,15 +73,6 @@
                     </argument>
                 </arguments>
             </block>
-            <block name="checkout.payment.methods.after.multisafepay_zinia"
-                   as="multisafepay_zinia_after"
-                   template="MultiSafepay_HyvaCheckout::component/payment/method/payment_component.phtml">
-                <arguments>
-                    <argument name="magewire" xsi:type="object">
-                        MultiSafepay\HyvaCheckout\Payment\Method\ZiniaComponent
-                    </argument>
-                </arguments>
-            </block>
             <block name="checkout.payment.methods.after.multisafepay_bnplmf"
                    as="multisafepay_bnplmf_after"
                    template="MultiSafepay_HyvaCheckout::component/payment/method/payment_component.phtml">
