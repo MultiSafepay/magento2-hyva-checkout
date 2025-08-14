@@ -560,23 +560,6 @@
                 </arguments>
             </block>
 
-            <!-- Payment Renderer: MultiSafepay Zinia-->
-            <block name="checkout.payment.method.multisafepay_zinia"
-                   as="multisafepay_zinia"
-                   template="MultiSafepay_HyvaCheckout::component/payment/method/multisafepay_zinia.phtml">
-                <arguments>
-                    <argument name="metadata" xsi:type="array">
-                        <item name="icon" xsi:type="array">
-                            <item name="svg" xsi:type="string">multisafepay/multisafepay_zinia</item>
-                            <item name="attributes" xsi:type="array">
-                                <item name="title" xsi:type="string">Zinia</item>
-                            </item>
-                        </item>
-                        <item name="subtitle" xsi:type="string">payment/multisafepay_zinia/instructions</item>
-                    </argument>
-                </arguments>
-            </block>
-
             <!-- Payment Renderer: MultiSafepay MB WAY-->
             <block name="checkout.payment.method.multisafepay_mbway"
                    as="multisafepay_mbway">
