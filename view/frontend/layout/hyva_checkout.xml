@@ -12,7 +12,7 @@
             </block>
             <block name="checkout.payment.methods.after.multisafepay_creditcard"
                    as="multisafepay_creditcard_after"
-                   template="MultiSafepay_HyvaCheckout::component/payment/method/payment_component.phtml">
+                   template="MultiSafepay_HyvaCheckout::component/payment/method/payment_component_vault.phtml">
                 <arguments>
                     <argument name="magewire" xsi:type="object">
                         MultiSafepay\HyvaCheckout\Payment\Method\CreditCardComponent

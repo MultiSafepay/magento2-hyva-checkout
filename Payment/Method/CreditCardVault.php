@@ -21,6 +21,7 @@ use Magento\Framework\Api\SearchCriteriaBuilder;
 use Magento\Framework\Api\SearchCriteriaBuilderFactory;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Exception\NoSuchEntityException;
+use Magento\Quote\Api\CartRepositoryInterface;
 use Magento\Vault\Api\Data\PaymentTokenInterface;
 use Magento\Vault\Api\PaymentTokenRepositoryInterface;
 use Magewirephp\Magewire\Component;
@@ -34,6 +35,7 @@ class CreditCardVault extends Component
     private CustomerSession $customerSession;
     private SearchCriteriaBuilderFactory $searchCriteriaBuilderFactory;
     private JsonHandler $jsonHandler;
+    private CartRepositoryInterface $quoteRepository;
 
     public ?string $publicHash = '';
 
@@ -43,22 +45,27 @@ class CreditCardVault extends Component
      * @param SearchCriteriaBuilderFactory $searchCriteriaBuilderFactory
      * @param CustomerSession $customerSession
      * @param JsonHandler $jsonHandler
+     * @param CartRepositoryInterface $quoteRepository
      */
     public function __construct(
         CheckoutSession $checkoutSession,
         PaymentTokenRepositoryInterface $paymentTokenRepository,
         SearchCriteriaBuilderFactory $searchCriteriaBuilderFactory,
         CustomerSession $customerSession,
-        JsonHandler $jsonHandler
+        JsonHandler $jsonHandler,
+        CartRepositoryInterface $quoteRepository
     ) {
         $this->checkoutSession = $checkoutSession;
         $this->paymentTokenRepository = $paymentTokenRepository;
         $this->customerSession = $customerSession;
         $this->searchCriteriaBuilderFactory = $searchCriteriaBuilderFactory;
         $this->jsonHandler = $jsonHandler;
+        $this->quoteRepository = $quoteRepository;
     }
 
     /**
+     * Mounts the component and retrieves the public hash from the quote's payment information.
+     *
      * @return void
      * @throws LocalizedException
      * @throws NoSuchEntityException
@@ -70,6 +77,8 @@ class CreditCardVault extends Component
     }
 
     /**
+     * Retrieves the stored payment tokens for the logged-in customer.
+     *
      * @return array
      */
     public function getStoredTokens(): array
@@ -97,5 +106,24 @@ class CreditCardVault extends Component
         }
 
         return $tokenList;
+    }
+
+    /**
+     * Updates the quote with the public hash and customer ID
+     *
+     * @param $value
+     * @return mixed
+     * @throws LocalizedException
+     * @throws NoSuchEntityException
+     */
+    public function updated($value)
+    {
+        $quote = $this->checkoutSession->getQuote();
+        $quote->getPayment()->setAdditionalInformation(PaymentTokenInterface::PUBLIC_HASH, $this->publicHash);
+        $quote->getPayment()->setAdditionalInformation(PaymentTokenInterface::CUSTOMER_ID, $quote->getCustomerId());
+
+        $this->quoteRepository->save($quote);
+
+        return $value;
     }
 }

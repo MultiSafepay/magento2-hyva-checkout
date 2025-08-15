@@ -17,7 +17,7 @@ namespace MultiSafepay\HyvaCheckout\Payment\Method;
 
 use MultiSafepay\ConnectCore\Model\Ui\Gateway\CreditCardConfigProvider;
 
-class CreditCardComponent extends MultiSafepayPaymentComponent
+class CreditCardComponent extends MultiSafepayPaymentComponentVault
 {
     /**
      * Get the method code
