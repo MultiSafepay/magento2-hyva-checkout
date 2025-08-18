@@ -18,11 +18,10 @@ namespace MultiSafepay\HyvaCheckout\Payment\Method;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Store\Model\ScopeInterface;
+use Magento\Vault\Model\Ui\VaultConfigProvider;
 
 class MultiSafepayPaymentComponentVault extends MultiSafepayPaymentComponent
 {
-    public bool $vaultTokenEnabler = false;
-
     /**
      * Check if vault is enabled for the payment method.
      *
@@ -39,5 +38,20 @@ class MultiSafepayPaymentComponentVault extends MultiSafepayPaymentComponent
         } catch (NoSuchEntityException | LocalizedException $exception) {
             return false;
         }
+    }
+
+    /**
+     * Updates the quote with the public hash and customer ID
+     *
+     * @return void
+     * @throws LocalizedException
+     * @throws NoSuchEntityException
+     */
+    public function updateVaultTokenEnabler(bool $value)
+    {
+        $quote = $this->sessionCheckout->getQuote();
+        $quote->getPayment()->setAdditionalInformation(VaultConfigProvider::IS_ACTIVE_CODE, $value);
+
+        $this->quoteRepository->save($quote);
     }
 }
