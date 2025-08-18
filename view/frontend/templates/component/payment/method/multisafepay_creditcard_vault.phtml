@@ -1,0 +1,38 @@
+<?php
+/**
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is provided with Magento in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ *
+ * Copyright © MultiSafepay, Inc. All rights reserved.
+ * See DISCLAIMER.md for disclaimer details.
+ */
+
+use Magento\Framework\Escaper;
+use Magento\Framework\View\Element\Template;
+use MultiSafepay\HyvaCheckout\Payment\Method\CreditCardVault;
+
+/** @var CreditcardVault $magewire */
+/** @var Template $block */
+/** @var Escaper $escaper */
+?>
+<div>
+    <ul>
+        <?php foreach ($magewire->getStoredTokens() as $token): ?>
+            <li>
+                <label>
+                    <input type="radio"
+                           name="multisafepay_vault_public_hash"
+                           wire:model="publicHash"
+                           value="<?= $escaper->escapeHtmlAttr($token['public_hash']); ?>"
+                    />
+                    <embed src="<?= $escaper->escapeUrl($block->getViewFileUrl('MultiSafepay_HyvaCheckout::svg/multisafepay_' . strtolower($token['type']) . '.svg')) ?>"  type="image/svg+xml" class="inline-block"/>
+                    <?= __('ending %1', $token['maskedCC']); ?>
+                </label>
+            </li>
+        <?php endforeach; ?>
+    </ul>
+</div>

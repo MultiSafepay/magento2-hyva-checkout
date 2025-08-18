@@ -37,6 +37,16 @@
                 </arguments>
             </block>
 
+            <block name="checkout.payment.method.multisafepay_creditcard_vault"
+                   as="multisafepay_creditcard_vault"
+                   template="MultiSafepay_HyvaCheckout::component/payment/method/multisafepay_creditcard_vault.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        MultiSafepay\HyvaCheckout\Payment\Method\CreditCardVault
+                    </argument>
+                </arguments>
+            </block>
+
             <!-- Payment Renderer: MultiSafepay Riverty -->
             <block name="checkout.payment.method.multisafepay_afterpay"
                    as="multisafepay_afterpay"
