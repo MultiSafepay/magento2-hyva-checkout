@@ -479,22 +479,6 @@
                 </arguments>
             </block>
 
-            <!-- Payment Renderer: MultiSafepay Sofort-->
-            <block name="checkout.payment.method.multisafepay_sofort"
-                   as="multisafepay_sofort">
-                <arguments>
-                    <argument name="metadata" xsi:type="array">
-                        <item name="icon" xsi:type="array">
-                            <item name="svg" xsi:type="string">multisafepay/multisafepay_sofort</item>
-                            <item name="attributes" xsi:type="array">
-                                <item name="title" xsi:type="string">Sofort</item>
-                            </item>
-                        </item>
-                        <item name="subtitle" xsi:type="string">payment/multisafepay_sofort/instructions</item>
-                    </argument>
-                </arguments>
-            </block>
-
             <!-- Payment Renderer: MultiSafepay Trustly-->
             <block name="checkout.payment.method.multisafepay_trustly"
                    as="multisafepay_trustly">
