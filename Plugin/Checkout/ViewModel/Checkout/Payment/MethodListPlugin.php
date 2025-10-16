@@ -17,30 +17,24 @@ namespace MultiSafepay\HyvaCheckout\Plugin\Checkout\ViewModel\Checkout\Payment;
 
 use Hyva\Checkout\ViewModel\Checkout\Payment\MethodList;
 use Magento\Customer\Model\Session as CustomerSession;
-use Magento\Vault\Model\ResourceModel\PaymentToken\CollectionFactory as TokenCollectionFactory;
+use Magento\Vault\Api\PaymentTokenManagementInterface;
+use Magento\Vault\Model\PaymentToken;
 
 class MethodListPlugin
 {
-    /**
-     * @var CustomerSession
-     */
-    protected $customerSession;
-
-    /**
-     * @var TokenCollectionFactory
-     */
-    protected TokenCollectionFactory $tokenCollectionFactory;
+    protected CustomerSession $customerSession;
+    private PaymentTokenManagementInterface $paymentTokenManagement;
 
     /**
      * @param CustomerSession $customerSession
-     * @param TokenCollectionFactory $tokenCollectionFactory
+     * @param PaymentTokenManagementInterface $paymentTokenManagement
      */
     public function __construct(
         CustomerSession $customerSession,
-        TokenCollectionFactory $tokenCollectionFactory
+        PaymentTokenManagementInterface $paymentTokenManagement
     ) {
         $this->customerSession = $customerSession;
-        $this->tokenCollectionFactory = $tokenCollectionFactory;
+        $this->paymentTokenManagement = $paymentTokenManagement;
     }
 
     /**
@@ -59,39 +53,74 @@ class MethodListPlugin
         }
 
         $isGuest = !$this->customerSession->isLoggedIn();
-        $customerId = $isGuest ? null : $this->customerSession->getCustomerId();
-
-        // If customer is logged in, fetch their saved payment tokens
-        $allowedVaultMethods = [];
-        if ($customerId) {
-            $tokenCollection = $this->tokenCollectionFactory->create()
-                ->addFieldToFilter('customer_id', $customerId)
-                ->addFieldToFilter('is_active', 1);
-
-            foreach ($tokenCollection as $token) {
-                $allowedVaultMethods[] = $token->getPaymentMethodCode(); // e.g., 'vault_visa'
-            }
-        }
+        $allowedVaultMethods = $isGuest ? [] : $this->getAllowedVaultMethods();
 
         return array_filter($result, function ($method) use ($isGuest, $allowedVaultMethods) {
             $code = $method->getCode();
 
-            // Always exclude recurring methods
-            if (str_contains($code, 'multisafepay') && str_contains($code, 'recurring')) {
+            if (!str_contains($code, 'multisafepay')) {
+                return true;
+            }
+
+            if (str_contains($code, 'recurring')) {
                 return false;
             }
 
-            // Exclude vault methods for guests
-            if ($isGuest && str_contains($code, 'vault')) {
-                return false;
+            if (!str_contains($code, 'vault')) {
+                return true;
             }
 
-            // For logged-in users, only allow vault methods they own
-            if (!$isGuest && str_contains($code, 'vault') && !in_array($code, $allowedVaultMethods)) {
-                return false;
-            }
-
-            return true;
+            return $this->handleVaultMethod($method, $isGuest, $allowedVaultMethods);
         });
     }
+
+    /**
+     * Retrieve allowed vault methods for the logged-in customer.
+     *
+     * @return array
+     */
+    private function getAllowedVaultMethods(): array
+    {
+        $customerId = $this->customerSession->getCustomerId();
+        if (!$customerId) {
+            return [];
+        }
+
+        $allowedMethods = [];
+        $paymentTokens = $this->paymentTokenManagement->getListByCustomerId($customerId);
+
+        /** @var PaymentToken $token */
+        foreach ($paymentTokens as $token) {
+            if (preg_match('/^multisafepay_(.+?)_recurring$/', $token->getPaymentMethodCode(), $matches)) {
+                $allowedMethods[] = $matches[1];
+            }
+        }
+
+        return $allowedMethods;
+    }
+
+    /**
+     * Handle vault payment method logic.
+     *
+     * @param mixed $method
+     * @param bool $isGuest
+     * @param array $allowedVaultMethods
+     * @return bool
+     */
+    private function handleVaultMethod($method, bool $isGuest, array $allowedVaultMethods): bool
+    {
+        if ($isGuest) {
+            return false;
+        }
+
+        if (preg_match('/^multisafepay_(.+?)_vault$/', $method->getCode(), $matches)) {
+            if (in_array($matches[1], $allowedVaultMethods)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+
 }

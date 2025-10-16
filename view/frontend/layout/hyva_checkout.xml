@@ -19,6 +19,15 @@
                     </argument>
                 </arguments>
             </block>
+            <block name="checkout.payment.methods.after.multisafepay_ideal"
+                   as="multisafepay_ideal_after"
+                   template="MultiSafepay_HyvaCheckout::component/payment/method/payment_vault_after.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        MultiSafepay\HyvaCheckout\Payment\Method\Ideal
+                    </argument>
+                </arguments>
+            </block>
             <block name="checkout.payment.methods.after.multisafepay_afterpay"
                    as="multisafepay_afterpay_after"
                    template="MultiSafepay_HyvaCheckout::component/payment/method/payment_component.phtml">

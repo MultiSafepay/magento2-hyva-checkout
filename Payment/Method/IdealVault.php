@@ -24,10 +24,10 @@ use Magento\Quote\Api\CartRepositoryInterface;
 use Magento\Vault\Api\Data\PaymentTokenInterface;
 use Magento\Vault\Api\PaymentTokenRepositoryInterface;
 use Magewirephp\Magewire\Component;
-use MultiSafepay\ConnectCore\Model\Ui\Gateway\CreditCardRecurringConfigProvider;
+use MultiSafepay\ConnectCore\Model\Ui\Gateway\IdealRecurringConfigProvider;
 use MultiSafepay\ConnectCore\Util\JsonHandler;
 
-class CreditCardVault extends Component
+class IdealVault extends Component
 {
     private CheckoutSession $checkoutSession;
     private PaymentTokenRepositoryInterface $paymentTokenRepository;
@@ -91,7 +91,7 @@ class CreditCardVault extends Component
         $searchCriteria->addFilter(PaymentTokenInterface::IS_VISIBLE, 1);
         $searchCriteria->addFilter(PaymentTokenInterface::IS_ACTIVE, 1);
         $searchCriteria->addFilter(PaymentTokenInterface::CUSTOMER_ID, $this->customerSession->getCustomerId());
-        $searchCriteria->addFilter(PaymentTokenInterface::PAYMENT_METHOD_CODE, CreditCardRecurringConfigProvider::CODE);
+        $searchCriteria->addFilter(PaymentTokenInterface::PAYMENT_METHOD_CODE, IdealRecurringConfigProvider::CODE);
 
         $tokens = $this->paymentTokenRepository->getList($searchCriteria->create())->getItems();
         $tokenList = [];

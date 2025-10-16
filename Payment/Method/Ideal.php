@@ -15,13 +15,45 @@ declare(strict_types=1);
 
 namespace MultiSafepay\HyvaCheckout\Payment\Method;
 
+use Magento\Checkout\Model\Session as CheckoutSession;
+use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Exception\NoSuchEntityException;
+use Magento\Quote\Api\CartRepositoryInterface;
 use Magento\Store\Model\ScopeInterface;
 use Magento\Vault\Model\Ui\VaultConfigProvider;
+use MultiSafepay\ConnectCore\Model\Ui\Gateway\IdealConfigProvider;
+use Magewirephp\Magewire\Component;
+use Rakit\Validation\Validator;
 
-class MultiSafepayPaymentComponentVault extends MultiSafepayPaymentComponent
+class Ideal extends Component\Form
 {
+    private CheckoutSession $checkoutSession;
+    private ScopeConfigInterface $scopeConfig;
+    private CartRepositoryInterface $quoteRepository;
+
+    public function __construct(
+        Validator $validator,
+        CheckoutSession $checkoutSession,
+        ScopeConfigInterface $scopeConfig,
+        CartRepositoryInterface $quoteRepository
+    ) {
+        parent::__construct($validator);
+        $this->checkoutSession = $checkoutSession;
+        $this->scopeConfig = $scopeConfig;
+        $this->quoteRepository = $quoteRepository;
+    }
+
+    /**
+     * Get the method code
+     *
+     * @return string
+     */
+    public function getMethodCode(): string
+    {
+        return IdealConfigProvider::CODE;
+    }
+
     /**
      * Check if vault is enabled for the payment method.
      *
@@ -31,7 +63,7 @@ class MultiSafepayPaymentComponentVault extends MultiSafepayPaymentComponent
      */
     public function isVaultEnabled(): bool
     {
-        $quote = $this->sessionCheckout->getQuote();
+        $quote = $this->checkoutSession->getQuote();
 
         if (!$quote || !$quote->getCustomerId()) {
             return false;
@@ -41,7 +73,7 @@ class MultiSafepayPaymentComponentVault extends MultiSafepayPaymentComponent
             return (bool)$this->scopeConfig->getValue(
                 'payment/' . $this->getMethodCode() . '_vault/active',
                 ScopeInterface::SCOPE_STORE,
-                $this->sessionCheckout->getQuote()->getStoreId() ?? null
+                $this->checkoutSession->getQuote()->getStoreId() ?? null
             );
         } catch (NoSuchEntityException | LocalizedException $exception) {
             return false;
@@ -57,7 +89,7 @@ class MultiSafepayPaymentComponentVault extends MultiSafepayPaymentComponent
      */
     public function updateVaultTokenEnabler(bool $value)
     {
-        $quote = $this->sessionCheckout->getQuote();
+        $quote = $this->checkoutSession->getQuote();
         $quote->getPayment()->setAdditionalInformation(VaultConfigProvider::IS_ACTIVE_CODE, $value);
 
         $this->quoteRepository->save($quote);
