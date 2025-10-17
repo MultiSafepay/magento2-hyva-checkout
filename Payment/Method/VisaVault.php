@@ -15,9 +15,9 @@ declare(strict_types=1);
 
 namespace MultiSafepay\HyvaCheckout\Payment\Method;
 
-use MultiSafepay\ConnectCore\Model\Ui\Gateway\IdealRecurringConfigProvider;
+use MultiSafepay\ConnectCore\Model\Ui\Gateway\VisaRecurringConfigProvider;
 
-class IdealVault extends PaymentVault
+class VisaVault extends PaymentVault
 {
-    public const VAULT_CODE = IdealRecurringConfigProvider::CODE;
+    public const VAULT_CODE = VisaRecurringConfigProvider::CODE;
 }

@@ -23,7 +23,7 @@
 
             <block name="checkout.payment.method.multisafepay_ideal_vault"
                    as="multisafepay_ideal_vault"
-                   template="MultiSafepay_HyvaCheckout::component/payment/method/multisafepay_ideal_vault.phtml">
+                   template="MultiSafepay_HyvaCheckout::component/payment/method/payment_with_vault.phtml">
                 <arguments>
                     <argument name="magewire" xsi:type="object">
                         MultiSafepay\HyvaCheckout\Payment\Method\IdealVault
@@ -50,7 +50,7 @@
 
             <block name="checkout.payment.method.multisafepay_creditcard_vault"
                    as="multisafepay_creditcard_vault"
-                   template="MultiSafepay_HyvaCheckout::component/payment/method/multisafepay_creditcard_vault.phtml">
+                   template="MultiSafepay_HyvaCheckout::component/payment/method/payment_with_vault.phtml">
                 <arguments>
                     <argument name="magewire" xsi:type="object">
                         MultiSafepay\HyvaCheckout\Payment\Method\CreditCardVault
@@ -120,6 +120,16 @@
                             </item>
                         </item>
                         <item name="subtitle" xsi:type="string">payment/multisafepay_amex/instructions</item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <block name="checkout.payment.method.multisafepay_amex_vault"
+                   as="multisafepay_amex_vault"
+                   template="MultiSafepay_HyvaCheckout::component/payment/method/payment_with_vault.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        MultiSafepay\HyvaCheckout\Payment\Method\AmexVault
                     </argument>
                 </arguments>
             </block>
@@ -419,6 +429,16 @@
                 </arguments>
             </block>
 
+            <block name="checkout.payment.method.multisafepay_mastercard_vault"
+                   as="multisafepay_mastercard_vault"
+                   template="MultiSafepay_HyvaCheckout::component/payment/method/payment_with_vault.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        MultiSafepay\HyvaCheckout\Payment\Method\MastercardVault
+                    </argument>
+                </arguments>
+            </block>
+
             <!-- Payment Renderer: MultiSafepay Maestro -->
             <block name="checkout.payment.method.multisafepay_maestro"
                    as="multisafepay_maestro"
@@ -432,6 +452,16 @@
                             </item>
                         </item>
                         <item name="subtitle" xsi:type="string">payment/multisafepay_maestro/instructions</item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <block name="checkout.payment.method.multisafepay_maestro_vault"
+                   as="multisafepay_maestro_vault"
+                   template="MultiSafepay_HyvaCheckout::component/payment/method/payment_with_vault.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        MultiSafepay\HyvaCheckout\Payment\Method\MaestroVault
                     </argument>
                 </arguments>
             </block>
@@ -561,6 +591,16 @@
                             </item>
                         </item>
                         <item name="subtitle" xsi:type="string">payment/multisafepay_visa/instructions</item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <block name="checkout.payment.method.multisafepay_visa_vault"
+                   as="multisafepay_visa_vault"
+                   template="MultiSafepay_HyvaCheckout::component/payment/method/payment_with_vault.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        MultiSafepay\HyvaCheckout\Payment\Method\VisaVault
                     </argument>
                 </arguments>
             </block>

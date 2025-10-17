@@ -20,7 +20,7 @@ use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Store\Model\ScopeInterface;
 use Magento\Vault\Model\Ui\VaultConfigProvider;
 
-class MultiSafepayPaymentComponentVault extends MultiSafepayPaymentComponent
+class MultiSafepayPaymentComponentWithVault extends MultiSafepayPaymentComponent
 {
     /**
      * Check if vault is enabled for the payment method.
@@ -59,7 +59,6 @@ class MultiSafepayPaymentComponentVault extends MultiSafepayPaymentComponent
     {
         $quote = $this->sessionCheckout->getQuote();
         $quote->getPayment()->setAdditionalInformation(VaultConfigProvider::IS_ACTIVE_CODE, $value);
-
         $this->quoteRepository->save($quote);
     }
 }
