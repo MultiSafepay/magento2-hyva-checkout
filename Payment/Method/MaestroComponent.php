@@ -17,7 +17,7 @@ namespace MultiSafepay\HyvaCheckout\Payment\Method;
 
 use MultiSafepay\ConnectCore\Model\Ui\Gateway\MaestroConfigProvider;
 
-class MaestroComponent extends MultiSafepayPaymentComponent
+class MaestroComponent extends MultiSafepayPaymentComponentWithVault
 {
     /**
      * Get the method code

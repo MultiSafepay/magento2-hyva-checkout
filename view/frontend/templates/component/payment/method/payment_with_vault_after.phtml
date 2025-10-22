@@ -1,0 +1,47 @@
+<?php
+/**
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is provided with Magento in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ *
+ * Copyright © MultiSafepay, Inc. All rights reserved.
+ * See DISCLAIMER.md for disclaimer details.
+ */
+
+declare(strict_types=1);
+
+/** @var Template $block */
+/** @var Ideal $magewire */
+/** @var Escaper $escaper */
+
+use MultiSafepay\HyvaCheckout\Payment\Method\Ideal;
+use Magento\Framework\Escaper;
+use Magento\Framework\View\Element\Template;
+
+?>
+<script>
+    window.addEventListener('checkout:payment:method-activate', event => {
+        <?php if ($magewire->isVaultEnabled()) { ?>
+
+        let div = document.getElementById('<?= $escaper->escapeHtml($magewire->getMethodCode()) ?>');
+
+        if (div) {
+            div.insertAdjacentHTML("afterend",'<input type="checkbox" id="multisafepay_vault_checkbox" name="multisafepay_vault_checkbox" /> <?= $escaper->escapeHtml(__('Save for later use')) ?>');
+        }
+
+        const vaultCheckbox = document.getElementById('multisafepay_vault_checkbox');
+
+        if (vaultCheckbox) {
+            vaultCheckbox.addEventListener('change', checkboxEvent => {
+                const component = '<?= $escaper->escapeJs($block->getNameInLayout()) ?>';
+                Magewire.find(component).updateVaultTokenEnabler(checkboxEvent.target.checked);
+            });
+        }
+
+        <?php }?>
+    })
+</script>
+<?php isset($hyvaCsp) && $hyvaCsp->registerInlineScript() ?>

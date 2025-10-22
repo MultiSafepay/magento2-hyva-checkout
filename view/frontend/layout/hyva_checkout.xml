@@ -12,10 +12,19 @@
             </block>
             <block name="checkout.payment.methods.after.multisafepay_creditcard"
                    as="multisafepay_creditcard_after"
-                   template="MultiSafepay_HyvaCheckout::component/payment/method/payment_component.phtml">
+                   template="MultiSafepay_HyvaCheckout::component/payment/method/payment_component_with_vault.phtml">
                 <arguments>
                     <argument name="magewire" xsi:type="object">
                         MultiSafepay\HyvaCheckout\Payment\Method\CreditCardComponent
+                    </argument>
+                </arguments>
+            </block>
+            <block name="checkout.payment.methods.after.multisafepay_ideal"
+                   as="multisafepay_ideal_after"
+                   template="MultiSafepay_HyvaCheckout::component/payment/method/payment_with_vault_after.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        MultiSafepay\HyvaCheckout\Payment\Method\Ideal
                     </argument>
                 </arguments>
             </block>
@@ -30,7 +39,7 @@
             </block>
             <block name="checkout.payment.methods.after.multisafepay_amex"
                    as="multisafepay_amex_after"
-                   template="MultiSafepay_HyvaCheckout::component/payment/method/payment_component.phtml">
+                   template="MultiSafepay_HyvaCheckout::component/payment/method/payment_component_with_vault.phtml">
                 <arguments>
                     <argument name="magewire" xsi:type="object">
                         MultiSafepay\HyvaCheckout\Payment\Method\AmexComponent
@@ -39,7 +48,7 @@
             </block>
             <block name="checkout.payment.methods.after.multisafepay_maestro"
                    as="multisafepay_maestro_after"
-                   template="MultiSafepay_HyvaCheckout::component/payment/method/payment_component.phtml">
+                   template="MultiSafepay_HyvaCheckout::component/payment/method/payment_component_with_vault.phtml">
                 <arguments>
                     <argument name="magewire" xsi:type="object">
                         MultiSafepay\HyvaCheckout\Payment\Method\MaestroComponent
@@ -48,7 +57,7 @@
             </block>
             <block name="checkout.payment.methods.after.multisafepay_mastercard"
                    as="multisafepay_mastercard_after"
-                   template="MultiSafepay_HyvaCheckout::component/payment/method/payment_component.phtml">
+                   template="MultiSafepay_HyvaCheckout::component/payment/method/payment_component_with_vault.phtml">
                 <arguments>
                     <argument name="magewire" xsi:type="object">
                         MultiSafepay\HyvaCheckout\Payment\Method\MastercardComponent
@@ -57,7 +66,7 @@
             </block>
             <block name="checkout.payment.methods.after.multisafepay_visa"
                    as="multisafepay_visa_after"
-                   template="MultiSafepay_HyvaCheckout::component/payment/method/payment_component.phtml">
+                   template="MultiSafepay_HyvaCheckout::component/payment/method/payment_component_with_vault.phtml">
                 <arguments>
                     <argument name="magewire" xsi:type="object">
                         MultiSafepay\HyvaCheckout\Payment\Method\VisaComponent
