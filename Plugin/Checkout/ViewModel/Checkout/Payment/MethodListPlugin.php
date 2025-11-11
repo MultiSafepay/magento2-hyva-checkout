@@ -91,6 +91,11 @@ class MethodListPlugin
 
         /** @var PaymentToken $token */
         foreach ($paymentTokens as $token) {
+
+            if (!$token->getIsActive()) {
+                continue;
+            }
+
             if (preg_match('/^multisafepay_(.+?)_recurring$/', $token->getPaymentMethodCode(), $matches)) {
                 $allowedMethods[] = $matches[1];
             }

@@ -290,26 +290,37 @@ class MultiSafepayPaymentComponent extends Component\Form
      * @param array $paymentComponentData
      * @return void
      */
-    public function setPaymentComponentData(array $paymentComponentData)
+    public function setPaymentComponentData(array $paymentComponentData): void
     {
-        $additionalInformation = [];
-
-        if (isset($paymentComponentData['tokenize']) && $paymentComponentData['tokenize']) {
-            $additionalInformation['tokenize'] = $paymentComponentData['tokenize'];
-        }
-
-        $additionalInformation['payload'] = $paymentComponentData['payload'] ?? '';
-        $additionalInformation['transaction_type'] = 'direct';
-
         try {
             $quote = $this->sessionCheckout->getQuote();
+            $payment = $quote->getPayment();
 
-            $quote->getPayment()->setAdditionalInformation($additionalInformation);
+            // Get any existing additional information
+            $existingInfo = $payment->getAdditionalInformation();
+
+            // Build the new data
+            $newInfo = [];
+
+            if (!empty($paymentComponentData['tokenize'])) {
+                $newInfo['tokenize'] = $paymentComponentData['tokenize'];
+            }
+
+            $newInfo['payload'] = $paymentComponentData['payload'] ?? '';
+            $newInfo['transaction_type'] = 'direct';
+
+            // Merge (existing keys are preserved unless explicitly overridden)
+            $mergedInfo = array_merge($existingInfo, $newInfo);
+
+            // Save back to the quote payment
+            $payment->setAdditionalInformation($mergedInfo);
             $this->quoteRepository->save($quote);
+
         } catch (LocalizedException $exception) {
             $this->dispatchErrorMessage($exception->getMessage());
         }
     }
+
 
     /**
      * Log an error message for the payment component

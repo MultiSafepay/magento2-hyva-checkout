@@ -59,6 +59,7 @@ class MultiSafepayPaymentComponentWithVault extends MultiSafepayPaymentComponent
     {
         $quote = $this->sessionCheckout->getQuote();
         $quote->getPayment()->setAdditionalInformation(VaultConfigProvider::IS_ACTIVE_CODE, $value);
+
         $this->quoteRepository->save($quote);
     }
 }
