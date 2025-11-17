@@ -35,10 +35,10 @@ class VaultTitlePlugin
      * Modify the title of the vault payment method to include the original payment method's title.
      *
      * @param Vault $subject
-     * @param string $result
+     * @param string|null $result
      * @return string
      */
-    public function afterGetTitle(Vault $subject, string $result): string
+    public function afterGetTitle(Vault $subject, ?string $result): ?string
     {
         $configPath = 'hyva_themes_checkout/general/checkout';
         $checkoutType = $this->scopeConfig->getValue($configPath, ScopeInterface::SCOPE_STORE);
