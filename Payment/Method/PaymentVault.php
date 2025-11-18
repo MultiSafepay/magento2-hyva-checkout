@@ -74,6 +74,15 @@ class PaymentVault extends Component
     {
         $quote = $this->checkoutSession->getQuote();
         $this->publicHash = $quote->getPayment()->getAdditionalInformation(PaymentTokenInterface::PUBLIC_HASH);
+
+        $tokens = $this->getStoredTokens();
+        if (!empty($tokens)) {
+            $this->publicHash = $tokens[0]['public_hash'];
+            $quote->getPayment()->setAdditionalInformation(PaymentTokenInterface::PUBLIC_HASH, $this->publicHash);
+            $quote->getPayment()->setAdditionalInformation(PaymentTokenInterface::CUSTOMER_ID, $quote->getCustomerId());
+
+            $this->quoteRepository->save($quote);
+        }
     }
 
     /**
