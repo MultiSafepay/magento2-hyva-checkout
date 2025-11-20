@@ -15,17 +15,9 @@ declare(strict_types=1);
 
 namespace MultiSafepay\HyvaCheckout\Payment\Method;
 
-use MultiSafepay\ConnectCore\Model\Ui\Gateway\VisaConfigProvider;
+use MultiSafepay\ConnectCore\Model\Ui\Gateway\CreditCardRecurringConfigProvider;
 
-class VisaComponent extends MultiSafepayPaymentComponentWithVault
+class CreditCardVault extends PaymentVault
 {
-    /**
-     * Get the method code
-     *
-     * @return string
-     */
-    public function getMethodCode(): string
-    {
-        return VisaConfigProvider::CODE;
-    }
+    public const VAULT_CODE = CreditCardRecurringConfigProvider::CODE;
 }

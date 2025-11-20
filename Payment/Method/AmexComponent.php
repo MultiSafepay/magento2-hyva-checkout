@@ -17,7 +17,7 @@ namespace MultiSafepay\HyvaCheckout\Payment\Method;
 
 use MultiSafepay\ConnectCore\Model\Ui\Gateway\AmexConfigProvider;
 
-class AmexComponent extends MultiSafepayPaymentComponent
+class AmexComponent extends MultiSafepayPaymentComponentWithVault
 {
     /**
      * Get the method code

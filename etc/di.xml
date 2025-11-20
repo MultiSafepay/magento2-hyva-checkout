@@ -6,4 +6,10 @@
     <type name="Hyva\Checkout\Model\MethodMetaData\SubtitleRenderer">
         <plugin name="multisafepay_hyva_checkout_method_meta_data_subtitle" type="MultiSafepay\HyvaCheckout\Plugin\Checkout\Model\MethodMetaData\SubtitleRendererPlugin" sortOrder="1" disabled="false"/>
     </type>
+    <type name="Hyva\Checkout\ViewModel\Checkout\Payment\MethodList">
+        <plugin name="multisafepay_hyva_checkout_methodlist" type="MultiSafepay\HyvaCheckout\Plugin\Checkout\ViewModel\Checkout\Payment\MethodListPlugin" sortOrder="1" disabled="false"/>
+    </type>
+    <type name="Magento\Vault\Model\Method\Vault">
+        <plugin name="multisafepay_vault_title" type="MultiSafepay\HyvaCheckout\Plugin\Vault\Model\Method\VaultTitlePlugin" sortOrder="10"/>
+    </type>
 </config>
