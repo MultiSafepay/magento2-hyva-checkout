@@ -81,7 +81,7 @@ class Bancontact extends Component\Form
     }
 
     /**
-     * Updates the quote with the public hash and customer ID
+     * Sets the vault token enabler flag in the payment's additional information for the quote.
      *
      * @return void
      * @throws LocalizedException
