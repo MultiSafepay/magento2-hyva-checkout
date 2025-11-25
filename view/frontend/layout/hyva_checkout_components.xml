@@ -266,7 +266,8 @@
 
             <!-- Payment Renderer: MultiSafepay Direct Debit -->
             <block name="checkout.payment.method.multisafepay_directdebit"
-                   as="multisafepay_directdebit">
+                   as="multisafepay_directdebit"
+                   template="MultiSafepay_HyvaCheckout::component/payment/method/multisafepay_directdebit.phtml">
                 <arguments>
                     <argument name="metadata" xsi:type="array">
                         <item name="icon" xsi:type="array">
@@ -276,6 +277,43 @@
                             </item>
                         </item>
                         <item name="subtitle" xsi:type="string">payment/multisafepay_directdebit/instructions</item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <block name="checkout.payment.method.multisafepay_directdebit_vault"
+                   as="multisafepay_directdebit_vault"
+                   template="MultiSafepay_HyvaCheckout::component/payment/method/payment_with_vault.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        MultiSafepay\HyvaCheckout\Payment\Method\DirectDebitVault
+                    </argument>
+                </arguments>
+            </block>
+
+            <!-- Payment Renderer: MultiSafepay Bancontact -->
+            <block name="checkout.payment.method.multisafepay_bancontact"
+                   as="multisafepay_bancontact"
+                   template="MultiSafepay_HyvaCheckout::component/payment/method/multisafepay_bancontact.phtml">
+                <arguments>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="icon" xsi:type="array">
+                            <item name="svg" xsi:type="string">multisafepay/multisafepay_bancontact</item>
+                            <item name="attributes" xsi:type="array">
+                                <item name="title" xsi:type="string">Bancontact</item>
+                            </item>
+                        </item>
+                        <item name="subtitle" xsi:type="string">payment/multisafepay_bancontact/instructions</item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <block name="checkout.payment.method.multisafepay_bancontact_vault"
+                   as="multisafepay_bancontact_vault"
+                   template="MultiSafepay_HyvaCheckout::component/payment/method/payment_with_vault.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        MultiSafepay\HyvaCheckout\Payment\Method\BancontactVault
                     </argument>
                 </arguments>
             </block>

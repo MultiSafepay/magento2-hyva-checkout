@@ -28,6 +28,24 @@
                     </argument>
                 </arguments>
             </block>
+            <block name="checkout.payment.methods.after.multisafepay_directdebit"
+                   as="multisafepay_directdebit_after"
+                   template="MultiSafepay_HyvaCheckout::component/payment/method/payment_with_vault_after.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        MultiSafepay\HyvaCheckout\Payment\Method\DirectDebit
+                    </argument>
+                </arguments>
+            </block>
+            <block name="checkout.payment.methods.after.multisafepay_bancontact"
+                   as="multisafepay_bancontact_after"
+                   template="MultiSafepay_HyvaCheckout::component/payment/method/payment_with_vault_after.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        MultiSafepay\HyvaCheckout\Payment\Method\Bancontact
+                    </argument>
+                </arguments>
+            </block>
             <block name="checkout.payment.methods.after.multisafepay_afterpay"
                    as="multisafepay_afterpay_after"
                    template="MultiSafepay_HyvaCheckout::component/payment/method/payment_component.phtml">
