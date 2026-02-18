@@ -1,15 +1,15 @@
 {
     "name": "multisafepay/magento2-hyva-checkout",
     "description": "Integrate MultiSafepay payment methods into your Hyvä Checkout",
-    "version": "2.5.0",
+    "version": "2.6.0",
     "type": "magento2-module",
     "license": "OSL-3.0",
     "minimum-stability": "dev",
     "require": {
         "php": ">=7.4",
-        "multisafepay/magento2-core": "^3.12",
-        "multisafepay/magento2-adminhtml": "^1.33",
-        "multisafepay/magento2-frontend": "^2.10",
+        "multisafepay/magento2-core": "^3.16",
+        "multisafepay/magento2-adminhtml": "^1.37",
+        "multisafepay/magento2-frontend": "^2.14",
         "hyva-themes/magento2-hyva-checkout":"^1.1.29"
     },
     "autoload": {

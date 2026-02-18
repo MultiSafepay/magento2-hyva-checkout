@@ -6,6 +6,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.6.0] - 2026-02-18
+### Added
+- PLGMAG2V2-859: Add CODE_OF_CONDUCT.md
+- HYVA-19: Add Magento Vault support for American Express, Mastercard, Visa, Card Payment, Maestro and iDEAL
+- HYVA-40: Add Magento Vault support for Direct Debit and Bancontact
+
+### Changed
+- DAVAMS-954: Rebrand iDEAL - Wero and in3
+
+### Deprecated
+- DAVAMS-918: Deprecate Zinia
+- PLGMAG2V2-810: Deprecate Sofort
+
 ## [2.5.0] - 2025-07-16
 ### Added
 - HYVA-38: Add payment component logging
