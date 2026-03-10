@@ -15,6 +15,7 @@ namespace MultiSafepay\HyvaCheckout\Model\Magewire\Payment;
 
 use Hyva\Checkout\Model\Magewire\Payment\AbstractOrderData;
 use Hyva\Checkout\Model\Magewire\Payment\AbstractPlaceOrderService;
+use Magento\Framework\Exception\CouldNotSaveException;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Math\Random;
 use Magento\Framework\UrlInterface;
@@ -22,8 +23,9 @@ use Magento\Quote\Api\CartManagementInterface;
 use Magento\Quote\Model\Quote;
 use Magento\Sales\Api\OrderRepositoryInterface;
 use MultiSafepay\ConnectCore\Api\RedirectTokenRepositoryInterface;
+use MultiSafepay\ConnectCore\Logger\Logger;
 use MultiSafepay\ConnectCore\Model\RedirectTokenRepository;
-use MultiSafepay\ConnectCore\Observer\Gateway\RedirectTokenDataAssignObserver;
+use MultiSafepay\ConnectCore\Util\RedirectTokenUtil;
 
 class PlaceOrderService extends AbstractPlaceOrderService
 {
@@ -48,6 +50,11 @@ class PlaceOrderService extends AbstractPlaceOrderService
     private $urlBuilder;
 
     /**
+     * @var Logger
+     */
+    private $logger;
+
+    /**
      * PlaceOrderService constructor.
      *
      * @param CartManagementInterface $cartManagement
@@ -55,6 +62,7 @@ class PlaceOrderService extends AbstractPlaceOrderService
      * @param Random $random
      * @param RedirectTokenRepository $redirectTokenRepository
      * @param UrlInterface $urlBuilder
+     * @param Logger $logger
      * @param AbstractOrderData|null $orderData
      */
     public function __construct(
@@ -63,6 +71,7 @@ class PlaceOrderService extends AbstractPlaceOrderService
         Random $random,
         RedirectTokenRepositoryInterface $redirectTokenRepository,
         UrlInterface $urlBuilder,
+        Logger $logger,
         ?AbstractOrderData $orderData = null
     ) {
         parent::__construct($cartManagement, $orderData);
@@ -70,6 +79,7 @@ class PlaceOrderService extends AbstractPlaceOrderService
         $this->random = $random;
         $this->urlBuilder = $urlBuilder;
         $this->redirectTokenRepository = $redirectTokenRepository;
+        $this->logger = $logger;
     }
 
     public function canPlaceOrder(): bool
@@ -98,7 +108,7 @@ class PlaceOrderService extends AbstractPlaceOrderService
 
         if ($quote->getPayment()) {
             $quote->getPayment()->setAdditionalInformation(
-                RedirectTokenDataAssignObserver::REDIRECT_TOKEN_INFO_KEY,
+                RedirectTokenUtil::REDIRECT_TOKEN_KEY,
                 $token
             );
         }
@@ -106,7 +116,15 @@ class PlaceOrderService extends AbstractPlaceOrderService
         $order = $this->orderRepository->get($orderId);
         $orderIncrementId = $order->getIncrementId();
 
-        $this->redirectTokenRepository->create($orderIncrementId, $token);
+        try {
+            $this->redirectTokenRepository->create($orderIncrementId, $token);
+        } catch (CouldNotSaveException $exception) {
+            $this->logger->logExceptionForOrder($orderIncrementId, $exception);
+
+            throw new LocalizedException(
+                __('Something went wrong when initializing the payment. Please try again later.', $exception)
+            );
+        }
 
         return $this->urlBuilder->getUrl('multisafepay/connect/redirect', ['token' => $token]);
     }
