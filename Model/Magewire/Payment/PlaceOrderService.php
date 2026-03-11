@@ -16,7 +16,9 @@ namespace MultiSafepay\HyvaCheckout\Model\Magewire\Payment;
 use Hyva\Checkout\Model\Magewire\Payment\AbstractOrderData;
 use Hyva\Checkout\Model\Magewire\Payment\AbstractPlaceOrderService;
 use Magento\Framework\Exception\CouldNotSaveException;
+use Magento\Framework\Exception\InputException;
 use Magento\Framework\Exception\LocalizedException;
+use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\Math\Random;
 use Magento\Framework\UrlInterface;
 use Magento\Quote\Api\CartManagementInterface;
@@ -24,7 +26,6 @@ use Magento\Quote\Model\Quote;
 use Magento\Sales\Api\OrderRepositoryInterface;
 use MultiSafepay\ConnectCore\Api\RedirectTokenRepositoryInterface;
 use MultiSafepay\ConnectCore\Logger\Logger;
-use MultiSafepay\ConnectCore\Model\RedirectTokenRepository;
 use MultiSafepay\ConnectCore\Util\RedirectTokenUtil;
 
 class PlaceOrderService extends AbstractPlaceOrderService
@@ -60,7 +61,7 @@ class PlaceOrderService extends AbstractPlaceOrderService
      * @param CartManagementInterface $cartManagement
      * @param OrderRepositoryInterface $orderRepository
      * @param Random $random
-     * @param RedirectTokenRepository $redirectTokenRepository
+     * @param RedirectTokenRepositoryInterface $redirectTokenRepository
      * @param UrlInterface $urlBuilder
      * @param Logger $logger
      * @param AbstractOrderData|null $orderData
@@ -113,8 +114,16 @@ class PlaceOrderService extends AbstractPlaceOrderService
             );
         }
 
-        $order = $this->orderRepository->get($orderId);
-        $orderIncrementId = $order->getIncrementId();
+        try {
+            $order = $this->orderRepository->get($orderId);
+            $orderIncrementId = $order->getIncrementId();
+        } catch (NoSuchEntityException | InputException $exception) {
+            $this->logger->logException($exception);
+
+            throw new LocalizedException(
+                __('Order could not be processed during the payment. Please try again later.', $exception)
+            );
+        }
 
         try {
             $this->redirectTokenRepository->create($orderIncrementId, $token);
@@ -122,7 +131,7 @@ class PlaceOrderService extends AbstractPlaceOrderService
             $this->logger->logExceptionForOrder($orderIncrementId, $exception);
 
             throw new LocalizedException(
-                __('Something went wrong when initializing the payment. Please try again later.', $exception)
+                __('Something went wrong when initializing the payment. Please try again later.'), $exception
             );
         }
 
