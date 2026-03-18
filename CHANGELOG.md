@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.7.0] - 2026-03-18
+### Added
+- PLGMAG2V2-888: Added logic to retrieve orders via redirect tokens (instead of via direct order/session access) for payment redirects, with supporting Javascript refactoring for all payment methods.
+
 ## [2.6.0] - 2026-02-18
 ### Added
 - PLGMAG2V2-859: Add CODE_OF_CONDUCT.md
