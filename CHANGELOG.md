@@ -6,6 +6,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.0.0] - 2026-03-18
+### Added
+- PLGMAG2V2-888: Implemented token-based redirect handling via updated payment/library dependencies
+
+### Changed
+- Updated project dependencies to the latest compatible versions (including the libraries providing token-based redirect handling)
+
 ## [2.6.0] - 2026-02-18
 ### Added
 - PLGMAG2V2-859: Add CODE_OF_CONDUCT.md
