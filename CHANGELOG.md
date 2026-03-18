@@ -6,7 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [2.7.0] - 2026-03-18
+## [3.0.0] - 2026-03-18
 ### Added
 - PLGMAG2V2-888: Implemented token-based redirect handling via updated payment/library dependencies
 
