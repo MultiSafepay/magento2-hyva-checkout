@@ -20,6 +20,7 @@ use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\Context;
 use Magento\Framework\Controller\Result\Json;
 use Magento\Framework\Controller\Result\JsonFactory;
+use MultiSafepay\ConnectCore\Logger\Logger;
 use MultiSafepay\ConnectCore\Util\ApiTokenUtil;
 
 class ApiToken extends Action
@@ -27,19 +28,34 @@ class ApiToken extends Action
     private JsonFactory $resultJsonFactory;
     private CheckoutSession $checkoutSession;
     private ApiTokenUtil $apiTokenUtil;
+    private Logger $logger;
 
+    /**
+     * @param Context $context
+     * @param JsonFactory $resultJsonFactory
+     * @param CheckoutSession $checkoutSession
+     * @param ApiTokenUtil $apiTokenUtil
+     * @param Logger $logger
+     */
     public function __construct(
         Context $context,
         JsonFactory $resultJsonFactory,
         CheckoutSession $checkoutSession,
-        ApiTokenUtil $apiTokenUtil
+        ApiTokenUtil $apiTokenUtil,
+        Logger $logger
     ) {
         parent::__construct($context);
         $this->resultJsonFactory = $resultJsonFactory;
         $this->checkoutSession = $checkoutSession;
         $this->apiTokenUtil = $apiTokenUtil;
+        $this->logger = $logger;
     }
 
+    /**
+     * Execute method to retrieve the API token for the current quote and return it as a JSON response.
+     *
+     * @return Json
+     */
     public function execute(): Json
     {
         $result = $this->resultJsonFactory->create();
@@ -63,10 +79,12 @@ class ApiToken extends Action
                 'success' => true,
                 'apiToken' => $apiToken
             ]);
-        } catch (\Throwable $e) {
+        } catch (\Throwable $exception) {
+            $this->logger->logException($exception);
+
             return $result->setHttpResponseCode(500)->setData([
                 'success' => false,
-                'message' => $e->getMessage()
+                'message' => 'An error occurred while retrieving the API token'
             ]);
         }
     }
