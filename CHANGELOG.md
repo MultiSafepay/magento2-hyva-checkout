@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.0.1] - 2026-03-26
+### Fixed
+- HYVA-44: Fixed an issue where the payment component would show an error after the API Token expired
+
 ## [3.0.0] - 2026-03-18
 ### Added
 - PLGMAG2V2-888: Implemented token-based redirect handling via updated payment/library dependencies
