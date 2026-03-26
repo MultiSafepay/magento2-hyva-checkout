@@ -23,105 +23,149 @@ use Magento\Framework\View\Element\Template;
 
 ?>
 <script>
-    window.addEventListener('checkout:payment:method-activate', event => {
-        <?php if ($magewire->isVaultEnabled()) { ?>
+    (function () {
+        const methodCode = '<?= $escaper->escapeJs($magewire->getMethodCode()) ?>';
+        const containerSelector = '#multisafepay-<?= $escaper->escapeJs($magewire->getMethodCode()) ?>-component';
+        const tokenUrl = '<?= $escaper->escapeJs($block->getUrl('multisafepay_hyva/hyvaCheckout/apiToken')) ?>';
+        const componentName = '<?= $escaper->escapeJs($block->getNameInLayout()) ?>';
 
-        let componentDiv = document.getElementById('multisafepay-<?= $escaper->escapeJs($magewire->getMethodCode()) ?>-component');
+        const TOKEN_MAX_AGE_MS = 8 * 60 * 1000;
 
-        if (componentDiv) {
-            componentDiv.insertAdjacentHTML("afterend",'<input type="checkbox" id="multisafepay_vault_checkbox" name="multisafepay_vault_checkbox" /> <?= $escaper->escapeHtml(__('Save for later use')) ?>');
+        let paymentComponent = null;
+        let tokenFetchedAt = 0;
+
+        async function fetchFreshApiToken() {
+            const res = await fetch(tokenUrl, {
+                method: 'GET',
+                credentials: 'same-origin',
+                headers: { 'Accept': 'application/json' }
+            });
+
+            const data = await res.json().catch(() => ({}));
+
+            if (!res.ok || !data || !data.success || !data.apiToken) {
+                throw new Error((data && data.message) ? data.message : 'Failed to refresh API token');
+            }
+
+            return data.apiToken;
         }
 
-        const vaultCheckbox = document.getElementById('multisafepay_vault_checkbox');
+        function initPaymentComponent(apiToken, paymentComponentDataBase) {
+            const paymentComponentData = Object.assign({}, paymentComponentDataBase, { apiToken });
 
-        if (vaultCheckbox) {
-            vaultCheckbox.addEventListener('change', checkboxEvent => {
-                const component = '<?= $escaper->escapeJs($block->getNameInLayout()) ?>';
-                Magewire.find(component).updateVaultTokenEnabler(checkboxEvent.target.checked);
+            paymentComponent = new MultiSafepay(paymentComponentData);
+
+            paymentComponent.init('payment', {
+                container: containerSelector,
+                gateway: '<?= $escaper->escapeJs($magewire->getGatewayCode()) ?>',
+                onError: (state) => {
+                    const paymentComponentDataJson = JSON.stringify(paymentComponentData, null, 2);
+                    const error = 'Payment Component error: ' + JSON.stringify(state, null, 2);
+
+                    <?php if ($magewire->isDebugModeEnabled()) { ?>
+                    console.log(error);
+                    <?php } ?>
+
+                    Magewire.find(componentName).logPaymentComponentError(error, paymentComponentDataJson);
+                }
             });
         }
 
-        <?php }?>
-
-        <?php if ($magewire->isPaymentComponentEnabled()) {?>
-
-        let paymentComponent;
-
-        if (event.detail.method !== '<?= $escaper->escapeJs($magewire->getMethodCode()) ?>' ||
-            !document.getElementById('multisafepay-<?= $escaper->escapeJs($magewire->getMethodCode()) ?>-component')
-        ) {
-            return;
-        }
-
-        let orderData = {
-            currency: '<?= $escaper->escapeJs($magewire->getCurrency()) ?>',
-            amount: '<?= $escaper->escapeJs($magewire->getAmount()) ?>',
-            template: {
-                settings: {
-                    embed_mode: true,
-                },
-                merge: true
-            },
-            customer: {
-                locale: '<?= $escaper->escapeJs($magewire->getLocale()) ?>',
-                country: '<?= $escaper->escapeJs($magewire->getCountry()) ?>'
+        window.addEventListener('checkout:payment:method-activate', async (event) => {
+            if (event.detail.method !== methodCode || !document.querySelector(containerSelector)) {
+                return;
             }
-        }
 
-        let recurringData;
+            <?php if ($magewire->isVaultEnabled()) { ?>
 
-        <?php if ($magewire->getTokens()) { ?>
-        recurringData = {
-            model: 'cardOnFile',
-            tokens: <?= $magewire->getTokens() ?>
-        }
-        <?php } ?>
+            const componentDiv = document.getElementById('multisafepay-<?= $escaper->escapeJs($magewire->getMethodCode()) ?>-component');
 
-        let paymentComponentData = {
-            env: '<?= $escaper->escapeJs($magewire->getEnvironment()) ?>',
-            apiToken: '<?= $escaper->escapeJs($magewire->getApiToken()) ?>',
-            order: orderData
-        };
+            if (componentDiv && !document.getElementById('multisafepay_vault_checkbox')) {
+                const vaultLabel = '<?= $escaper->escapeJs(__('Save for later use')) ?>';
 
-        if (recurringData) {
-            paymentComponentData.recurring = recurringData;
-        }
-
-        paymentComponent = new MultiSafepay(paymentComponentData);
-
-        paymentComponent.init('payment', {
-            container: '#multisafepay-<?= $escaper->escapeJs($magewire->getMethodCode()) ?>-component',
-            gateway: '<?= $escaper->escapeJs($magewire->getGatewayCode()) ?>',
-            onError: state => {
-                let paymentComponentDataJson = JSON.stringify(paymentComponentData, null, 2);
-                let error = 'Payment Component error: ' + JSON.stringify( state, null, 2);
-
-                <?php if ($magewire->isDebugModeEnabled()) { ?>
-                console.log(error);
-                <?php } ?>
-
-                const component = '<?= $escaper->escapeJs($block->getNameInLayout()) ?>';
-                Magewire.find(component).logPaymentComponentError(error, paymentComponentDataJson);
+                componentDiv.insertAdjacentHTML(
+                    "afterend",
+                    '<label><input type="checkbox" id="multisafepay_vault_checkbox" name="multisafepay_vault_checkbox" /> ' + vaultLabel + '</label>'
+                );
             }
-        })
 
-        hyvaCheckout.validation.register(event.detail.method, async () => {
-                let paymentData = await paymentComponent.getPaymentData();
-                const component = '<?= $escaper->escapeJs($block->getNameInLayout()) ?>';
+            const vaultCheckbox = document.getElementById('multisafepay_vault_checkbox');
 
-                if (paymentComponent.hasErrors()) {
-                    return false;
+            if (vaultCheckbox) {
+                vaultCheckbox.addEventListener('change', (checkboxEvent) => {
+                    Magewire.find(componentName).updateVaultTokenEnabler(checkboxEvent.target.checked);
+                });
+            }
+            <?php } ?>
+
+            <?php if ($magewire->isPaymentComponentEnabled()) { ?>
+            const orderData = {
+                currency: '<?= $escaper->escapeJs($magewire->getCurrency()) ?>',
+                amount: '<?= $escaper->escapeJs($magewire->getAmount()) ?>',
+                template: { settings: { embed_mode: true }, merge: true },
+                customer: {
+                    locale: '<?= $escaper->escapeJs($magewire->getLocale()) ?>',
+                    country: '<?= $escaper->escapeJs($magewire->getCountry()) ?>'
                 }
+            };
 
-                Magewire.find(component).setPaymentComponentData({
-                    payload: paymentData.payload,
-                    tokenize: paymentData.tokenize ?? false
-                })
+            let recurringData;
+            <?php if ($magewire->getTokens()) { ?>
+            recurringData = { model: 'cardOnFile', tokens: <?= $magewire->getTokens() ?> };
+            <?php } ?>
 
-                return new Promise(resolve => setTimeout(() => resolve(true), 1000));
-            }, document.querySelector('#multisafepay-<?= $escaper->escapeJs($magewire->getMethodCode()) ?>-component'), 'payment'
-        );
-        <?php } ?>
-    })
+            const paymentComponentDataBase = {
+                env: '<?= $escaper->escapeJs($magewire->getEnvironment()) ?>',
+                order: orderData
+            };
+
+            if (recurringData) {
+                paymentComponentDataBase.recurring = recurringData;
+            }
+
+            try {
+                const apiToken = await fetchFreshApiToken();
+                initPaymentComponent(apiToken, paymentComponentDataBase);
+                tokenFetchedAt = Date.now();
+            } catch (e) {
+                <?php if ($magewire->isDebugModeEnabled()) { ?>
+                console.error('MultiSafepay token refresh failed on activation:', e);
+                <?php } ?>
+                return;
+            }
+
+            hyvaCheckout.validation.register(
+                methodCode,
+                async () => {
+                    if (!paymentComponent) {
+                        return false;
+                    }
+
+                    if (tokenFetchedAt && (Date.now() - tokenFetchedAt) > TOKEN_MAX_AGE_MS) {
+                        Magewire.find(componentName).dispatchErrorMessage(
+                            'Your payment session expired. Please re-select the payment method and try again.'
+                        );
+                        return false;
+                    }
+
+                    const paymentData = await paymentComponent.getPaymentData();
+
+                    if (paymentComponent.hasErrors()) {
+                        return false;
+                    }
+
+                    Magewire.find(componentName).setPaymentComponentData({
+                        payload: paymentData.payload,
+                        tokenize: paymentData.tokenize ?? false
+                    });
+
+                    return new Promise(resolve => setTimeout(() => resolve(true), 1000));
+                },
+                document.querySelector(containerSelector),
+                'payment'
+            );
+            <?php } ?>
+        });
+    })();
 </script>
 <?php isset($hyvaCsp) && $hyvaCsp->registerInlineScript() ?>
