@@ -7,7 +7,7 @@
     "minimum-stability": "dev",
     "require": {
         "php": ">=7.4",
-        "multisafepay/magento2-core": "^3.17",
+        "multisafepay/magento2-core": "^3.19",
         "multisafepay/magento2-adminhtml": "^1.37",
         "multisafepay/magento2-frontend": "^3.0",
         "hyva-themes/magento2-hyva-checkout":"^1.1.29"
