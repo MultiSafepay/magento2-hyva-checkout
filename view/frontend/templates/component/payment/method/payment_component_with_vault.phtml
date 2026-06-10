@@ -26,7 +26,7 @@ use Magento\Framework\View\Element\Template;
     (function () {
         const methodCode = '<?= $escaper->escapeJs($magewire->getMethodCode()) ?>';
         const containerSelector = '#multisafepay-<?= $escaper->escapeJs($magewire->getMethodCode()) ?>-component';
-        const tokenUrl = '<?= $escaper->escapeJs($block->getUrl('multisafepay_hyva/hyvaCheckout/apiToken')) ?>';
+        const tokenUrl = '<?= $escaper->escapeJs($block->getUrl('multisafepay/connect/apitoken')) ?>';
         const componentName = '<?= $escaper->escapeJs($block->getNameInLayout()) ?>';
 
         const TOKEN_MAX_AGE_MS = 8 * 60 * 1000;
