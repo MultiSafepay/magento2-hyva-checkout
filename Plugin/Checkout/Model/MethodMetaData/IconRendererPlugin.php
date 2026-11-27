@@ -21,6 +21,7 @@ use Magento\Payment\Gateway\Config\Config as GatewayConfig;
 use MultiSafepay\ConnectCore\Config\Config;
 use MultiSafepay\ConnectCore\Model\Ui\Gateway\CreditCardConfigProvider;
 use MultiSafepay\ConnectCore\Util\GenericGatewayUtil;
+use MultiSafepay\ConnectCore\Util\PaymentMethodUtil;
 
 class IconRendererPlugin
 {
@@ -40,18 +41,34 @@ class IconRendererPlugin
     private Escaper $escaper;
 
     /**
+     * @var Config
+     */
+    private $config;
+
+    /**
+     * @var PaymentMethodUtil
+     */
+    private $paymentMethodUtil;
+
+    /**
      * @param GatewayConfig $gatewayConfig
      * @param GenericGatewayUtil $genericGatewayUtil
      * @param Escaper $escaper
+     * @param Config $config
+     * @param PaymentMethodUtil $paymentMethodUtil
      */
     public function __construct(
         GatewayConfig $gatewayConfig,
         GenericGatewayUtil $genericGatewayUtil,
-        Escaper $escaper
+        Escaper $escaper,
+        Config $config,
+        PaymentMethodUtil $paymentMethodUtil
     ) {
         $this->gatewayConfig = $gatewayConfig;
         $this->genericGatewayUtil = $genericGatewayUtil;
         $this->escaper = $escaper;
+        $this->config = $config;
+        $this->paymentMethodUtil = $paymentMethodUtil;
     }
 
     /**
@@ -65,6 +82,14 @@ class IconRendererPlugin
      */
     public function beforeRenderAsSvg(IconRenderer $subject, string $path, array $attributes = []): array
     {
+        if (!$this->paymentMethodUtil->isMultisafepayPaymentByCode($path)) {
+            return [$path, $attributes];
+        }
+
+        if (!$this->config->canShowPaymentIcons()) {
+            return ['', $attributes];
+        }
+
         $cardPaymentIcon = $this->renderCardPaymentIcon($path);
 
         if ($cardPaymentIcon) {
